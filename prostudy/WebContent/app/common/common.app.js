@@ -973,7 +973,7 @@ app
 						controller : 'gfeIndexCtr'
 					})
 					.state('gfe', {
-						url : "/gfe",
+						url : "/gfe/:user",
 						templateUrl : '/app/gfe/gfe_module.html',
 						controller : 'gfeModuleCtr'
 					})

@@ -31,7 +31,7 @@ public class InstituteEntity extends BaseEntity {
 		LogBlobKey = logBlobKey;
 	}
 
-	Ref<PaymentPlanType> accounttype;
+	/*Ref<PaymentPlanType> accounttype;
 
 	public PaymentPlanType getAccounttype() {
 		return accounttype.get();
@@ -39,7 +39,7 @@ public class InstituteEntity extends BaseEntity {
 
 	public void setAccounttype(PaymentPlanType accounttype) {
 		this.accounttype = Ref.create(accounttype);
-	}
+	}*/
 
 	public String getRegisterDate() {
 		return registerDate;

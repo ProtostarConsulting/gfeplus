@@ -84,7 +84,7 @@ angular
 						var curUser = appEndpointSF.getLocalUserService()
 								.getLoggedinUser();
 						if (!curUser) {
-							$state.go("login");
+							$state.go("gfe");
 							return false;
 						}
 						return true;
@@ -124,7 +124,7 @@ angular
 						password : ''
 					};
 					$scope.loginClick = function() {
-						$state.go("login");
+						$state.go("gfe");
 					};
 
 					$scope.$on('moduleData', function(event, args1) {
@@ -174,6 +174,7 @@ angular
 							event, authResult) {
 						$log.debug('Signed in!');
 						// User successfully authorized the G+ App!
+						console.log("google user *****"+authResult);
 						continueGoogleLogin(authResult);
 					});
 
@@ -419,7 +420,7 @@ angular
 						}
 
 						if (!$scope.curUser) {
-							$state.go("login");
+							$state.go("gfe");
 							return; // else it goes to login state but continues
 							// the this js flow
 						}
@@ -548,111 +549,5 @@ angular
 					$scope.close = function() {
 						if (!$mdMedia('gt-md'))
 							$scope.toggleMainMenu();
-					}					
-
-					$scope.menu = '';
-					$scope.toggleMenu = function(menu) {
-						$scope.menu = menu;
-						$scope.schoolCounter;
-						$scope.studentsCounter;
-						$scope.booksCounter;
-						$scope.courierCounter;
-
-						// FOR SCHOOL
-						var schoolCounter = angular
-								.fromJson(localStorage.dbSchoolCounter);
-						if (typeof schoolCounter === 'undefined')
-							schoolCounter = 0;
-
-						if (menu == "school") {
-							if (schoolCounter == 0) {
-								$scope.schoolCounter = schoolCounter + 1;
-								localStorage.dbSchoolCounter = angular
-										.toJson($scope.schoolCounter);
-							} else {
-								$scope.schoolCounter = schoolCounter - 1;
-								localStorage.dbSchoolCounter = angular
-										.toJson($scope.schoolCounter);
-							}
-						}
-
-						// FOR STUDENT
-						var studentsCounter = angular
-								.fromJson(localStorage.dbStudentsCounter);
-						if (typeof studentsCounter === 'undefined')
-							studentsCounter = 0;
-
-						if (menu == "students") {
-							if (studentsCounter == 0) {
-								$scope.studentsCounter = studentsCounter + 1;
-								localStorage.dbStudentsCounter = angular
-										.toJson($scope.studentsCounter);
-							} else {
-								$scope.studentsCounter = studentsCounter - 1;
-								localStorage.dbStudentsCounter = angular
-										.toJson($scope.studentsCounter);
-							}
-						}
-
-						// FOR Book
-						var booksCounter = angular
-								.fromJson(localStorage.dbBooksCounter);
-						if (typeof booksCounter === 'undefined')
-							booksCounter = 0;
-
-						if (menu == "books") {
-							if (booksCounter == 0) {
-								$scope.booksCounter = booksCounter + 1;
-								localStorage.dbBooksCounter = angular
-										.toJson($scope.booksCounter);
-							} else {
-								$scope.booksCounter = booksCounter - 1;
-								localStorage.dbBooksCounter = angular
-										.toJson($scope.booksCounter);
-							}
-						}
-
-						// FOR COURIER
-						var courierCounter = angular
-								.fromJson(localStorage.dbCourierCounter);
-						if (typeof courierCounter === 'undefined')
-							courierCounter = 0;
-
-						if (menu == "courier") {
-							if (courierCounter == 0) {
-								$scope.courierCounter = courierCounter + 1;
-								localStorage.dbCourierCounter = angular
-										.toJson($scope.courierCounter);
-							} else {
-								$scope.courierCounter = courierCounter - 1;
-								localStorage.dbCourierCounter = angular
-										.toJson($scope.courierCounter);
-							}
-						}
 					}
-
-					/*
-					 * myFunction();
-					 * 
-					 * function myFunction() {
-					 * if((navigator.userAgent.indexOf("Opera") ||
-					 * navigator.userAgent.indexOf('OPR')) != -1 ) {
-					 * alert('Opera'); } else
-					 * if(navigator.userAgent.indexOf("Chrome") != -1 ) {
-					 * alert('Chrome'); } else
-					 * if(navigator.userAgent.indexOf("Safari") != -1) {
-					 * alert('Safari'); } else
-					 * if(navigator.userAgent.indexOf("Firefox") != -1 ) {
-					 * alert('Firefox'); } else
-					 * if((navigator.userAgent.indexOf("MSIE") != -1 ) ||
-					 * (!!document.documentMode == true )) //IF IE > 10 {
-					 * alert('IE'); } else { alert('unknown'); } }
-					 */
-					/*
-					 * $rootScope.$on('$stateChangeStart', function (e, toState,
-					 * toParams, fromState, fromParams) { alert("State Change
-					 * "); })
-					 * 
-					 */
-
 				});

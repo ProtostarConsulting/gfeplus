@@ -41,75 +41,6 @@ app
 						$anchorScroll();
 					}
 
-					$scope.loginClick = function() {
-						var hostBaseUrl = '//' + window.location.host
-								+ '/app.html#/login#tp1';
-						$log.debug("hostBaseUrl: " + hostBaseUrl);
-						$window.location.href = hostBaseUrl;
-					}
-					var hostBaseUrl = '//' + window.location.host
-					+ '/app.html#/login#tp1';
-					// Directly go to page as before for suruchidairy
-					if(hostBaseUrl.includes('suruchidairy-prod')){
-						$scope.loginClick();						
-					}
-
-					$scope.user = {
-						business : "",
-						email_id : "",
-						firstName : "",
-						lastName : "",
-						password : "",
-						isGoogleUser : true,
-						theme : "",
-						authority : []
-					}
-
-					$scope.login = function() {
-						$scope.loading = true;
-						$scope.loginMsg = "";
-						gapi.client.userService
-								.login($scope.user.email_id,
-										$scope.user.password)
-								.then(
-										function(result) {
-											if (result.items) {
-												$scope.loading = false;
-												if (result.items.length > 1) {
-													$scope.multiUsers = result.items;
-													/*
-													 * $state .go(
-													 * "selectmultibiz", {
-													 * multiUsers :
-													 * $scope.multiUsers });
-													 */
-													return;
-												} else {
-													var user = result.items[0];
-													saveLoggedInUser(user);
-
-													$scope.$emit(
-															'customLoginEvent',
-															{
-																curUser : user
-															});
-													$scope.$broadcast(
-															'customLoginEvent',
-															{
-																curUser : user
-															});
-												}
-
-											} else {
-												$scope.loading = false;
-												$log.debug("User Not logged  "
-														+ $scope.user.email_id);
-												$scope.loginMsg = "Authontication failed. Username/Password did not match.";
-											}
-
-										});
-					}
-
 					$scope.initGAPI = function() {
 						$log.debug("Came to initGAPI");
 						// This will load all server side end points
@@ -130,21 +61,13 @@ app
 					$timeout(function() {
 						$scope.initGAPI();
 					}, 2000);
-
-					var saveLoggedInUser = function(user) {
-						$localStorage.loggedinUser = user;
+					
+					$scope.loginClick = function() {
+						var hostBaseUrl = '//' + window.location.host
+								+ '/login.html';
+						$log.debug("hostBaseUrl: " + hostBaseUrl);
+						$window.location.href = hostBaseUrl;
 					}
-
-					var getLoggedinUser = function() {
-						var user = $localStorage.loggedinUser;
-						if (user == 'undefined' || user == null)
-							return null;
-						else
-							return $localStorage.loggedinUser;
-					}
-
-					// on page load first see if user is already logged. if yes
-					$scope.curUser = getLoggedinUser();
 
 				});
 

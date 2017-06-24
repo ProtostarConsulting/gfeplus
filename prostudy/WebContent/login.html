@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="loginApp" ng-controller="loginCtr">
+<head>
+<title>Google for Education Plus</title>
+<meta name="viewport" content="initial-scale=1" />
+
+<!--end send mail  -->
+<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
+<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
+<link rel="stylesheet" href="/lib/base/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+</head>
+<body layout="column" ng-cloak md-theme="default" md-theme-watch="true"
+	layout="column" layout-padding>
+	<md-content flex layout="row" class="md-padding" layout-padding
+		layout-align="center, center" ng-cloak>
+	<div flex layout="column">
+		<div ng-show="loading">
+			<div layout="row" layout-sm="column" layout-align="space-around">
+				<md-progress-circular md-diameter="60" md-mode="indeterminate"></md-progress-circular>
+			</div>
+		</div>
+		<div ng-show="!loading" align="center">
+			<md-card flex="40" flex-xs="85" layout-align="start, center">
+			<div flex>
+				<h4 class="md-title">Login with Google Account</h4>
+				<!-- ProERP DEV  -->
+				<!-- <google-plus-signin
+			clientid="212292411606-4l7lvgniidvq9djckr5cb1ei0iiu3a3c.apps.googleusercontent.com"></google-plus-signin>
+		 -->
+				<!-- Suruchi Dairy Prod  -->
+				<google-plus-signin
+					clientid="87556941487-36krkq9mr6iltvqpjd3k0r0il83h0b76.apps.googleusercontent.com"></google-plus-signin>
+			</div>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<div layout="row" flex="90">
+				<span flex> </span>
+				<md-button class="md-link md-primary" target="_blank"
+					href="https://github.com/ProtostarConsulting/proerp/wiki">
+				Help </md-button>
+				<md-button class="md-link md-primary"
+					ng-click="registerNewInstitute()"> Register New
+				Institute</md-button>
+			</div>
+
+			</md-card>
+		</div>
+	</div>
+	</md-content>
+	<!-- All JS Dependencies -->
+	<script src="https://apis.google.com/js/client.js"></script>
+	<!-- <script src="https://apis.google.com/js/api.js"></script> -->
+	<script src="/lib/base/angular.min.js"></script>
+	<script src="/lib/base/angular-animate.min.js"></script>
+	<script src="/lib/base/angular-route.min.js"></script>
+	<script src="/lib/base/angular-aria.min.js"></script>
+	<script src="/lib/base/angular-messages.min.js"></script>
+	<script src="/lib/base/angular-resource.min.js"></script>
+	<script src="/lib/base/angular-material-icons.min.js"></script>
+	<script src="/lib/base/angular-material.min.js"></script>
+	<script src="/lib/base/ngStorage.min.js"></script>
+	<script src="/lib/base/google-plus-signin.js"></script>
+	<script src="login.ctr.js"></script>
+</body>
+</html>

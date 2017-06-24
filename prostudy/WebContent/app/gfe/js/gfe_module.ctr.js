@@ -7,16 +7,15 @@ angular
 
 					$log.debug("Inside gfeModuleCtr");
 					
-					if(!$scope.loginCheck()){ //If not logged in return control
+					/*if(!$scope.loginCheck()){ //If not logged in return control
 						return false;
-					}
-					
-					//$scope.authorized = false;
+					}*/
+					$scope.authorized = false;
 					$scope.loading = false;
 					$scope.classroomAPIReady = false;
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-
+					
 					$scope.currentUserDomain = $scope.curUser.email_id
 							.split("@")[1];
 

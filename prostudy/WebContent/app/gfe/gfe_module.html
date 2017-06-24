@@ -1,15 +1,15 @@
 <div ng-show="loading">Please wait, loading...</div>
 
 <div ng-hide="loading">
-	<!-- <div ng-hide="authorized">
+	<div ng-hide="authorized">
 		<span>Login To Your School/College Account</span>
 		<md-button class="md-raised md-primary"
 			ng-click="handleAuthClick(event)"> Login </md-button>
 		<p class="md-body-3">Use your School or College Google Account to
 			access this Dashboard
 		<p>
-	</div> -->
-	<div >
+	</div>
+	<div ng-hide="!authorized">
 
 		<div layout="column">
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="prostudyApp" ng-controller="indexCtr">
 <head>
-<title>ProStudy - Gandhi Research Foundation</title>
+<title>Google for Education Plus</title>
 <meta name="viewport" content="initial-scale=1" />
 
 <link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
@@ -40,14 +40,16 @@
 				aria-label="Mini FAB"> <md-icon
 				md-svg-src="img/icons/menu.svg"></md-icon> </md-button>
 		</div>
-		<div ng-show="toggleMainMenuSwitch">
+		<!-- <div ng-show="toggleMainMenuSwitch">
 			<md-button ng-click="toggleMainMenu()" class="md-fab md-mini"
 				aria-label="Mini FAB"> <md-icon
 				md-svg-src="/img/icons/ic_keyboard_arrow_left_black_24px.svg"></md-icon>
 			</md-button>
-		</div>
-		<img hide-xs id="image" src="img/images/GVSP_GRF_Logo_2.png"
-			style="height: 79px; width: 319px" /> <span flex hide-xs></span>
+		</div> -->
+		<img hide-xs id="image" src="img/images/google+.png"
+			style="height: 70px; width: 100px; padding-left: 2%" /> <span flex hide-xs></span>
+		<h3 hide-xs style="margin-left: 12px;" align="left">Google for Education Plus</h3>
+			<h3 hide-gt-xs>Google for Education Plus</h3>	
 		<div layout="row" layout-align="end start">
 			<md-button ng-hide="curUser !== null" ng-show="curUser == null"
 				ng-click="loginClick()"> <span
@@ -62,10 +64,10 @@
 			curUser.email_id">
 			</md-tooltip> </md-button>
 		</div>
-		<div layout="row" layout-align="end start" hide-xs hide-sm>
+		<!-- <div layout="row" layout-align="end start" hide-xs hide-sm>
 			<img id="image2" src="img/images/320px_98px_GVSP_2_1.JPG"
 				style="height: 98px; width: 320px; float: right;" />
-		</div>
+		</div> -->
 	</div>
 	</md-toolbar>
 	<div>
@@ -315,7 +317,7 @@
 				</div>
 			</div>
 
-			</md-content> <md-content ng-if="curUser == null" ng-clock>
+			</md-content> <!-- <md-content ng-if="curUser == null" ng-clock>
 
 			<div style="margin-left: 15px;">
 				<md-content flex layout="column" layout-xs="column"
@@ -332,7 +334,7 @@
 					aria-label="Register School" show-gt-md> <menu-link
 					section="child">Register School</menu-link> </md-button> </md-content>
 			</div>
-			</md-content> </md-content> </md-sidenav>
+			</md-content> --> </md-content> </md-sidenav>
 
 			<!-- ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" -->
 

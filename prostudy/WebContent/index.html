@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="prostudyAppWebsite" ng-controller="indexCtr">
 <head>
-<title>ProStudy - Gandhi Research Foundation</title>
+<title>Google for Education Plus</title>
 <meta name="viewport" content="initial-scale=1" />
 
 <!--end send mail  -->
@@ -17,22 +17,16 @@
 	<md-subheader>
 	<section layout="row" style="margin-top: 15px;" flex-gt-xs>
 		<div class="md-toolbar-tools">
-			<div hide-xs>
-				<img ng-src="/img/images/grf_logo_new.gif" class="md-card-image"
-					height="80px" width="80px" />
-			</div>
-			<h3 hide-xs style="margin-left: 12px;">Gandhi Vichar Sanskar
-				Pariksha (GVSP)</h3>
-			<h3 hide-gt-xs>Gandhi Vichar Sanskar
-				Pariksha</h3>
+			<h3 hide-xs style="margin-left: 12px;">Google for Education Plus</h3>
+			<h3 hide-gt-xs>Google for Education Plus</h3>
 			<span flex></span>
 			<section layout="row" layout-padding hide-xs>
-				<md-button class="md-accent" ng-click="gotoPart('aboutGVSP')">About
-				GVSP</md-button>
-				<md-button class="md-accent" ng-click="gotoPart('infoBrouchure')">Information
-				Brouchure</md-button>
-				<md-button class="md-accent" ng-click="gotoPart('contactUs')">Contact
-				Us</md-button>
+				<md-button class="md-primary" ng-click="gotoPart('classroom')">Google
+				Classroom Dashboard</md-button>
+				<!-- <md-button class="md-accent" ng-click="gotoPart('infoBrouchure')">Information
+				Brouchure</md-button> -->
+				<md-button class="md-primary" ng-click="gotoPart('userDirectory')">Google
+				User Directory</md-button>
 				<md-button class="md-accent" ng-click="loginClick()">
 				Login</md-button>
 				<!-- <md-button class="md-accent" ng-click="gotoPart('part3')">Help</md-button>-->
@@ -46,148 +40,50 @@
 	<hr>
 	</md-subheader> <md-sidenav class="md-sidenav-right md-whiteframe-z2"
 		md-component-id="right"> <md-toolbar layout-padding>
-	<md-button class="md-accent" ng-click="gotoPart('aboutGVSP')">About
-	GVSP</md-button> <md-button class="md-accent" ng-click="gotoPart('infoBrouchure')">Information
-	Brouchure</md-button> <md-button class="md-accent" ng-click="gotoPart('contactUs')">Contact
-	Us</md-button> <md-button class="md-accent" ng-click="loginClick()">
+	<md-button class="md-accent" ng-click="gotoPart('classroom')">Google
+	Classroom Dashboard</md-button> <!-- <md-button class="md-accent" ng-click="gotoPart('infoBrouchure')">Information
+	Brouchure</md-button> --> <md-button class="md-accent" ng-click="gotoPart('userDirectory')">Google
+	User Directory</md-button> <md-button class="md-accent" ng-click="loginClick()">
 	Login</md-button> </md-toolbar> <md-content layout-padding></md-content> </md-sidenav>
 	<div hide-xs layout-wrap id="tp1">
-		<img ng-src="/img/images/GandhiTeerth1.jpg" height="550px"
+		<img ng-src="/img/images/virtual-classroom.jpg" height="550px"
 			width="100%" />
 	</div>
-	<md-content id="aboutGVSP" flex-gt-xs layout="column"
+	<md-content id="classroom" flex-gt-xs layout="column"
 		style="padding-top: 5%;"> <md-toolbar class="md-hue-2">
 	<div class="md-toolbar-tools">
 		<h3 class="md-display-1">About GVSP</h3>
 	</div>
-	</md-toolbar> <md-tabs md-dynamic-height md-border-bottom> <md-tab
-		label="Value Learning by Knowing Gandhi"> <md-content
-		class="md-padding">
-	<ul style="list-style-type: disc;">
-		<li>GVSP is a reflective learning experience aimed at offering
-			the young generation, foundational values of human heritage and
-			enabling them with harmony between body, mind and soul, and among all
-			lives.</li>
-		<li>Based on value-rich reading material containing moral stories
-			and historic anecdotes from the life and work of Gandhiji.</li>
-		<li>This interactive course is designed by an Academic Council
-			constituted of eminent Gandhian thinkers and practitioners.</li>
-		<li>Students of Middle & High Schools and Colleges (up to PG);
-			Rural and Small Town Students are encourged for enrollment.</li>
-		<li>Special focus on Jail inmates.</li>
-		<li>‘Open for all’ programme.</li>
-		<li>Participants are invited to write and reflect on what they
-			understood and learnt from Gandhiji’s teachings through GVSP reading
-			materials.</li>
-		<li>Students who attend GVSP are awarded with a certificate of
-			participation and those who showed greater understanding are given an
-			award.</li>
+	</md-toolbar> <md-content class="md-padding">
+	<p align="left">Following are the key features of Google Classroom
+		Dashboard :</p>
+	<ul type="disc">
+		<li>Google Classroom Dashboard show the all courses availble in
+			your school. You can add, edit and view all courses.</li>
+		<li>From Google Classroom Dashboard you can add and view the
+			teachers associated to particular courses and you can delete teacher
+			from courses.</li>
+		<li>From Google Classroom Dashboard you can add multiple courses
+			and teacher, co teachers by uploading data using CSV.</li>
+		<li>From Google Classroom Dashboard you can archive and delete
+			one or more courses.</li>
+		<li>From Google Classroom Dashboard you can add and view the
+			student associated to particular courses and you can delete student
+			from courses.</li>
+		<li>From Google Classroom Dashboard student can goto to classroom
+			see the assignment given to them by teachers.</li>
+		<li>From Google Classroom Dashboard student can see the course
+			calendar which shows the assignment and work in current week.</li>
+		<li>From Google Classroom Dashboard teacher can make annoucement
+			regarding exam, submissions and create questions set for students.</li>
+		<li>From Google Classroom Dashboard teacher can upload study
+			material for student regarding course.</li>
+		<li>From Google Classroom Dashboard teacher you can filter list
+			by searching course name or teacher.</li>
+		<li>From Google Classroom Dashboard teacher you can filter list
+			by course state like whether course state is active or archive.</li>
 	</ul>
-	</md-content> </md-tab> <md-tab label="Impact"> <md-content class="md-padding">
-	<ul style="list-style-type: disc;">
-		<li>Conspicuous change in the behavior of students after
-			undergoing GVSP, are reported by parents and teachers.</li>
-		<li>Greater understanding and appreciation between teachers and
-			students widely reported.</li>
-		<li>Institutions are finding GVSP an effective tool to express
-			and spread the values they are committed to.</li>
-		<li>More students showing interest in reading Gandhian
-			Literature.</li>
-		<li>Emergence of ‘Gandhi Centre’ in an increasing number of
-			Institutions.</li>
-		<li>A transforming experience offered to Jail inmates, thus
-			preparing them for mainstream life.</li>
-		<li>Those who appeared for GVSP, most often enroll for the next
-			level.</li>
-		<li>Increasing demand for post-exam interactive session as well
-			as ‘Mohan to Mahatma’ mobile exhibitions at schools / colleges to
-			address the queries of students.</li>
-	</ul>
-	</md-content> </md-tab> <md-tab label="Participant-friendly method"> <md-content
-		class="md-padding">
-	<ul style="list-style-type: disc;">
-		<li>GVSP offers multiple language option: English, Hindi, Marathi
-			and Kannada.</li>
-		<li>Both on-line and conventional reading cum writing option is
-			available.</li>
-		<li>Multi level GVSP for the aspirants to learn further and
-			further.</li>
-		<li>GVSP and related programs conducted at their respective
-			campus.</li>
-		<li>Conducted all over India as well as in Japan & France.</li>
-	</ul>
-	</md-content> </md-tab> <md-tab label="Strength"> <md-content class="md-padding">
-	<ul style="list-style-type: disc;">
-		<li>GVSP corresponds with over 50,000 organizations across India
-			and a substantial number overseas.</li>
-		<li>A well spread collaborative network of 10,000 Educational
-			Institutions.</li>
-		<li>Effectively equipped dedicated infrastructure.</li>
-		<li>Programme executed by a committed team.</li>
-		<li>Annually updated course content and material.</li>
-		<li>Specially designed Management Information System.</li>
-		<li>Ten consecutive years of conducting GVSP.</li>
-		<li>Ever increasing response from students; - started with 3876
-			students from one district of Maharashtra in 2007, has now touched
-			the lives of 10 lakh students from across India and few overseas
-			countries.</li>
-	</ul>
-	</md-content> </md-tab> <md-tab label="On Field Collaborators"> <md-content
-		class="md-padding">
-	<ul style="list-style-type: disc;">
-		<li>Govt. of Maharashtra which issued a circular promoting GVSP.</li>
-		<li>MOU and Collaboration with 25 leading Educational
-			Institutions collectively having 6000 schools, such as:
-			<ol type="1">
-				<li>Rayat Shikshan Sanstha, Satara</li>
-				<li>Maratha Vidya Prasarak Samaj, Nasik.</li>
-				<li>Mahatma Gandhi Shikshan Mandir, Nasik.</li>
-				<li>Swami Vevekanand Shikshan Sanstha, Kolapur.</li>
-				<li>Marathwada Shikshan Prasarak Mandal,Aurangabad.</li>
-				<li>Sayadri Shikshan Sanstha, Savarde, Chiplun</li>
-				<li>Sarswati Bhuvan Shikshan Prasark Sanstha,Aurangabad.</li>
-				<li>Bharti Vidyapith, Pune.</li>
-				<li>Agriculture Development Trust, Baramati.</li>
-				<li>Mahatma Phule Shikshnik & Samajik Mandal,Chaligaon.</li>
-				<li>Shri Shivaji Shikshan Santha, Amravati.</li>
-				<li>Shirpur Education Society, Shirpur.</li>
-				<li>Shri Shivaji Shikshan Santha, Barshi.</li>
-				<li>Kasturba Gandhi National Memorial Trust, Indore And others.</li>
-			</ol>
-		</li>
-	</ul>
-	</md-content> </md-tab> <md-tab label="Process"> <md-content class="md-padding">
-	<ul style="list-style-type: disc;">
-		<li>Communication by post and courier to the institutions across
-			the country and On-line communication through web and social media.</li>
-		<li>Getting individuals enrolled through the Institutions that
-			respond.</li>
-		<li>Distributing reading materials and question paper.</li>
-		<li>A reflective learning cum writing exercise.</li>
-		<li>Evaluating and certifying the participants, honoring better
-			performers.</li>
-		<li>Organizing district level follow-up workshops and discussion
-			forums.</li>
-		<li>Refresher courses for the GVSP school/college coordinators
-			for quality enhancement.</li>
-		<li>Collecting feedback; documenting the experiences and
-			learnings.</li>
-		<li>Raising financial resources for printing reading materials,
-			question papers, circulars and certificates, preparing Trophies and
-			Awards, to mete out Postal charges, honorarium to coordinators,
-			follow up programme, administrative expenses, etc.</li>
-	</ul>
-	</md-content> </md-tab> <md-tab label="Plan"> <md-content class="md-padding">
-	<ul style="list-style-type: disc;">
-		<li>Offering GVSP to larger number of students all over India.</li>
-		<li>Making it free and accessible to all students.</li>
-		<li>On-line portal for follow up interaction and Q & A sessions.</li>
-		<li>Donor sponsored scholarship for meritorious students.</li>
-		<li>A Board of Studies comprising of senior Gandhian scholars and
-			academicians for periodical course and content updation and framing
-			of question paper.</li>
-	</ul>
-	</md-content> </md-tab> </md-tabs> </md-content> <md-content id="infoBrouchure" flex-gt-xs layout="column"
+	</md-content></md-content> <!-- <md-content id="infoBrouchure" flex-gt-xs layout="column"
 		style="padding-top: 3%;"> <md-toolbar class="md-hue-2">
 	<div class="md-toolbar-tools">
 		<h3 class="md-display-1">Information Brouchure</h3>
@@ -202,29 +98,24 @@
 			width="100px"> <md-tooltip>Downnload Information
 			Broucher</md-tooltip> </a>
 	</div>
-	</md-content> <md-content id="contactUs" flex-gt-xs layout="column"
+	</md-content>  --><md-content id="userDirectory" flex-gt-xs layout="column"
 		style="padding-top: 3%;"> <md-toolbar class="md-hue-2">
 	<div class="md-toolbar-tools">
-		<h3 class="md-display-1">Contact Us</h3>
+		<h3 class="md-display-1">Google User Directory</h3>
 	</div>
 	</md-toolbar>
 	<hr>
-	<!-- <h3 class="md-display-1">Welcome to the {{institute.name}}</h3> -->
-
-	<div align="center">
-		<h4>Gandhi Vichar Sanskar Pariksha (GVSP)</h4>
-		<div>
-			<img ng-src="/img/images/Contact-Us.png" class="md-card-image"
-				height="100px" width="100px" />
-		</div>
-		<br>
-		<div>
-			<b>Contact Details of GVSP:</b><br> Jain Hills PO Box 118,<br>
-			Jalgaon - 425 001 (Maharashtra), India<br> Tel : 0257 226 0033 /
-			226 4801;<br> Mob : 940 495 5226 / 940 495 5220;<br> E-mail
-			: gandhiexam@gandhifoundation.net<br>
-		</div>
-	</div>
+	<md-content class="md-padding">
+	<ul type="disc">
+		<li>Google User Directory shows the all users list.</li>
+		<li>In Google User Directory you can add, edit, view and delete
+			user from user list.</li>
+		<li>In Google User Directory you can add multiple users by
+			uploading csv data.</li>
+		<li>In Google User Directory you can filter list by searching
+			user.</li>
+	</ul>
+	</md-content>
 	</md-content>
 	<hr>
 	<md-content id="bottom-links" flex-gt-xs layout="row"
