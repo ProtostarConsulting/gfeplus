@@ -66,53 +66,16 @@ app
 						theme : "",
 						authority : []
 					}
-					
 
-					$scope.initGAPI = function() {
-						$log.debug("Loading Google client.js...");
-
-						if (gapi && gapi.client && gapi.client.load) {
-							var apiRoot = '//' + window.location.host
-									+ '/_ah/api';
-							var apisToLoad = 1; // must match number of calls to
-							// gapi.client.load()
-							gapi.client.load('userService', 'v0.1', function() {
-								$log.debug("userService Loaded......");
-								$scope.loading = false;
-								$scope.$apply($scope.loading);
-							}, apiRoot);
-							gapi.client
-									.load(
-											'instituteService',
-											'v0.1',
-											function() {
-												$log
-														.debug("instituteService Loaded......");
-												$scope.loading = false;
-												$scope.$apply($scope.loading);
-											}, apiRoot);
-						} else {
-							$timeout($scope.initGAPI, 2000);
-						}
-					}
-					
-					$scope.initGAPI();
 					$scope.$on('event:google-plus-signin-success', function(
 							event, authResult) {
 						$log.debug('Signed in!');
 						// User successfully authorized the G+ App!
-						console.log("google user *****" + authResult);
 						continueGoogleLogin(authResult);
 					});
 
 					function continueGoogleLogin(authResult) {
 						$scope.loading = true;
-						/*if (!appEndpointSF.is_service_ready) {
-							$scope.waitForServiceLoad(authResult);
-							// This is needed when auto login happens after page
-							// refresh
-							return;
-						}*/
 
 						var profile = authResult.getBasicProfile();
 
@@ -124,24 +87,27 @@ app
 						}
 
 						$log.debug('ID: ' + profile.getId());
-						console.log("email ****"+profile.getEmail());
 						gapi.client.userService
-								.getUserByEmailID(profile.getEmail())
+								.getUserByEmailID({
+									'email_id' : profile.getEmail()
+								})
 								.then(
 										function(loggedInUser) {
 											$log
 													.debug('Inside getUserByEmailID...');
 
-											appEndpointSF.getLocalUserService()
-													.saveLoggedInUser(
-															loggedInUser);
+											/*
+											 * gapi.client.userService
+											 * .saveLoggedInUser(loggedInUser);
+											 */
 
 											$log
 													.debug("loggedInUser:"
 															+ angular
 																	.toJson(loggedInUser));
 
-											$scope.curUser = loggedInUser;
+											$scope.curUser = loggedInUser.result;
+											$localStorage.loggedinUser = $scope.curUser;
 
 											if (loggedInUser.myExams == undefined) {
 												loggedInUser.myExams = [];
@@ -164,19 +130,22 @@ app
 												loggedInUser.lastName = profile
 														.getName().split(" ")[1];
 
-												appEndpointSF
-														.getLocalUserService()
-														.saveLoggedInUser(
-																loggedInUser);
+												/*
+												 * gapi.client.userService
+												 * .saveLoggedInUser(loggedInUser);
+												 */
 
-												$state.go("gfe", {
-													user : $scope.curUser
-												});
+												if ($scope.curUser) {
+													var hostBaseUrl = '//'
+															+ window.location.host
+															+ '/app.html#/gfe'
+													$window.location.href = hostBaseUrl;
+												}
 
 											} else {
 												$log
 														.debug('Inside else of loggedInUser.id == undefined...');
-												//$scope.getInstituteById();
+												// $scope.getInstituteById();
 
 											}
 
@@ -185,42 +154,50 @@ app
 
 					}
 
-					$scope.waitForServiceLoad = function(authResult) {
-						if (!appEndpointSF.is_service_ready) {
-							$log
-									.debug("Index: Services Not Loaded, watiting...");
-							$timeout($scope.waitForServiceLoad, 1000);
-							return;
-						}
+					$scope.initGAPI = function() {
+						$log.debug("Loading Google client.js...");
 
-						$log
-								.debug("####Index: Loaded All Services, Continuing####");
-						if (authResult) {
-							continueGoogleLogin(authResult);
-						}
-						if (!$scope.initDone) {
-							$scope.initCommonSetting();
+						if (gapi && gapi.client && gapi.client.load) {
+							var apiRoot = '//' + window.location.host
+									+ '/_ah/api';
+							var apisToLoad = 2; // must match number of calls to
+							// gapi.client.load()
+							gapi.client.load('userService', 'v0.1', function() {
+								$log.debug("userService Loaded......");
+								$scope.loading = false;
+								$scope.$apply($scope.loading);
+							}, apiRoot);
+							gapi.client
+									.load(
+											'instituteService',
+											'v0.1',
+											function() {
+												$log
+														.debug("instituteService Loaded......");
+												$scope.loading = false;
+												$scope.$apply($scope.loading);
+											}, apiRoot);
+						} else {
+							$timeout($scope.initGAPI, 2000);
 						}
 					}
 
-					$scope
-							.$on(
-									'event:google-plus-signin-success',
-									function(event, authResult) {
+					$scope.initGAPI();
 
-										var profile = authResult
-												.getBasicProfile();
-										$scope.googleUser = profile;
-										$log.debug('ID: ' + profile.getId());
-										$log
-												.debug("Going ahead with call to getUserByEmailID....");
-										var hostBaseUrl = '//'
-												+ window.location.host
-												+ '/app.html#/gfe'
-										$window.location.href = hostBaseUrl;
-										// getUserDetailsFn(profile.getEmail());
-
-									});
+					/*
+					 * $scope .$on( 'event:google-plus-signin-success',
+					 * function(event, authResult) {
+					 * 
+					 * var profile = authResult .getBasicProfile();
+					 * $scope.googleUser = profile; $log.debug('ID: ' +
+					 * profile.getId()); $log .debug("Going ahead with call to
+					 * getUserByEmailID...."); var hostBaseUrl = '//' +
+					 * window.location.host + '/app.html#/gfe'
+					 * $window.location.href = hostBaseUrl; //
+					 * getUserDetailsFn(profile.getEmail());
+					 * 
+					 * });
+					 */
 
 					$scope.registerNewInstitute = function(ev) {
 						var useFullScreen = $mdMedia('xs');

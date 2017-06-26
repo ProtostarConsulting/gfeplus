@@ -174,7 +174,6 @@ angular
 							event, authResult) {
 						$log.debug('Signed in!');
 						// User successfully authorized the G+ App!
-						console.log("google user *****"+authResult);
 						continueGoogleLogin(authResult);
 					});
 
@@ -441,7 +440,7 @@ angular
 						$scope.initDone = true;
 						$scope.loading = false;
 						$scope.data.expanded7 = true;
-						$state.go("welcome");
+						$state.go("gfe");
 
 					}
 
