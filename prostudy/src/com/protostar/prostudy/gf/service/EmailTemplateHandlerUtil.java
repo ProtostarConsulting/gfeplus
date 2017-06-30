@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
+import com.protostar.prostudy.until.data.UtilityService;
 
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
@@ -92,6 +93,43 @@ public class EmailTemplateHandlerUtil {
 			Template temp = getConfiguration().getTemplate(
 					"email_templates/exam_school_registration.ftlh");
 
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(
+					5000);
+			Writer out = new PrintWriter(byteArrayOutputStream);
+			temp.process(root, out);
+			// return escapeHtml(byteArrayOutputStream.toString());
+			return byteArrayOutputStream.toString();
+
+		} catch (TemplateNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MalformedTemplateNameException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TemplateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "";
+	}
+	
+	public String newInstituteRegEmail(UserEntity user) {
+		try {
+
+			Map<String, Object> root = new HashMap<String, Object>();
+			String currentAppURL = UtilityService.getCurrentAppURL();
+			root.put("currentAppURL", currentAppURL);
+			Template temp = getConfiguration().getTemplate(
+					"email_templates/new_institute_registration.ftlh");
+			String emailID = user.getEmail_id();
+			root.put("emailID", emailID);
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(
 					5000);
 			Writer out = new PrintWriter(byteArrayOutputStream);

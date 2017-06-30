@@ -30,7 +30,7 @@
 
 
 		<div layout="row" layout-xs="column" flex>
-<!-- 			<md-input-container flex> <label>Institute
+			<!-- 			<md-input-container flex> <label>Institute
 				Address<span style="color: red"
 				ng-show="editInstituteForm.address.$error.required"
 				class="mandatory">*</span>
@@ -128,6 +128,18 @@
 				ng-model="tempInstitute.accounttype.accountName" ng-disabled="true">
 			</md-input-container>
 
+		</div>
+
+		<div layout="row" layout-xs="column" flex>
+			<!-- <span flex="10"></span> -->
+			<h3 class="md-subhead">Email Notification</h3>
+		</div>
+
+		<div layout="row" layout-xs="column" flex>
+
+			<md-input-container flex> <label>Send
+				Grid API Key </label> <input name="name"
+				ng-model="tempInstitute.sendGridApiKey"> </md-input-container>
 		</div>
 
 

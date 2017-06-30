@@ -65,7 +65,7 @@ public class ProtostarAdminService {
 
 			InstituteEntity instituteEntity = new InstituteEntity();
 
-			instituteEntity.setName("Protostar");
+			instituteEntity.setName("Protostar Consulting Services");
 			//instituteEntity.setAccounttype(filteredaccount);
 			instituteEntity.setRegisterDate(sdf.format(date));
 			String authorizations = "	{\"authorizations\":[{\"authName\":\"proadmin\",\"authorizations\":[]},{\"authName\":\"setup\",\"authorizations\":[]}]}";

@@ -419,7 +419,7 @@ angular
 						}
 
 						if (!$scope.curUser) {
-							$state.go("gfe");
+							$state.go("login");
 							return; // else it goes to login state but continues
 							// the this js flow
 						}
@@ -440,8 +440,12 @@ angular
 						$scope.initDone = true;
 						$scope.loading = false;
 						$scope.data.expanded7 = true;
-						$state.go("gfe");
-
+						if(!$scope.curUser){
+							$state.go("welcome");
+						}else{
+							$state.go("gfe");
+						}
+						
 					}
 
 					$scope.initGAPI = function() {
@@ -475,7 +479,7 @@ angular
 						$log
 								.debug("####Index: Loaded All Services, Continuing####");
 						if (authResult) {
-							continueGoogleLogin(authResult);
+							//continueGoogleLogin(authResult);
 						}
 						if (!$scope.initDone) {
 							$scope.initCommonSetting();

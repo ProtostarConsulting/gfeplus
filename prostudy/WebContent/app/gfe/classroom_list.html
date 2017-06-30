@@ -119,7 +119,7 @@
 				<ng-md-icon icon="group_add" style="fill: md-default" size="20">
 				<md-tooltip> Add Class Student</md-tooltip></ng-md-icon></md-button> <md-button
 					class="md-icon-button" ng-show="course.courseState==='ACTIVE'"
-					ng-click="changeCourseState('ARCHIVED',$event)"> <ng-md-icon
+					ng-click="changeCourseState('ARCHIVED',$event,course)"> <ng-md-icon
 					icon="archive" style="fill: md-default" size="20"> <md-tooltip>
 				Archive Course</md-tooltip></ng-md-icon></md-button> <md-button class="md-icon-button"
 					ng-click="deleteCourse(course,$event)"> <ng-md-icon

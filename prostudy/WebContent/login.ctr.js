@@ -259,15 +259,12 @@ app
 											function(resp) {
 												if (resp.result) {
 													$scope.userEntity.instituteID = resp.result.id;
+													$scope.registrationSuccess = true;
 													gapi.client.userService
 															.addUser(
 																	$scope.userEntity)
 															.then(
-																	function(
-																			resp) {
-																		if (resp.result) {
-																			$scope.registrationSuccess = true;
-																		}
+																	function(resp) {
 																	});
 												}
 											});

@@ -19,6 +19,7 @@ import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.gf.entity.PartnerSchoolEntity;
+import com.protostar.prostudy.until.EmailInstituteRegTask;
 import com.protostar.prostudy.until.EmailValidator;
 import com.protostar.prostudy.until.Sendgrid;
 
@@ -52,6 +53,15 @@ public class EmailHandler {
 		queue.add(TaskOptions.Builder
 				.withPayload(new SendUserRegEmailAsyncOperation(user
 						.getEmail_id(), messageBody)));
+	}
+
+	public void sendNewInstituteUserRegistrationEmail(UserEntity user, String key) {
+		String emailSubject = "Institute Registration Sucessfully";
+		String messageBody = new EmailTemplateHandlerUtil()
+				.newInstituteRegEmail(user);
+		Queue queue = QueueFactory.getDefaultQueue();
+		queue.add(TaskOptions.Builder.withPayload(new EmailInstituteRegTask(
+				user.getEmail_id(), emailSubject, messageBody, key)));
 	}
 
 }
@@ -203,4 +213,5 @@ class SendUserRegEmailAsyncOperation implements DeferredTask {
 		}
 
 	}
+
 }

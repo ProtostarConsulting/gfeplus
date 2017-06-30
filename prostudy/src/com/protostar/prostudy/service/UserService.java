@@ -18,12 +18,14 @@ import com.google.api.server.spi.config.Named;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.googlecode.objectify.Key;
+import com.protostar.prostudy.entity.InstituteEntity;
 import com.protostar.prostudy.entity.RoleSecEntity;
 import com.protostar.prostudy.entity.StudSubEntity;
 import com.protostar.prostudy.entity.UserEntity;
 import com.protostar.prostudy.gf.entity.GFStudentEntity;
 import com.protostar.prostudy.gf.service.EmailHandler;
 import com.protostar.prostudy.proadmin.entities.PaymentPlanType;
+import com.protostar.prostudy.until.data.Constants;
 import com.protostar.prostudy.until.data.ServerMsg;
 import com.protostar.prostudy.until.data.UtilityService;
 
@@ -56,7 +58,11 @@ public class UserService {
 			}
 		
 		logger.info("now_user :" + now);
-		new EmailHandler().sendNewUserRegistrationEmail(user);
+		if(user.getIsGoogleUser()){
+			InstituteEntity defaultInstituteEntity = this.getDefaultInstituteByName(Constants.DEFAULT_INSTITUTE_NAME);
+			new EmailHandler().sendNewInstituteUserRegistrationEmail(user, defaultInstituteEntity.getSendGridApiKey());
+		}
+		
 		return now;
 	}
 
@@ -82,6 +88,12 @@ public class UserService {
 		 * == "inactive") { return null; } else { return (list == null ||
 		 * list.size() == 0) ? null : list.get(0); }
 		 */}
+	
+	@ApiMethod(name = "getDefaultInstituteByName", path = "getDefaultInstituteByName")
+	public InstituteEntity getDefaultInstituteByName(@Named("insName") String insName) {
+		List<InstituteEntity> list = ofy().load().type(InstituteEntity.class).filter("name", insName).list();
+		return list.get(0);
+	}
 
 	@ApiMethod(name = "checkUserAlreadyExist")
 	public ServerMsg checkUserAlreadyExist(@Named("email_id") String email_id) {

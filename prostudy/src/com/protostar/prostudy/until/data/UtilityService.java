@@ -85,5 +85,19 @@ public class UtilityService {
 		val = val.replace("\n", "").replace("\r", "").trim();
 		val = val.replace(',', '-');		
 		return val.trim();					
-	}	
+	}
+	
+	public static String getCurrentAppURL() {
+		String hostUrl;
+		String environment = System.getProperty("com.google.appengine.runtime.environment");
+		if ("Production".equalsIgnoreCase(environment)) {
+			String applicationId = System.getProperty("com.google.appengine.application.id");
+			// String version =
+			// System.getProperty("com.google.appengine.application.version");
+			hostUrl = "https://" + applicationId + ".appspot.com/";
+		} else {
+			hostUrl = "http://localhost:8888";
+		}
+		return hostUrl;
+	}
 }

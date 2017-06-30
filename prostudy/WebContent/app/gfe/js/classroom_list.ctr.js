@@ -211,8 +211,11 @@ angular
 						
 					}				
 									
-					$scope.changeCourseState = function(courseState,ev) {
+					$scope.changeCourseState = function(courseState,ev,course) {
 						
+						if(course != undefined){
+							$scope.selected.push(course);
+						}
 						var confirm = $mdDialog.confirm().title(
 						'Are you sure you want to change course state?').ariaLabel('Lucky day')
 						.targetEvent(ev).ok('YES').cancel('NO');
@@ -381,9 +384,7 @@ angular
 																		.create($scope.tempUser);
 
 																		request.execute(function(resp) {
-																			// console.log("resp:"
-																			// +
-																			// angular.toJson(resp));
+																			console.log("resp:"+angular.toJson(resp));
 																		});
 																	}
 																}
@@ -394,11 +395,9 @@ angular
 								                            var teacherEmailId = teacherGroupEmail.split(';');
 									                    	return teacherEmailId;
 								                    }
-								                    	
 								                    
 								                    $mdDialog.hide();			                    
-													$scope.csvFile = null;				
-													
+													$scope.csvFile = null;
 												},
 												function(resp) {
 													$log.debug('Error Ouccured, Error status: '
@@ -423,6 +422,4 @@ angular
 							};
 
 						}
-						
-					
 				});

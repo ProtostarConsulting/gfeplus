@@ -1,13 +1,12 @@
 package com.protostar.prostudy.entity;
 
-import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Index;
-import com.protostar.prostudy.proadmin.entities.PaymentPlanType;
 
 @Entity
 public class InstituteEntity extends BaseEntity {
 
+	@Index
 	private String name;
 	private String desc;
 	private Address address;
@@ -22,6 +21,7 @@ public class InstituteEntity extends BaseEntity {
 
 	private AppSettingEntity settings;
 	private String yearofExam;
+	private String sendGridApiKey;
 
 	public String getLogBlobKey() {
 		return LogBlobKey;
@@ -130,6 +130,17 @@ public class InstituteEntity extends BaseEntity {
 
 	public void setYearofExam(String yearofExam) {
 		this.yearofExam = yearofExam;
+	}
+
+	public String getSendGridApiKey() {
+		return "SG." + this.sendGridApiKey;
+	}
+
+	public void setSendGridApiKey(String sendGridApiKey) {
+		if (sendGridApiKey.startsWith("SG.")) {
+			sendGridApiKey = sendGridApiKey.substring(3);
+		}
+		this.sendGridApiKey = sendGridApiKey;
 	}
 
 }

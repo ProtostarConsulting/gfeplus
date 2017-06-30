@@ -13,13 +13,17 @@ public class Constants {
 	// GCS bucket names
 	// public static final String PROERP_IMAGES_BUCKET = "proerp_image_files";
 	public static final String PROERP_IMAGES_BUCKET = "prostudygrf12_image_files";
-
+	public static final String DEFAULT_INSTITUTE_NAME = "Protostar Consulting Services";
+	public static final String PROTOSTAR_FROM_EMAIL_NAME = "ProStudy Notification";
+	public static final String PROTOSTAR_FROM_EMAIL_ID = "info@protostar.co.in";
+	
 	// Counter/Sequence Names
 	public static final String SCHOOL_REGISTRATION_NO_COUNTER = "SCHOOL_REGISTRATION_NO_COUNTER";
 	public static final String STUDENT_REGISTRATION_NO_COUNTER = "STUDENT_REGISTRATION_NO_COUNTER";
 	public static final String PAYMENT_RECEIPET_NO = "PAYMENT_RECEIPET_NO";
 	public static final String INVOICE_NO_COUNTER = "INVOICE_NO_COUNTER";
 	public static final String VOUCHER_NO_COUNTER = "VOUCHER_NO_COUNTER";
+	
 
 	// Default Authorizations
 	public static final String PROTOSTAR_DEFAULT_AUTHS = "{\"authorizations\":[{\"authName\":\"More Actions\",\"authorizations\":[{\"authName\":\"proadmin\",\"authorizations\":[]},{\"authName\":\"setup\",\"authorizations\":[]},{\"authName\":\"updatemyprofile\",\"authorizations\":[]}]}]}";
