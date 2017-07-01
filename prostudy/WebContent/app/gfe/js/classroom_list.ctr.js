@@ -183,7 +183,7 @@ angular
 							courses.push(tempCourse);
 						}
 						var confirm = $mdDialog.confirm().title(
-						'Are you sure you want to delete this '+courses.length+' course?').ariaLabel('Lucky day')
+						'Are you sure you want to delete these '+courses.length+' courses ?').ariaLabel('Lucky day')
 						.targetEvent(ev).ok('YES').cancel('NO');
 						$mdDialog.show(confirm).then(function() {
 					
@@ -217,7 +217,7 @@ angular
 							$scope.selected.push(course);
 						}
 						var confirm = $mdDialog.confirm().title(
-						'Are you sure you want to change this '+$scope.selected.length+' course state to archived?').ariaLabel('Lucky day')
+						'Are you sure you want to change these '+$scope.selected.length+' courses to archived ?').ariaLabel('Lucky day')
 						.targetEvent(ev).ok('YES').cancel('NO');
 						$mdDialog.show(confirm).then(function() {
 							$location.hash('topRight');						    
