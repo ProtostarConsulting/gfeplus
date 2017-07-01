@@ -46,25 +46,31 @@
 				md-svg-src="/img/icons/ic_keyboard_arrow_left_black_24px.svg"></md-icon>
 			</md-button>
 		</div> -->
-			<img hide-xs id="image" src="img/images/google+.png"
-				style="height: 70px; width: 100px; padding-left: 2%" />
-			<h3 hide-xs style="margin-left: 12px; padding-left: 7%">Google for
-				Education Plus</h3>
-			<h3 hide-gt-xs style="margin-left: 12px; padding-left: 5%">Google for Education Plus</h3>
+		<img hide-xs id="image" src="img/images/google+.png"
+			style="height: 70px; width: 100px; padding-left: 2%" />
+		<h3 hide-xs style="margin-left: 12px; padding-left: 7%">Google
+			for Education Plus</h3>
+		<h3 hide-gt-xs style="margin-left: 12px; padding-left: 5%">Google
+			for Education Plus</h3>
 		<span flex></span>
-		<div layout="row" layout-align="end start">
-			<md-button ng-hide="curUser !== null" ng-show="curUser == null"
-				ng-click="loginClick()"> <span
-				style="color: red; font-weight: bold">Login</span> <md-tooltip>
-			Login </md-tooltip> </md-button>
-			<span style="padding-top: 3px"
-				ng-bind="curUser.firstName + ' ' + curUser.lastName"> </span>
-			<md-button class="md-primary" aria-label="Logout"
-				ng-hide="curUser == null" ng-click="signOut()"> <span
-				style="color: yellow; font-weight: bold">Logout</span> <md-tooltip
-				ng-bind="curUser.firstName + ' ' + curUser.lastName + ' | ' +
+		<div layout="column" layout-align="end start">
+			<div layout="row" layout-align="end start">
+				<md-button ng-hide="curUser !== null" ng-show="curUser == null"
+					ng-click="loginClick()"> <span
+					style="color: red; font-weight: bold">Login</span> <md-tooltip>
+				Login </md-tooltip> </md-button>
+				<span style="padding-top: 3px"
+					ng-bind="curUser.firstName + ' ' + curUser.lastName"> </span>
+				<md-button class="md-primary" aria-label="Logout"
+					ng-hide="curUser == null" ng-click="signOut()"> <span
+					style="color: yellow; font-weight: bold">Logout</span> <md-tooltip
+					ng-bind="curUser.firstName + ' ' + curUser.lastName + ' | ' +
 			curUser.email_id">
-			</md-tooltip> </md-button>
+				</md-tooltip> </md-button>
+			</div>
+			<div layout="row" layout-align="end start">
+				<span style="padding-top: 3px; font-size: 12pt;" ng-bind="institute.name"> </span>
+			</div>
 		</div>
 		<!-- <div layout="row" layout-align="end start" hide-xs hide-sm>
 			<img id="image2" src="img/images/320px_98px_GVSP_2_1.JPG"
@@ -319,7 +325,8 @@
 				</div>
 			</div>
 
-			</md-content> --> <!-- <md-content ng-if="curUser == null" ng-clock>
+			</md-content> -->
+			<!-- <md-content ng-if="curUser == null" ng-clock>
 
 			<div style="margin-left: 15px;">
 				<md-content flex layout="column" layout-xs="column"
@@ -337,14 +344,15 @@
 					section="child">Register School</menu-link> </md-button> </md-content>
 			</div>
 			</md-content>
-	</md-content> </md-sidenav>--> <!-- ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" -->
+	</md-content> </md-sidenav>-->
+			<!-- ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" -->
 
-	<md-content flex layout-padding> <!-- <md-card> -->
-	<div layout="column" layout-align="top stretch">
-		<!--<div ng-view></div>-->
-		<div ui-view>
-			<!--This is the center page of all main modules for the index module. -->
-			<!-- <md-toolbar>
+			<md-content flex layout-padding> <!-- <md-card> -->
+			<div layout="column" layout-align="top stretch">
+				<!--<div ng-view></div>-->
+				<div ui-view>
+					<!--This is the center page of all main modules for the index module. -->
+					<!-- <md-toolbar>
 					<div class="md-toolbar-tools">
 						<section layout="row">
 							<div layout="row" layout-align="end start">
@@ -373,62 +381,62 @@
 					</div>
 					</md-toolbar> -->
 
-		</div>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<md-content layout="column">
-		<hr>
-		<span flex>©2017-2018 ProStudy Google Cloud Platform, a product
-			of Protostar Consulting Services, Pune. All rights reserved. </span> </md-content>
+				</div>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<md-content layout="column">
+				<hr>
+				<span flex>©2017-2018 ProStudy Google Cloud Platform, a
+					product of Protostar Consulting Services, Pune. All rights
+					reserved. </span> </md-content>
+			</div>
+			<!-- </md-card> --> <!--This is a botton section of the app--> <!-- <md-divider></md-divider> -->
+		</section>
 	</div>
-	<!-- </md-card> --> <!--This is a botton section of the app--> <!-- <md-divider></md-divider> -->
-	</section>
-	</div></md-content>
-	</md-card>
-	</md-content>
+	</md-content> </md-card> </md-content>
 	<!-- Parent tag ends-->
 	<!-- All JS Dependencies -->
 	<script src="/lib/base/jquery.min.js"></script>

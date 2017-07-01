@@ -360,7 +360,6 @@ angular
 
 					$scope.signOut = function() {
 
-
 						var hostBaseUrl = '//' + window.location.host
 								+ '/index.html';
 
@@ -435,17 +434,24 @@ angular
 						} else {
 							$scope.logoURL = defaulInstituteLogoURL;
 						}
-						$scope.institute = $scope.curUser.instituteObj;
+						var InstituteService = appEndpointSF
+								.getInstituteService();
+						InstituteService.getInstituteById(
+								$scope.curUser.instituteID).then(
+								function(resp) {
+									$scope.institute = resp;
+								});
+						// $scope.institute = $scope.curUser.instituteObj;
 						getUserAuthTree();
 						$scope.initDone = true;
 						$scope.loading = false;
 						$scope.data.expanded7 = true;
-						if(!$scope.curUser){
+						if (!$scope.curUser) {
 							$state.go("welcome");
-						}else{
+						} else {
 							$state.go("gfe");
 						}
-						
+
 					}
 
 					$scope.initGAPI = function() {
@@ -479,7 +485,7 @@ angular
 						$log
 								.debug("####Index: Loaded All Services, Continuing####");
 						if (authResult) {
-							//continueGoogleLogin(authResult);
+							// continueGoogleLogin(authResult);
 						}
 						if (!$scope.initDone) {
 							$scope.initCommonSetting();
