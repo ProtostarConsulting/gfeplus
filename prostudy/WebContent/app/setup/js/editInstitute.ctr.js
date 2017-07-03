@@ -39,7 +39,7 @@ angular
 										function(institute) {
 											$scope.tempInstitute = institute;
 											$scope.tempInstitute.phone_no = parseInt($scope.tempInstitute.phone_no);
-											$scope.account = $scope.tempInstitute.accounttype.accountName;
+											//$scope.account = $scope.tempInstitute.accounttype.accountName;
 										});
 					}
 

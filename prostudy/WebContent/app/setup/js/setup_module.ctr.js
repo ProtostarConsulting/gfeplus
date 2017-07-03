@@ -26,6 +26,11 @@ angular.module("prostudyApp").controller(
 				}, 200);
 				return debounceFn;
 			}
+			
+			$scope.back = function() {
+				window.history.back();
+				// $state.go("^", {});
+			};
 
 			$scope.close = function() {
 				$mdSidenav('right').close().then(function() {

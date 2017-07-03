@@ -95,19 +95,32 @@ app
 										function(loggedInUser) {
 											$log
 													.debug('Inside getUserByEmailID...');
+											$scope.curUser = loggedInUser.result;
 
-											/*
-											 * gapi.client.userService
-											 * .saveLoggedInUser(loggedInUser);
-											 */
+											gapi.client.instituteService
+													.getInstituteById({
+																'id' : loggedInUser.result.instituteID
+															})
+													.then(
+															function(resp) {
+																if (resp) {
+																	$scope.curUser.instituteObj = resp.result;
+																}
+																if ($scope.curUser.instituteObj) {
+																	var hostBaseUrl = '//'
+																			+ window.location.host
+																			+ '/app.html#/gfe'
+																	$window.location.href = hostBaseUrl;
+																}
+																$localStorage.loggedinUser = $scope.curUser;
+															});
 
 											$log
 													.debug("loggedInUser:"
 															+ angular
 																	.toJson(loggedInUser));
 
-											$scope.curUser = loggedInUser.result;
-											$localStorage.loggedinUser = $scope.curUser;
+											
 
 											if (loggedInUser.myExams == undefined) {
 												loggedInUser.myExams = [];
@@ -134,14 +147,6 @@ app
 												 * gapi.client.userService
 												 * .saveLoggedInUser(loggedInUser);
 												 */
-
-												if ($scope.curUser) {
-													var hostBaseUrl = '//'
-															+ window.location.host
-															+ '/app.html#/gfe'
-													$window.location.href = hostBaseUrl;
-												}
-
 											} else {
 												$log
 														.debug('Inside else of loggedInUser.id == undefined...');
@@ -264,7 +269,8 @@ app
 															.addUser(
 																	$scope.userEntity)
 															.then(
-																	function(resp) {
+																	function(
+																			resp) {
 																	});
 												}
 											});
