@@ -2,40 +2,47 @@
 <md-content layout-padding>
 
 <div ng-cloak>
-	<h3 class="md-display-10">Users List</h3>
-	
-	
+	<div layout="row" layout-align="centre centre" layout-xs="column">
+		<div flex>
+			<h3 class="md-display-10">Users List</h3>
+		</div>
+		<div layout="row" layout-xs="column" flex align="right">
+			<md-input-container flex> <md-button
+				class="md-icon-button" id="addInstitueUser"
+				ui-sref="setup.addInstituteUser"> <ng-md-icon
+				icon="add_circle_outline" style="fill: md-default" size="24">
+			<md-tooltip>Add User</md-tooltip></ng-md-icon></md-button> </md-input-container>
+			<md-input-container flex> <label>Search</label>
+			<input ng-model="searchText"> </md-input-container>
+		</div>
+	</div>
+
 	<md-content> <md-tabs md-dynamic-height md-border-bottom>
 	<md-tab label="Active"> <md-content class="md-padding">
-	
+
 	<!-- <md-toolbar class="md-whiteframe-1dp">
       <div class="md-toolbar-tools">
         <div class="md-title">Users List</div>
       </div>
     </md-toolbar> -->
-
-	<div layout layout-sm="column">
-		<md-input-container flex> <label>Search</label> <input
-			ng-model="searchText"> </md-input-container>
-	</div>
-
-
 	<div>
-		 <md-toolbar class="md-table-toolbar md-default" ng-hide="activeselected.length">
-          <div class="md-toolbar-tools">
-            <span>Active Users List</span>
-            <div flex></div>
-            <md-button class="md-icon-button" ng-click="getInstituteUsers(true)">
-              <md-icon>refresh</md-icon>
-            </md-button>
-          </div>
-        </md-toolbar>
-        
-        <md-toolbar class="md-table-toolbar alternate" ng-show="activeselected.length">
-          <div class="md-toolbar-tools">
-            <span>{{activeselected.length}} {{activeselected.length > 1 ? 'items' : 'item'}} selected</span>
-          </div>
-        </md-toolbar>
+		<md-toolbar class="md-table-toolbar md-default"
+			ng-hide="activeselected.length">
+		<div class="md-toolbar-tools">
+			<span>Active Users List</span>
+			<div flex></div>
+			<md-button class="md-icon-button" ng-click="getInstituteUsers(true)">
+			<md-icon>refresh</md-icon> </md-button>
+		</div>
+		</md-toolbar>
+
+		<md-toolbar class="md-table-toolbar alternate"
+			ng-show="activeselected.length">
+		<div class="md-toolbar-tools">
+			<span>{{activeselected.length}} {{activeselected.length > 1 ?
+				'items' : 'item'}} selected</span>
+		</div>
+		</md-toolbar>
 		<md-data-table-container>
 
 		<table md-data-table md-row-select="activeselected"
@@ -48,7 +55,7 @@
 					<th name="PRN" order-by="prn"></th>
 				</tr>
 			</thead>
-			
+
 			<tbody>
 				<tr md-auto-select
 					ng-repeat="user in activeUsers | filter: searchText | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
@@ -78,10 +85,12 @@
 	<div id="changeState" ng-show="activeselected.length == 1">
 
 		<md-button class="md-raised md-primary"
-			ng-click="changeAuthView({selectedUserEmailId: activeselected[0].email_id})">Authorizations </md-button>
-			
+			ng-click="changeAuthView({selectedUserEmailId: activeselected[0].email_id})">Authorizations
+		</md-button>
+
 		<md-button class="md-raised md-primary"
-			ng-click="inactiveUserStatus('active')">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inactive </md-button>
+			ng-click="inactiveUserStatus('active')">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inactive
+		</md-button>
 
 		<md-button class="md-raised md-primary" ng-model="suspend"
 			value="suspend" ng-click="suspendUserStatus('active')">Suspend
@@ -101,9 +110,9 @@
 	</div>
 	<div>
 		<md-data-table-container>
-		
-		
-		
+
+
+
 		<table md-data-table md-row-select="inactiveselected"
 			md-progress="deferred">
 			<thead md-order="query.order" md-trigger="onOrderChange">
