@@ -28,8 +28,8 @@ angular.module("prostudyApp").controller(
 			}
 			
 			$scope.back = function() {
-				window.history.back();
-				// $state.go("^", {});
+				//window.history.back();
+				 $state.go("gfe");
 			};
 
 			$scope.close = function() {

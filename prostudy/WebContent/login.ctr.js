@@ -9,7 +9,7 @@ app
 						$mdDialog, $location, $anchorScroll, $mdMedia, $mdUtil,
 						$mdSidenav) {
 
-					$scope.loading = false;
+					$scope.loading = true;
 					$scope.angular = angular;
 
 					$scope.curUser = null;
@@ -71,7 +71,12 @@ app
 							event, authResult) {
 						$log.debug('Signed in!');
 						// User successfully authorized the G+ App!
-						continueGoogleLogin(authResult);
+						if (gapi.client.userService != undefined
+								&& gapi.client.instituteService != undefined) {
+							continueGoogleLogin(authResult);
+						} else {
+							$scope.loading = true;
+						}
 					});
 
 					function continueGoogleLogin(authResult) {
@@ -119,8 +124,6 @@ app
 													.debug("loggedInUser:"
 															+ angular
 																	.toJson(loggedInUser));
-
-											
 
 											if (loggedInUser.myExams == undefined) {
 												loggedInUser.myExams = [];
