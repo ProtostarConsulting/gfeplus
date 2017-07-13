@@ -291,7 +291,7 @@ angular
 												clickOutsideToClose : true,
 												fullscreen : useFullScreen,
 												locals : {
-													createCourseRef: $scope.createCourse
+													listCourseRef: $scope.listCourses
 												}
 												
 											})
@@ -306,10 +306,11 @@ angular
 
 						};
 
-						function DialogController($scope, $mdDialog, createCourseRef) {
+						function DialogController($scope, $mdDialog, listCourseRef) {
 
 							$scope.csvFile;
 							$scope.uploadProgressMsg = null;
+							$scope.listCourse = listCourseRef;
 							
 							$scope.uploadCourseListCSV = function() {
 								var csvFile = $scope.csvFile;
@@ -389,6 +390,7 @@ angular
 																	}
 																}
 															}
+															$scope.listCourse();
 								                    }
 								                    
 								                    $scope.spiltTeacherEmailId = function(teacherGroupEmail){

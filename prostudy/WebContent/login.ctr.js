@@ -74,8 +74,6 @@ app
 						if (gapi.client.userService != undefined
 								&& gapi.client.instituteService != undefined) {
 							continueGoogleLogin(authResult);
-						} else {
-							$scope.loading = true;
 						}
 					});
 
