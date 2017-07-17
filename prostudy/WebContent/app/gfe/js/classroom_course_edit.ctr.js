@@ -36,7 +36,9 @@ angular
 					
 					$scope.flag = false;
 					$scope.loading = true;	
-					$scope.updating = true;						
+					$scope.updating = true;
+					var teachersBackup = $scope.tempCourse.teachers;
+			          delete $scope.tempCourse.teachers;
 					var request = gapi.client.classroom.courses.update($scope.tempCourse);
 					request.execute(function(resp) {							
 						$scope.showSavedToast();
@@ -44,6 +46,7 @@ angular
 						$scope.updating = false;
 						$state.go("gfe.classroomCourseList",{});							
 					});
+					$scope.tempCourse.teachers = teachersBackup;
 					
 				}, function() {							
 					

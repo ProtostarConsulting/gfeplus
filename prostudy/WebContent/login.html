@@ -25,6 +25,7 @@
 			<md-card flex="40" flex-xs="85" layout-align="start, center">
 			<div flex>
 				<h4 class="md-title">Login with Google Account</h4>
+				<p>&nbsp;</p>
 				<!-- ProERP DEV  -->
 				<!-- <google-plus-signin
 			clientid="212292411606-4l7lvgniidvq9djckr5cb1ei0iiu3a3c.apps.googleusercontent.com"></google-plus-signin>
@@ -32,8 +33,12 @@
 				<!-- Suruchi Dairy Prod  -->
 				<google-plus-signin
 					clientid="87556941487-36krkq9mr6iltvqpjd3k0r0il83h0b76.apps.googleusercontent.com"></google-plus-signin>
+				 <div ng-show="visible" layout-padding>
+				 	<md-progress-linear md-mode="query" ng-disabled="false"></md-progress-linear>
+					<h4>Logging-in with Google Account.....
+						Please wait...</h4>
+				</div>
 			</div>
-			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 			<p style="font-size: 9pt;">
 				<strong>Note: If your institute is registered then use

@@ -13,6 +13,7 @@ app
 					$scope.angular = angular;
 
 					$scope.curUser = null;
+					$scope.visible = false;
 					$scope.googleUserDetails = "";
 					$scope.googleUser = null;
 					$scope.businessName = "";
@@ -71,18 +72,21 @@ app
 							event, authResult) {
 						$log.debug('Signed in!');
 						// User successfully authorized the G+ App!
-						if (gapi.client.userService != undefined
-								&& gapi.client.instituteService != undefined) {
+						if (authResult != undefined) {
 							continueGoogleLogin(authResult);
 						}
 					});
 
 					function continueGoogleLogin(authResult) {
 						$scope.loading = true;
-
+						$scope.visible = true;
 						var profile = authResult.getBasicProfile();
 
 						$scope.loginPersonIconUrl = profile.getImageUrl();
+						if (gapi.client.userService == undefined) {
+							$scope.initGAPI(authResult);
+							return;
+						}
 
 						if ($scope.loginPersonIconUrl == null
 								|| $scope.loginPersonIconUrl == '') {
@@ -101,7 +105,8 @@ app
 											$scope.curUser = loggedInUser.result;
 
 											gapi.client.instituteService
-													.getInstituteById({
+													.getInstituteById(
+															{
 																'id' : loggedInUser.result.instituteID
 															})
 													.then(
@@ -160,7 +165,7 @@ app
 
 					}
 
-					$scope.initGAPI = function() {
+					$scope.initGAPI = function(authResult) {
 						$log.debug("Loading Google client.js...");
 
 						if (gapi && gapi.client && gapi.client.load) {
@@ -180,6 +185,9 @@ app
 											function() {
 												$log
 														.debug("instituteService Loaded......");
+												if (authResult != undefined) {
+													continueGoogleLogin(authResult);
+												}
 												$scope.loading = false;
 												$scope.$apply($scope.loading);
 											}, apiRoot);
@@ -189,21 +197,6 @@ app
 					}
 
 					$scope.initGAPI();
-
-					/*
-					 * $scope .$on( 'event:google-plus-signin-success',
-					 * function(event, authResult) {
-					 * 
-					 * var profile = authResult .getBasicProfile();
-					 * $scope.googleUser = profile; $log.debug('ID: ' +
-					 * profile.getId()); $log .debug("Going ahead with call to
-					 * getUserByEmailID...."); var hostBaseUrl = '//' +
-					 * window.location.host + '/app.html#/gfe'
-					 * $window.location.href = hostBaseUrl; //
-					 * getUserDetailsFn(profile.getEmail());
-					 * 
-					 * });
-					 */
 
 					$scope.registerNewInstitute = function(ev) {
 						var useFullScreen = $mdMedia('xs');

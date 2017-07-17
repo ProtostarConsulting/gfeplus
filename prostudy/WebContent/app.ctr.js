@@ -170,94 +170,6 @@ angular
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
-					$scope.$on('event:google-plus-signin-success', function(
-							event, authResult) {
-						$log.debug('Signed in!');
-						// User successfully authorized the G+ App!
-						continueGoogleLogin(authResult);
-					});
-
-					function continueGoogleLogin(authResult) {
-						$scope.loading = true;
-						if (!appEndpointSF.is_service_ready) {
-							$scope.waitForServiceLoad(authResult);
-							// This is needed when auto login happens after page
-							// refresh
-							return;
-						}
-
-						var profile = authResult.getBasicProfile();
-
-						$scope.loginPersonIconUrl = profile.getImageUrl();
-
-						if ($scope.loginPersonIconUrl == null
-								|| $scope.loginPersonIconUrl == '') {
-							$scope.loginPersonIconUrl = defaulLogingUserIconURL;
-						}
-
-						$log.debug('ID: ' + profile.getId());
-
-						appEndpointSF
-								.getUserService()
-								.getUserByEmailID(profile.getEmail())
-								.then(
-										function(loggedInUser) {
-											$log
-													.debug('Inside getUserByEmailID...');
-
-											appEndpointSF.getLocalUserService()
-													.saveLoggedInUser(
-															loggedInUser);
-
-											$log
-													.debug("loggedInUser:"
-															+ angular
-																	.toJson(loggedInUser));
-
-											$scope.curUser = loggedInUser;
-
-											if (loggedInUser.myExams == undefined) {
-												loggedInUser.myExams = [];
-											}
-											if (loggedInUser.myBooks == undefined) {
-												loggedInUser.myBooks = [];
-											}
-											if (loggedInUser.institute == undefined) {
-												loggedInUser.institute = [];
-											}
-
-											if (loggedInUser.id == undefined
-													&& loggedInUser.instituteID == undefined) {
-
-												loggedInUser.email_id = profile
-														.getEmail();
-												profile.getName().split(" ")[0];
-												loggedInUser.firstName = profile
-														.getName().split(" ")[0];
-												loggedInUser.lastName = profile
-														.getName().split(" ")[1];
-
-												appEndpointSF
-														.getLocalUserService()
-														.saveLoggedInUser(
-																loggedInUser);
-
-												$state.go("updatemyprofile", {
-													flag : $scope.flag
-												});
-
-											} else {
-												$log
-														.debug('Inside else of loggedInUser.id == undefined...');
-												$scope.getInstituteById();
-
-											}
-
-											$scope.loading = false;
-										});
-
-					}
-
 					$scope.getRoleSecListByInstitute = function() {
 
 						$scope.selection = [];
@@ -434,20 +346,13 @@ angular
 						} else {
 							$scope.logoURL = defaulInstituteLogoURL;
 						}
-						var InstituteService = appEndpointSF
-								.getInstituteService();
-						InstituteService.getInstituteById(
-								$scope.curUser.instituteID).then(
-								function(resp) {
-									$scope.institute = resp;
-								});
 						// $scope.institute = $scope.curUser.instituteObj;
 						getUserAuthTree();
 						$scope.initDone = true;
 						$scope.loading = false;
 						$scope.data.expanded7 = true;
 						if (!$scope.curUser) {
-							$state.go("welcome");
+							$state.go("login.html");
 						} else {
 							$state.go("gfe");
 						}
@@ -484,9 +389,6 @@ angular
 
 						$log
 								.debug("####Index: Loaded All Services, Continuing####");
-						if (authResult) {
-							// continueGoogleLogin(authResult);
-						}
 						if (!$scope.initDone) {
 							$scope.initCommonSetting();
 						}

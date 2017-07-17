@@ -194,17 +194,18 @@ angular
 							$scope.selected = [];
 							$scope.deleting = true;
 							for (var i = 0; i < courses.length; i++) {
+								delete courses[i].teachers;
 								var request = gapi.client.classroom.courses.delete({id:courses[i].id});
 
 								request.execute(function(resp) {
-									$log.debug("resp:" + angular.toJson(resp));								
+									$log.debug("resp:" + angular.toJson(resp));
 									$scope.deleting = false;
 									$scope.classroomCourses=[];
 									
 									$scope.searchName="";
 								});
 							}
-								$scope.listCourses();
+									$scope.listCourses();
 						}, function() {							
 							
 						});
@@ -217,8 +218,8 @@ angular
 							$scope.selected.push(course);
 						}
 						var confirm = $mdDialog.confirm().title(
-						'Are you sure you want to change these '+$scope.selected.length+' courses to archived ?').ariaLabel('Lucky day')
-						.targetEvent(ev).ok('YES').cancel('NO');
+									'Are you sure you want to change these '+$scope.selected.length+' courses to archived ?').ariaLabel('Lucky day')
+									.targetEvent(ev).ok('YES').cancel('NO');
 						$mdDialog.show(confirm).then(function() {
 							$location.hash('topRight');						    
 						    $anchorScroll();
@@ -227,6 +228,8 @@ angular
 							 for(var i=0; i< $scope.selected.length;i++)
 		                    	{
 								 	$scope.selected[i].courseState = courseState;
+								 	var teachersBackup = $scope.selected[i].teachers;
+							          delete $scope.selected[i].teachers;
 									$scope.tempCourse=angular.toJson($scope.selected[i]);
 									
 									var request = gapi.client.classroom.courses.update({id: $scope.selected[i].id}, $scope.tempCourse);
@@ -237,7 +240,8 @@ angular
 											$scope.showCourseStateChangedToast();
 											$scope.selectedCourseList();
 										}										
-									});								 
+									});
+									 $scope.selected[i].teachers = teachersBackup;
 		                    	}
 							}, function() {							
 								// Error fn

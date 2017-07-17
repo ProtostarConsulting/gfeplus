@@ -16,9 +16,11 @@
 </section> -->
 <div layout="row" layout-align="centre centre" layout-xs="column">
 	<md-input-container flex> <label>Search
-		Course By Name</label> <input ng-model="searchName" ng-model-options="{ debounce: 2000 }"> </md-input-container>
+		Course By Name</label> <input ng-model="searchName"
+		ng-model-options="{ debounce: 2000 }"> </md-input-container>
 	<md-input-container flex> <label>Search
-		Course By Teacher Name</label> <input ng-model="searchTeacherName" ng-model-options="{ debounce: 2000 }"> </md-input-container>
+		Course By Teacher Name</label> <input ng-model="searchTeacherName"
+		ng-model-options="{ debounce: 2000 }"> </md-input-container>
 
 	<md-input-container flex> <label>Course
 		State</label> <md-select ng-model="courseState"
@@ -95,9 +97,9 @@
 					class="md-icon-button" ng-click="splitUrl(course.alternateLink)"
 					ng-href="https://classroom.google.com/calendar/this-week/course/{{courseCalendarId[1]}}"
 					target="_blank"> <md-icon
-					md-svg-src="/img/icons/calendar.svg" style="fill: md-default" size="20" aria-label="Course Calendar">
-				<md-tooltip> View Course Calendar</md-tooltip></md-icon>
-				</md-button> <md-button class="md-icon-button"
+					md-svg-src="/img/icons/calendar.svg" style="fill: md-default"
+					size="20" aria-label="Course Calendar"> <md-tooltip>
+				View Course Calendar</md-tooltip></md-icon> </md-button> <md-button class="md-icon-button"
 					ng-href="{{course.alternateLink}}" target="_blank"> <ng-md-icon
 					icon="exit_to_app" style="fill: md-default" size="20">
 				<md-tooltip> Goto Actual Classroom Page</md-tooltip></ng-md-icon></md-button> <md-button
@@ -118,9 +120,14 @@
 				<ng-md-icon icon="group_add" style="fill: md-default" size="20">
 				<md-tooltip> Add Class Student</md-tooltip></ng-md-icon></md-button> <md-button
 					class="md-icon-button" ng-show="course.courseState==='ACTIVE'"
-					ng-click="changeCourseState('ARCHIVED',$event,course)"> <ng-md-icon
-					icon="archive" style="fill: md-default" size="20"> <md-tooltip>
-				Archive Course</md-tooltip></ng-md-icon></md-button> <md-button class="md-icon-button"
+					ng-click="changeCourseState('ARCHIVED',$event,course)">
+				<ng-md-icon icon="archive" style="fill: md-default" size="20">
+				<md-tooltip> Archive Course</md-tooltip></ng-md-icon></md-button> <!-- <md-button
+					class="md-icon-button" ng-show="course.courseState==='ARCHIVED'"
+					ng-click="changeCourseState('ACTIVE',$event,course)"> <md-icon
+					md-svg-src="/img/icons/unarchive_48px.svg" style="fill: md-default"
+					size="20" aria-label="Active Course"> <md-tooltip>
+				Active Course</md-tooltip></md-icon></md-button> --> <md-button class="md-icon-button"
 					ng-click="deleteCourse(course,$event)"> <ng-md-icon
 					icon="delete" style="fill: md-default" size="20"> <md-tooltip>
 				Delete Course</md-tooltip></ng-md-icon></md-button></md-menu-item></md-menu-content> </md-menu></td>
@@ -183,11 +190,11 @@
 		ng-show="selected[0].courseState==='ACTIVE'"
 		ng-click="changeCourseState('ARCHIVED',$event)"> ARCHIVE
 	Courses</md-button>
+	<!-- <md-button class="md-raised md-warn"
+		ng-show="selected[0].courseState==='ARCHIVED'"
+		ng-click="changeCourseState('ACTIVE',$event)"> Active
+	Courses</md-button> -->
 	<md-button class="md-raised md-warn"
-		ng-click="deleteCourse(selected,$event)"> Delete
-	Courses </md-button>
+		ng-click="deleteCourse(selected,$event)"> Delete Courses </md-button>
 </div>
 </md-content>
-
-
-
