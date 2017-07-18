@@ -123,152 +123,11 @@ angular
 						email_id : '',
 						password : ''
 					};
-					$scope.loginClick = function() {
-						$state.go("gfe");
-					};
-
-					$scope.$on('moduleData', function(event, args1) {
-						$log.debug("In side customLogin on Index Page");
-						$scope.modules = args1.modules;
-					});
 
 					$scope.authModule = [];
-					$scope.$on('customLoginEvent', function(event, args) {
-						$log.debug("In side customLogin on Index Page");
-						$scope.curUser = args.curUser;
-						$scope.getInstituteById();
-						$scope.getCurrentUserRoleByInstitute();
-						$scope.modules = args.modules;
-					});
-
-					$scope.getCurrentUserRoleByInstitute = function() {
-
-						$scope.selection = [];
-						$scope.data = {
-							instituteID : '',
-							role : ''
-						};
-						var UserService = appEndpointSF.getUserService();
-
-						UserService
-								.getCurrentUserRoleByInstitute(
-										$scope.curUser.instituteID,
-										$scope.curUser.role)
-								.then(
-										function(modules) {
-											$scope.modules = modules;
-											console
-													.log("$scope.modules==ROLE=="
-															+ $scope.modules);
-											$scope.$emit('moduleData', {
-												modules : $scope.modules
-											});
-										});
-
-					}
-
+					
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-
-					$scope.getRoleSecListByInstitute = function() {
-
-						$scope.selection = [];
-						var UserService = appEndpointSF.getUserService();
-
-						UserService.getRoleSecListByInstitute(
-								$scope.curUser.instituteID).then(
-								function(modules) {
-									$scope.modules = modules;
-
-								});
-
-					}
-
-					$scope.getInstituteById = function() {
-
-						var InstituteService = appEndpointSF
-								.getInstituteService();
-
-						InstituteService.getInstituteById(
-								$scope.curUser.instituteID).then(
-								function(institute) {
-									var curUser = appEndpointSF
-											.getLocalUserService()
-											.getLoggedinUser();
-									curUser.instituteObj = institute;
-									appEndpointSF.getLocalUserService()
-											.saveLoggedInUser(curUser);
-
-									$scope.curUser = curUser;
-									$scope.initCommonSetting();
-								});
-
-					}
-
-					function getUserAuthTree() {
-						var authService = appEndpointSF
-								.getAuthorizationService();
-						authService
-								.getAuthorizationMasterEntity()
-								.then(
-										function(result) {
-											$log.debug("result:" + result);
-											var authorizationMasterEntity = {
-												authorizations : []
-											};
-											var userAuthMasterEntity = {
-												authorizations : []
-											};
-
-											var jsonUserAuthObject = angular
-													.fromJson($scope.curUser.authorizations);
-
-											if ($scope.curUser.authorizations) {
-												var jsonUserAuthObject = angular
-														.fromJson($scope.curUser.authorizations);
-												$scope.userAuthObject = jsonUserAuthObject;
-											} else {
-												$scope.userAuthObject = {
-													authorizations : []
-												};
-											}
-
-											if (result
-													&& result.authorizations != undefined) {
-
-												authorizationMasterEntity.authorizations = result.authorizations;
-
-												userAuthMasterEntity = authService
-														.filterMasterAuthTree(
-																authorizationMasterEntity,
-																$scope.userAuthObject,
-																userAuthMasterEntity);
-
-												userAuthMasterEntity.authorizations
-														.sort(function(a, b) {
-															return (parseFloat(a.orderNumber) > parseFloat(b.orderNumber)) ? 1
-																	: -1
-														});
-
-												$log
-														.debug("userAuthMasterEntity:"
-																+ angular
-																		.toJson(userAuthMasterEntity));
-
-												var curUser = appEndpointSF
-														.getLocalUserService()
-														.getLoggedinUser();
-												curUser.userAuthMasterEntity = userAuthMasterEntity;
-												appEndpointSF
-														.getLocalUserService()
-														.saveLoggedInUser(
-																curUser);
-
-												$scope.curUser = curUser;
-												// $scope.safeApply();
-											}
-										});
-					}
 
 					$scope.signOut = function() {
 
@@ -307,15 +166,6 @@ angular
 						}
 					}
 
-					$scope.$on('event:google-plus-signin-failure', function(
-							event, authResult) {
-						// User has not authorized the G+ App!
-						$log.debug('Not signed into Google Plus.');
-						// $scope.getInstituteById();
-					});
-
-					// $window.initGAPI = function() {}
-
 					$scope.initCommonSetting = function() {
 						$log.debug('Inside initCommonSetting');
 						ajsCache.removeAll();
@@ -347,7 +197,6 @@ angular
 							$scope.logoURL = defaulInstituteLogoURL;
 						}
 						// $scope.institute = $scope.curUser.instituteObj;
-						getUserAuthTree();
 						$scope.initDone = true;
 						$scope.loading = false;
 						$scope.data.expanded7 = true;

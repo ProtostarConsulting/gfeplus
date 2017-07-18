@@ -35,7 +35,7 @@ angular.module("prostudyApp").controller(
 				var PartnerSchoolService = appEndpointSF
 						.getPartnerSchoolService();
 				
-				PartnerSchoolService.getCurrentYearSchoolAndStudentCount()
+				/*PartnerSchoolService.getCurrentYearSchoolAndStudentCount()
 						.then(function(resp) {
 							$scope.schoolStudCount = {
 								schoolCount : 0,
@@ -50,7 +50,7 @@ angular.module("prostudyApp").controller(
 							}
 							
 							$scope.loading = false;
-						});
+						});*/
 			}
 
 			$scope.waitForServiceLoad = function(authResult) {
