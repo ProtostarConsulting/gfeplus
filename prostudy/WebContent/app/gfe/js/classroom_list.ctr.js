@@ -44,13 +44,14 @@ angular
 								$scope.classroomCourses = courses;
 								$scope.$parent.courseListBackup = courses;
 								var tempCount = 0;
+								$scope.loadingTeacher = true;
 								for (i = 0; i < courses.length; i++) {
 									var request = gapi.client.classroom.courses.teachers
 									.list({
 										courseId : courses[i].id,
 										pageSize : 3
 									});
-
+									
 									request.execute(function(resp) {
 										var teachers = resp.result.teachers?resp.result.teachers:[];
 										/*
@@ -67,6 +68,7 @@ angular
 												$scope.$parent.teacherListBackup = $scope.teacherList;
 												for (k = 0; k < $scope.$parent.courseListBackup.length; k++) {
 													courses[k].teachers = $scope.getTeacherNamesByCourse(courses[k].id);
+													$scope.loadingTeacher = false;
 												}
 												$scope.loading = false;
 											});
@@ -106,7 +108,6 @@ angular
 							} else {
 								$log.debug('No courses found.');
 							}		
-							
 							
 						    $scope.loading = false;
 
@@ -201,7 +202,7 @@ angular
 									$log.debug("resp:" + angular.toJson(resp));
 									$scope.deleting = false;
 									$scope.classroomCourses=[];
-									
+									$scope.showCourseDeletedToast();
 									$scope.searchName="";
 								});
 							}
@@ -261,7 +262,7 @@ angular
 					};
 					$scope.showCourseDeletedToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'Selected Course Deleted!').position("top").hideDelay(
+								'Selected Course Deleted. Please refresh the list..!').position("top").hideDelay(
 								3000));
 					};
 					$scope.showSavedToast = function() {

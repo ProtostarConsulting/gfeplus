@@ -77,7 +77,9 @@
 			ng-repeat="course in courseList  | orderBy: query.order | filter: {name: searchName} | filter: {teachers: searchTeacherName}| limitTo: query.limit: (query.page - 1) * query.limit">
 
 			<td>{{course.name}}</td>
-			<td>{{course.teachers}}</td>
+			<td ng-show="!loadingTeacher">{{course.teachers}}</td>
+			<td ng-show="loadingTeacher"><md-progress-circular
+					ng-disabled="false" class="md-hue-2" md-diameter="20px"></md-progress-circular></td>
 			<td>{{course.courseState}}</td>
 			<td>{{course.enrollmentCode}}</td>
 			<td>{{course.creationTime | formatDate}}</td>
@@ -127,10 +129,10 @@
 					ng-click="changeCourseState('ACTIVE',$event,course)"> <md-icon
 					md-svg-src="/img/icons/unarchive_48px.svg" style="fill: md-default"
 					size="20" aria-label="Active Course"> <md-tooltip>
-				Active Course</md-tooltip></md-icon></md-button> --> <md-button class="md-icon-button"
-					ng-click="deleteCourse(course,$event)"> <ng-md-icon
-					icon="delete" style="fill: md-default" size="20"> <md-tooltip>
-				Delete Course</md-tooltip></ng-md-icon></md-button></md-menu-item></md-menu-content> </md-menu></td>
+				Active Course</md-tooltip></md-icon></md-button> --> <md-button
+					class="md-icon-button" ng-click="deleteCourse(course,$event)">
+				<ng-md-icon icon="delete" style="fill: md-default" size="20">
+				<md-tooltip> Delete Course</md-tooltip></ng-md-icon></md-button></md-menu-item></md-menu-content> </md-menu></td>
 		</tr>
 	</tbody>
 </table>
