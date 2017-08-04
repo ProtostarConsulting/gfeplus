@@ -3,7 +3,7 @@ angular
 		.controller(
 				"classroomCourseListCtr",
 				function($scope, $window, $mdToast, $timeout, $mdSidenav,$state,$mdDialog, $mdMedia,Upload,
-						$mdUtil, $log, $q, $location, $anchorScroll, tableTestDataFactory, appEndpointSF) {
+						$mdUtil, $log, $q, $interval, $location, $anchorScroll, tableTestDataFactory, appEndpointSF) {
 										
 					
 					$scope.courseStateList	=["ACTIVE","ARCHIVED","PROVISIONED","DECLINED" ];
@@ -202,11 +202,11 @@ angular
 									$log.debug("resp:" + angular.toJson(resp));
 									$scope.deleting = false;
 									$scope.classroomCourses=[];
-									$scope.showCourseDeletedToast();
 									$scope.searchName="";
 								});
 							}
 									$scope.listCourses();
+									$scope.showCourseDeletedToast();
 						}, function() {							
 							
 						});
@@ -315,8 +315,7 @@ angular
 
 							$scope.csvFile;
 							$scope.uploadProgressMsg = null;
-							$scope.listCourse = listCourseRef;
-							
+							$scope.listCourse = listCourseRef;							
 							$scope.uploadCourseListCSV = function() {
 								var csvFile = $scope.csvFile;
 								Upload
@@ -344,19 +343,31 @@ angular
 													$scope.courseList=resp.data;
 								                    console.log('Success '+angular.toJson($scope.courseList));
 								                    
+								                    var courseTimeout = 3000;
+								                    $scope.createCourse = function(course){
+								                    	$scope.today = new Date()
+																.toLocaleTimeString();
+								                    	var request = gapi.client.classroom.courses
+															.create(course);   
+														request.execute(function(resp) {
+															if(resp.id){
+																$scope.createTeacher(resp);
+															}
+														});												
+								                    }
+								                    var i = 0;
 								                    for(var j=0; j< $scope.courseList.length;j++)
 								                    	{
 								                    	   $scope.courseList[j].ownerId = 'me';
 								                    	   $scope.courseList[j].courseState = 'ACTIVE';
-								                    	   
-								                    	   var request = gapi.client.classroom.courses
-															.create($scope.courseList[j]);
-
-															request.execute(function(resp) {
-																if(resp.id){
-																	$scope.createTeacher(resp);
-																}
-															});
+								                    	   courseTimeout = courseTimeout + 3000;
+								                    	   $timeout(function() {
+								                    		   if(i <= $scope.courseList.length){
+								                    			   var course = $scope.courseList[i];
+									                    		   $scope.createCourse(course);
+									                    		   i = i + 1;
+								                    		   }
+								                    	   },courseTimeout);
 								                    	}
 								                    
 								                    $scope.createTeacher = function(course){
@@ -364,6 +375,7 @@ angular
 															for (var j = 0; j < $scope.courseList.length; j++) {
 																if($scope.courseList[j].name == course.name){
 																	$scope.teacherEmail = $scope.spiltTeacherEmailId($scope.courseList[j].teacherGroupEmail);
+																	var teacherTimeout = 1000;
 																	for (var k = 0; k < $scope.teacherEmail.length; k++) {
 																		$scope.name = {
 																				'givenName' : "",
@@ -388,14 +400,16 @@ angular
 																		$scope.tempUser.userId = $scope.teacherEmail[k];
 																		var request = gapi.client.classroom.courses.teachers
 																		.create($scope.tempUser);
-
+																		
 																		request.execute(function(resp) {
-																			console.log("resp:"+angular.toJson(resp));
+																			// console.log("resp:"+angular.toJson(resp));
 																		});
 																	}
 																}
 															}
-															$scope.listCourse();
+															if(i == $scope.courseList.length){
+																$scope.listCourse();
+															}
 								                    }
 								                    
 								                    $scope.spiltTeacherEmailId = function(teacherGroupEmail){

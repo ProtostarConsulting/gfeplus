@@ -66,6 +66,7 @@
 	<thead md-order="query.order" md-trigger="onorderchange">
 		<tr>
 			<th order-by="name" name="Name" unit=""></th>
+			<th order-by="section" name="Section"></th>
 			<th name="Teachers" order-by="teachers"></th>
 			<th order-by="courseState" name="CourseState"></th>
 			<th order-by="enrollmentCode" name="Enrollment Code"></th>
@@ -77,6 +78,7 @@
 			ng-repeat="course in courseList  | orderBy: query.order | filter: {name: searchName} | filter: {teachers: searchTeacherName}| limitTo: query.limit: (query.page - 1) * query.limit">
 
 			<td>{{course.name}}</td>
+			<td>{{course.section}}</td>
 			<td ng-show="!loadingTeacher">{{course.teachers}}</td>
 			<td ng-show="loadingTeacher"><md-progress-circular
 					ng-disabled="false" class="md-hue-2" md-diameter="20px"></md-progress-circular></td>
