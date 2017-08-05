@@ -116,13 +116,33 @@ angular
 					/* This method filters the course by selected state */
 					$scope.getTeacherNamesByCourse = function(courseId) {					
 							var courseTeachers = [];							
-								for (i = 0; i < $scope.teacherList.length; i++) {									
-									if($scope.teacherList[i].courseId == courseId)
-									{									
-										courseTeachers.push($scope.teacherList[i].profile.name.fullName);
-									}
+								for (i = 0; i < $scope.teacherList.length; i++) {
+										if($scope.teacherList[i].courseId == courseId)
+										{
+											courseTeachers.push($scope.teacherList[i].profile.name.fullName);
+										}
 								}
+								courseTeachers = $scope.deleteDuplicateTeacher(courseTeachers);
 							return courseTeachers.join();	
+					}
+					
+					$scope.deleteDuplicateTeacher = function(teachers) {
+					    var newTeacherArr = [],
+					        found, x, y;
+
+					    for (x = 0; x < teachers.length; x++) {
+					        found = undefined;
+					        for (y = 0; y < newTeacherArr.length; y++) {
+					            if (teachers[x] === newTeacherArr[y]) {
+					                found = true;
+					                break;
+					            }
+					        }
+					        if (!found) {
+					            newTeacherArr.push(teachers[x]);
+					        }
+					    }
+					    return newTeacherArr;
 					}
 					
 					$scope.$mdOpenMenu = function(ev){
@@ -177,7 +197,7 @@ angular
 					};
 
 					$scope.deleteCourse = function(courses,ev) {							
-						
+						var deleteCount = 0;
 						if(courses.length == undefined){
 							var tempCourse = courses;
 							var courses = []; 
@@ -203,10 +223,13 @@ angular
 									$scope.deleting = false;
 									$scope.classroomCourses=[];
 									$scope.searchName="";
+									deleteCount = deleteCount + 1;
+									if(deleteCount == courses.length){
+										$scope.showCourseDeletedToast();
+										$scope.listCourses();
+									}
 								});
 							}
-									$scope.listCourses();
-									$scope.showCourseDeletedToast();
 						}, function() {							
 							
 						});
@@ -262,7 +285,7 @@ angular
 					};
 					$scope.showCourseDeletedToast = function() {
 						$mdToast.show($mdToast.simple().content(
-								'Selected Course Deleted. Please refresh the list..!').position("top").hideDelay(
+								'Selected Course Deleted. Refreshing the list..!').position("top").hideDelay(
 								3000));
 					};
 					$scope.showSavedToast = function() {
