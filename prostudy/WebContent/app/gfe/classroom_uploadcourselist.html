@@ -5,7 +5,7 @@
 
 	<form name="excelform" method="post" enctype="multipart/form-data">
 		<div>			
-			<div>
+			<div style="padding-left: 15px;">
 
 				<b>Download sample CSV file format: </b> <a
 					href="img/BulkUploadFormats/UploadCourseList.csv" download> <img
@@ -14,7 +14,7 @@
 				</a>
 			</div>
 
-			<div>
+			<div style="padding-left: 15px;">
 				<md-button class='md-raised' type="file" ngf-select
 					ng-model="csvFile" name="file2" accept=".csv" ngf-max-size="2MB"
 					required ngf-model-invalid="errorFile">Choose Course List CSV</md-button>
@@ -22,8 +22,9 @@
 					null?csvFile.name:uploadProgressMsg}} </label>
 			</div>
 			<br>
+			<div style="padding-left: 15px;">
 			<md-button class="md-raised md-primary" ng-click="uploadCourseListCSV()"
-				ng-disabled="excelform.$invalid"> Submit </md-button>
+				ng-disabled="excelform.$invalid"> Submit </md-button></div>
 		</div>
 
 		
