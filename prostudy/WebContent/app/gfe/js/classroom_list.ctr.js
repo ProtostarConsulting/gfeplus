@@ -11,6 +11,7 @@ angular
 					$scope.classroomCourses = [];
 					$scope.courseList=[];				
 					$scope.teacherList=[];
+					$scope.courseLoading = false;
 					$scope.tempCourse = {
 							'name' : "",
 							'section' : "",
@@ -316,7 +317,7 @@ angular
 												templateUrl : '/app/gfe/classroom_uploadcourselist.html',
 												parent : angular.element(document.body),
 												targetEvent : ev,
-												clickOutsideToClose : true,
+												clickOutsideToClose : false,
 												fullscreen : useFullScreen,
 												locals : {
 													listCourseRef: $scope.listCourses
@@ -334,11 +335,16 @@ angular
 
 						};
 
-						function DialogController($scope, $mdDialog, listCourseRef) {
+						function DialogController($scope, $mdDialog, $interval, listCourseRef) {
 
 							$scope.csvFile;
 							$scope.uploadProgressMsg = null;
-							$scope.listCourse = listCourseRef;							
+							$scope.listCourse = listCourseRef;
+							
+							$scope.cancel = function() {
+		                    	$mdDialog.cancel();
+		                    }
+							
 							$scope.uploadCourseListCSV = function() {
 								var csvFile = $scope.csvFile;
 								Upload
@@ -346,7 +352,7 @@ angular
 												{
 													url : 'UploadCourseListServlet',
 													data : {
-														file : csvFile,
+														'file' : csvFile
 													}
 												})
 										.then(
@@ -365,33 +371,57 @@ angular
 																	.hideDelay(6000));
 													$scope.courseList=resp.data;
 								                    console.log('Success '+angular.toJson($scope.courseList));
-								                    
-								                    var courseTimeout = 3000;
+								                    								                   
 								                    $scope.createCourse = function(course){
+								                    	$scope.courseLoading = true;
 								                    	$scope.today = new Date()
 																.toLocaleTimeString();
+								                    	console.log("course name & time ---"+course.name+"----"+$scope.today);
 								                    	var request = gapi.client.classroom.courses
 															.create(course);   
 														request.execute(function(resp) {
 															if(resp.id){
+																console.log("course response ---"+resp.name+"----"+$scope.today);
+																$scope.progressMsg += "<br/> Course uploaded: " + resp.name;
 																$scope.createTeacher(resp);
 															}
 														});												
 								                    }
 								                    var i = 0;
-								                    for(var j=0; j< $scope.courseList.length;j++)
-								                    	{
-								                    	   $scope.courseList[j].ownerId = 'me';
-								                    	   $scope.courseList[j].courseState = 'ACTIVE';
-								                    	   courseTimeout = courseTimeout + 3000;
-								                    	   $timeout(function() {
-								                    		   if(i <= $scope.courseList.length){
-								                    			   var course = $scope.courseList[i];
-									                    		   $scope.createCourse(course);
-									                    		   i = i + 1;
-								                    		   }
-								                    	   },courseTimeout);
-								                    	}
+								                    var courseTimeout = 5000;
+								                    var scheduleTime = 0;
+								                    $scope.progressMsg = ""
+								                    $scope.waitMsg = "Please wait...Do not close browser window..!!";
+								                    let promise = $timeout();								                    	
+								                    $interval(function() {
+									                    	     if(i<$scope.courseList.length){
+										                        	 $scope.courseList[i].ownerId = 'me';
+										                        	 $scope.courseList[i].courseState = 'ACTIVE';
+										                        	 $scope.createCourse($scope.courseList[i]);
+											                    	 i = i + 1;										                    		  
+									                    	     }else{
+									                    	    	 console.log("I am still running with doing anything....");
+									                    	     }
+								                    	     }, courseTimeout);
+								                    
+								                    	 /*
+															 * angular.forEach($scope.courseList,
+															 * function(course) {
+															 * promise =
+															 * promise.then(function() {
+															 * scheduleTime +=
+															 * courseTimeout;
+															 * course.ownerId =
+															 * 'me';
+															 * course.courseState =
+															 * 'ACTIVE'; if(i <=
+															 * $scope.courseList.length){
+															 * $scope.createCourse(course);
+															 * i = i + 1; }
+															 * return
+															 * $timeout(scheduleTime);
+															 * });
+															 */
 								                    
 								                    $scope.createTeacher = function(course){
 								                    	$scope.teacherEmail = [];
@@ -431,16 +461,19 @@ angular
 																}
 															}
 															if(i == $scope.courseList.length){
+																$scope.waitMsg="Upload complete...!!";
+																$scope.progressMsg = "";
+																$scope.courseLoading = false;
+																$mdDialog.hide();
 																$scope.listCourse();
 															}
 								                    }
-								                    
+								                    								                    
 								                    $scope.spiltTeacherEmailId = function(teacherGroupEmail){
 								                            var teacherEmailId = teacherGroupEmail.split(';');
 									                    	return teacherEmailId;
 								                    }
-								                    
-								                    $mdDialog.hide();			                    
+								                    			                    
 													$scope.csvFile = null;
 												},
 												function(resp) {

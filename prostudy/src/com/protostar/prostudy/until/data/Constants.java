@@ -16,6 +16,7 @@ public class Constants {
 	public static final String DEFAULT_INSTITUTE_NAME = "Protostar Consulting Services";
 	public static final String PROTOSTAR_FROM_EMAIL_NAME = "ProStudy Notification";
 	public static final String PROTOSTAR_FROM_EMAIL_ID = "info@protostar.co.in";
+	public static final int DOCUMENT_DEFAULT_MAX_SIZE = 5000000;
 	
 	// Counter/Sequence Names
 	public static final String SCHOOL_REGISTRATION_NO_COUNTER = "SCHOOL_REGISTRATION_NO_COUNTER";

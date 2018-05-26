@@ -7,12 +7,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Work;
 
 public class UtilityService {
+	
+	private final static Logger log = Logger.getLogger(UtilityService.class.getName());
 
 	public static String getNextPRN(String role) {
 		Calendar rightNow = Calendar.getInstance();
@@ -99,5 +110,52 @@ public class UtilityService {
 			hostUrl = "http://localhost:8888";
 		}
 		return hostUrl;
+	}
+	
+	public static Map<String, String> getMultiPartFileItemsWithFileAsString(HttpServletRequest request)
+			throws IOException {
+		try {
+			if (request.getHeader("Content-Type") != null
+					&& request.getHeader("Content-Type").startsWith("multipart/form-data")) {
+
+				ServletFileUpload upload = new ServletFileUpload();
+				FileItemIterator iterator = upload.getItemIterator(request);
+				Map<String, String> items = new HashMap<String, String>();
+				while (iterator.hasNext()) {
+					FileItemStream next = iterator.next();
+					items.put(next.getFieldName(), UtilityService.readAsString(next.openStream()));
+				}
+				return items;
+			}
+		} catch (Exception e) {
+			log.severe(e.getMessage());
+			e.printStackTrace();
+			throw new IOException("Error Occurred while uploading the csv file.", e);
+		}
+
+		return null;
+
+	}
+	
+	public static String readAsString(InputStream stream) throws IOException {
+		byte[] fileContent = new byte[Constants.DOCUMENT_DEFAULT_MAX_SIZE];
+		// Can handle file upto 5 MB
+
+		// int read = stream.read(fileContent);
+		// log.fine("No of bytes read:" + read);
+		int totalBytesRead = 0;
+		int bytesReadTemp = 0;
+		while (bytesReadTemp != -1) {
+			bytesReadTemp = stream.read(fileContent, totalBytesRead, fileContent.length);
+			if (bytesReadTemp > 0)
+				totalBytesRead += bytesReadTemp;
+		}
+		stream.close();
+		log.info("File Read is Done!!. Bytes read: " + totalBytesRead);
+		// Write code here to parse sheet of patients and upload to
+		// database
+
+		String fileAsString = new String(fileContent);
+		return fileAsString.trim();
 	}
 }

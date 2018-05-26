@@ -1,11 +1,23 @@
-
+<md-dialog aria-label="Add New"> <md-toolbar>
+<div class="md-toolbar-tools">
+	<h2 ng-show="courseLoading">upload course... in progress..</h2>
+	<h2 ng-hide="courseLoading">Upload Course List</h2>
+	<span flex></span>
+	<!-- <md-button class="md-icon-button" ng-click="cancel()"> <md-icon
+		md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+	</md-button> -->
+</div>
+</md-toolbar>
 <div layout="row" ng-cloak class="md-inline-form">
-
-	<md-content layout="column">
-
+	<md-dialog-content style="width:600px;" layout-padding>
+	<md-content ng-show="courseLoading"> <span
+		ng-bind-html="waitMsg+'...'+progressMsg+'...'"></span> <md-progress-linear
+		class="md-warn" md-mode="buffer" value="30" md-buffer-value="70"
+		ng-disabled="false"></md-progress-linear> </md-content> 
+	<md-content layout="column"	ng-hide="courseLoading">
 	<form name="excelform" method="post" enctype="multipart/form-data">
-		<div>			
-			<div style="padding-left: 15px;">
+		<div>
+			<div style="padding: 0px 15px;">
 
 				<b>Download sample CSV file format: </b> <a
 					href="img/BulkUploadFormats/UploadCourseList.csv" download> <img
@@ -14,24 +26,25 @@
 				</a>
 			</div>
 
-			<div style="padding-left: 15px;">
+			<div style="padding: 0px 15px;">
 				<md-button class='md-raised' type="file" ngf-select
 					ng-model="csvFile" name="file2" accept=".csv" ngf-max-size="2MB"
-					required ngf-model-invalid="errorFile">Choose Course List CSV</md-button>
-				<label>{{uploadProgressMsg ==
-					null?csvFile.name:uploadProgressMsg}} </label>
+					required ngf-model-invalid="errorFile">Choose Course
+				List CSV</md-button>
 			</div>
-			<br>
-			<div style="padding-left: 15px;">
-			<md-button class="md-raised md-primary" ng-click="uploadCourseListCSV()"
-				ng-disabled="excelform.$invalid"> Submit </md-button></div>
+			<label style="padding: 0px 15px;">{{uploadProgressMsg ==
+				null?csvFile.name:uploadProgressMsg}} </label> <br>
+			<div style="padding-left: 15px;" layout="row" layout-xs="column">
+				<md-button class="md-raised" ng-click="cancel()">Cancel</md-button>
+				<md-button class="md-raised md-primary"
+					ng-click="uploadCourseListCSV()" ng-disabled="excelform.$invalid">
+				Submit </md-button>
+			</div>
 		</div>
-
-		
 	</form>
-
 	<div>
 		<!-- This is temp second column -->
 	</div>
-	</md-content>
+	</md-content> </md-dialog-content>
 </div>
+</md-dialog>
