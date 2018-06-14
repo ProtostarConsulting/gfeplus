@@ -45,8 +45,8 @@ angular
 								$scope.classroomCourses = courses;
 								$scope.$parent.courseListBackup = courses;
 								var tempCount = 0;
-								$scope.loadingTeacher = true;
-								for (i = 0; i < courses.length; i++) {
+								//$scope.loadingTeacher = true;
+								/*for (i = 0; i < courses.length; i++) {
 									var request = gapi.client.classroom.courses.teachers
 									.list({
 										courseId : courses[i].id,
@@ -55,9 +55,9 @@ angular
 									
 									request.execute(function(resp) {
 										var teachers = resp.result.teachers?resp.result.teachers:[];
-										/*
+										
 										 * if(teachers.length ==0) return;
-										 */
+										 
 										
 										$scope.teacherList = $scope.teacherList.concat(teachers);
 										tempCount++;
@@ -76,7 +76,7 @@ angular
 										}
 									});						
 																	
-								}
+								}*/
 								
 								$scope.selectedCourseList();
 							} else {
@@ -388,7 +388,7 @@ angular
 														});												
 								                    }
 								                    var i = 0;
-								                    var courseTimeout = 5000;
+								                    var courseTimeout = 7000;
 								                    var scheduleTime = 0;
 								                    $scope.progressMsg = ""
 								                    $scope.waitMsg = "Please wait...Do not close browser window..!!";
@@ -403,25 +403,6 @@ angular
 									                    	    	 console.log("I am still running with doing anything....");
 									                    	     }
 								                    	     }, courseTimeout);
-								                    
-								                    	 /*
-															 * angular.forEach($scope.courseList,
-															 * function(course) {
-															 * promise =
-															 * promise.then(function() {
-															 * scheduleTime +=
-															 * courseTimeout;
-															 * course.ownerId =
-															 * 'me';
-															 * course.courseState =
-															 * 'ACTIVE'; if(i <=
-															 * $scope.courseList.length){
-															 * $scope.createCourse(course);
-															 * i = i + 1; }
-															 * return
-															 * $timeout(scheduleTime);
-															 * });
-															 */
 								                    
 								                    $scope.createTeacher = function(course){
 								                    	$scope.teacherEmail = [];

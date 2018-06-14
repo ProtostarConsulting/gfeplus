@@ -43,12 +43,12 @@ app
 						$anchorScroll();
 					}
 
-					$scope.registerNewInstitute = function() {
+					/*$scope.registerNewInstitute = function() {
 						var hostBaseUrl = '//' + window.location.host
 								+ '/app.html#/registerNewInstitute#tp1';
 						$log.debug("hostBaseUrl: " + hostBaseUrl);
 						$window.location.href = hostBaseUrl;
-					}
+					}*/
 
 					$scope.loginClick = function() {
 						var hostBaseUrl = '//' + window.location.host
