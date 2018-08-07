@@ -1,31 +1,23 @@
-
 <h3 class="md-headline">New Course Information</h3>
 <p>&nbsp;</p>
-<div ng-show="creating">Please Wait, Course Creating...</div>
+<div ng-show="creating">Please wait! Creating the course...</div>
 <div ng-hide="creating">
-
-
 	<form name="newCourseForm" ng-model="newCourseForm">
-
 		<div layout="column" layout-align="" layout-xs="column">
-
 			<div layout="row" layout-align="centre centre" layout-xs="column">
-
 				<md-input-container flex> <label>Course
 					Name </label> <input name="name" id="name" ng-model="tempCourse.name"
 					ng-required="true">
 				<div ng-messages="newCourseForm.name.$error"
 					ng-if="newCourseForm.name.$submitted || newCourseForm.name.$touched">
-					<div ng-message="required">Course Name should Not Empty.</div>
+					<div ng-message="required">Course name should not be empty.</div>
 				</div>
 				</md-input-container>
-
 				<md-input-container flex> <label>Section</label>
 				<input name="section" ng-model="tempCourse.section" id="section"
 					ng-required="true"> </md-input-container>
 			</div>
 			<div layout="row" layout-align="centre centre" layout-xs="column">
-
 				<md-input-container flex> <label>Description
 					Heading </label> <input name="descriptionHeading" id="descriptionHeading"
 					ng-model="tempCourse.descriptionHeading" ng-required="true">
@@ -33,32 +25,25 @@
 
 				<md-input-container flex> <label>Description</label>
 				<input name="description" ng-model="tempCourse.description"
-					id="description" ng-required="true"> </md-input-container>
+					id="description"> </md-input-container>
 			</div>
 			<div layout="row" layout-align="centre centre" layout-xs="column">
 
 				<md-input-container flex> <label>Room </label>
-				<input name="room" id="room" ng-model="tempCourse.room"
-					ng-required="true"> </md-input-container>
+				<input name="room" id="room" ng-model="tempCourse.room"> </md-input-container>
 				<md-input-container flex> <label>Course
 					State</label> <md-select ng-model="tempCourse.courseState"> <md-option
 					ng-value="state" ng-repeat="state in courseState">{{state}}</md-option>
 				</md-select> </md-input-container>
-
 			</div>
-
 		</div>
-
 		<div layout="row" layout-align="center center">
 			<md-button class="md-raised md-primary"
 				ng-click="createCourse(tempCourse)"
 				ng-disabled="newCourseForm.$invalid">Add New Course </md-button>
 			<md-button class="md-raised md-accent" ng-click="cancelButton()()">
 			Cancel </md-button>
-
 		</div>
-
-
 	</form>
 </div>
 

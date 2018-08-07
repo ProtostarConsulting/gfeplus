@@ -125,7 +125,7 @@ angular
 					};
 
 					$scope.authModule = [];
-					
+
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
 
@@ -143,26 +143,29 @@ angular
 							$window.location.href = hostBaseUrl;
 							return;
 						}
+
 						var auth2 = gapi.auth2.getAuthInstance();
-						// try logout 3 times.
-						for (var i = 1; i <= 3; i++) {
-							auth2
-									.signOut()
-									.then(
-											function() {
-												// also remove login details
-												// from chrome
-												// browser
+						if (auth2) {
+							// try logout 3 times.
+							for (var i = 1; i <= 3; i++) {
+								auth2
+										.signOut()
+										.then(
+												function() {
+													// also remove login details
+													// from chrome
+													// browser
 
-												$scope.googleUser = null;
-												$scope.curUser = null;
-												$scope.curUser = appEndpointSF
-														.getLocalUserService()
-														.logout();
+													$scope.googleUser = null;
+													$scope.curUser = null;
+													$scope.curUser = appEndpointSF
+															.getLocalUserService()
+															.logout();
 
-												// $state.go("home");
-												$window.location.href = hostBaseUrl;
-											});
+													// $state.go("home");
+													$window.location.href = hostBaseUrl;
+												});
+							}
 						}
 					}
 

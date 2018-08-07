@@ -24,7 +24,7 @@ angular
 							'alternateLink' : ""
 						};
 					
-					$log.debug("$scope.$parent.courseListBackup: " + $scope.$parent.courseListBackup);
+					//$log.debug("$scope.$parent.courseListBackup: " + $scope.$parent.courseListBackup);
 					$scope.listCourses = function() {
 						$log.debug("Inside listCourses..");						
 						$scope.loading = true;
@@ -88,7 +88,7 @@ angular
 								$scope.loading = false;
 							});
 							
-							$log.debug("$scope.courseListBackup: " + $scope.courseListBackup);
+							//$log.debug("$scope.courseListBackup: " + $scope.courseListBackup);
 							$log.debug("Inside listCourses...Done loading...");
 
 						});

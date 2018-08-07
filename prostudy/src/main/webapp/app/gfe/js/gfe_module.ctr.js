@@ -6,23 +6,23 @@ angular
 						$mdUtil, $log, objectFactory, appEndpointSF) {
 
 					$log.debug("Inside gfeModuleCtr");
-					
-					/*if(!$scope.loginCheck()){ //If not logged in return control
-						return false;
-					}*/
+
+					/*
+					 * if(!$scope.loginCheck()){ //If not logged in return
+					 * control return false; }
+					 */
 					$scope.authorized = false;
 					$scope.loading = false;
 					$scope.classroomAPIReady = false;
 					$scope.curUser = appEndpointSF.getLocalUserService()
 							.getLoggedinUser();
-					
+
 					$scope.currentUserDomain = $scope.curUser.email_id
 							.split("@")[1];
 
 					$scope.courseListBackup = null;
 					$scope.directoryUserListBackup = null;
 					$scope.teacherListBackup = null;
-					
 
 					var CLIENT_ID = '373858052223-7jptk3gvj92kn35la9j3h54g0lldsr0c.apps.googleusercontent.com';
 
@@ -70,18 +70,22 @@ angular
 
 					$scope.handleAuthClick = function(event) {
 						$log.debug("Inside handleAuthClick..");
-						gapi.auth.authorize({
-							client_id : CLIENT_ID,
-							scope : SCOPES,
-							immediate : false
-						}, $scope.handleAuthResult);
+						$scope.loading = true;
+						for (var i = 0; i < 2; i++) {
+							gapi.auth.authorize({
+								client_id : CLIENT_ID,
+								scope : SCOPES,
+								immediate : false
+							}, $scope.handleAuthResult);
+						}
+						$scope.loading = false;
 						return false;
 					}
 
 					$scope.loadClassroomApi = function() {
 						gapi.client.load('classroom', 'v1');
 						gapi.client.load('gmail', 'v1', function() {
-						});						
+						});
 						gapi.client.load('admin', 'directory_v1', function() {
 							$scope.classroomAPIReady = true;
 						});
@@ -101,7 +105,7 @@ angular
 						}, 200);
 						return debounceFn;
 					}
-					
+
 					$scope.back = function() {
 						window.history.back();
 						// $state.go("^", {});
