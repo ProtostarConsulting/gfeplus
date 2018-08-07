@@ -1,0 +1,81 @@
+<md-content>
+<form name="changePwdForm" ng-model=changePwdForm>
+
+	<md-card>
+	<p>&nbsp;</p>
+	<div layout="column" layout-align="center center" layout-align="centre centre">
+
+		<div layout="row" layout-align="centre centre">
+			<md-input-container flex> <label>New
+				password
+				<span ng-show="changePwdForm.newPassword.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="newPassword" type="{{inputType1}}" type="password"
+				ng-model="newPassword" ng-required="true">
+
+			<div ng-messages="changePwdForm.newPassword.$error"
+				ng-if="changePwdForm.newPassword.$submitted || changePwdForm.newPassword.$touched">
+				<div ng-message="required">Required value</div>
+			</div>
+			</md-input-container>
+			<md-icon md-svg-icon="img/icons/ic_visibility_black_24px.svg"
+				ng-mouseover="showpass1()" ng-mouseleave="setpassinput1(newPassword)">
+			<md-tooltip>Show Password</md-tooltip> </md-icon>
+		</div>
+		
+		<div layout="row" layout-align="centre centre">
+			<md-input-container flex> <label>Re-enter
+				password
+				<span ng-show="changePwdForm.cPassword.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="cPassword" type="{{inputType2}}" type="password"
+				ng-model="cPassword" ng-required="true" ng-change="checkPass()">
+
+			<div ng-messages="changePwdForm.cPassword.$error"
+				ng-if="changePwdForm.cPassword.$submitted || changePwdForm.cPassword.$touched">
+				<div ng-message="required">Required value</div>
+			</div>
+			</md-input-container>
+			<md-icon md-svg-icon="img/icons/ic_visibility_black_24px.svg"
+				ng-mouseover="showpass2()" ng-mouseleave="setpassinput2()">
+			<md-tooltip>Show Password</md-tooltip> </md-icon>
+		</div>
+		
+		
+		
+<!-- 
+		<div layout="row" layout-align="centre centre">
+			<md-input-container flex> <label>Re-enter
+				Password <span style="color: red"
+				ng-show="changePwdForm.cPassword.$error.required" class="mandatory">*</span>
+			</label> <input type="password" name="cPassword" type="{{inputType2}}" ng-model="cPassword" 
+				ng-required="true">
+			<div ng-messages="changePwdForm.cPassword.$error"
+				ng-if="changePwdForm.cPassword.$submitted || changePwdForm.cPassword.$touched">
+				<div ng-message="required">Required value</div>
+			</div>
+			</md-input-container>
+			<md-icon md-svg-icon="img/icons/ic_visibility_black_24px.svg" 
+				ng-mouseover="showpass2()" ng-mouseleave="setpassinput2()">
+			<md-tooltip>Show Password</md-tooltip> </md-icon>
+		</div>
+
+ -->
+		<span style="color:red">{{passCheckError}}</span>
+
+
+	</div>
+	
+	<div layout="row" layout-align="center center">
+	<md-button class="md-raised md-primary" ng-click="cancel()">Change
+		Cancel</md-button>
+		<md-button id="btnPass" class="md-raised md-primary" ng-disabled="changePwdForm.$invalid || !passCheckFlag"
+			 ng-click="updatePass()">Change Password</md-button>
+			
+	</div>
+
+
+	</md-card>
+
+</form>
+</md-content>

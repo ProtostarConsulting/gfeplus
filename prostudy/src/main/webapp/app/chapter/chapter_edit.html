@@ -1,0 +1,61 @@
+
+<form name="chapterEditForm" ng-model="chapterEditForm"
+	ng-submit="chapterEditForm.$valid " novalidate
+	ng-init="getChaptersByID()">
+
+	<div layout="column" flex
+		ng-repeat="item in chapter |  filter:searchText">
+
+
+
+		<md-input-container flex> <label>Chapter
+			Name<span style="color: red"
+			ng-show="chapterEditForm.chapter_name.$error.required"
+			class="mandatory">*</span>
+		</label> <input name="chapter_name" id="chapter_name"
+			ng-model="item.chapter_name" required name="chapter_name">
+		<div ng-messages="chapterEditForm.chapter_name.$error"
+			ng-if="chapterEditForm.chapter_name.$submitted || chapterEditForm.chapter_name.$touched">
+			<div ng-message="required">Please Enter Chapter name.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label>Chapter
+			Content<span style="color: red"
+			ng-show="chapterEditForm.chapter_content.$error.required"
+			class="mandatory">*</span>
+		</label>
+		<div text-angular="" name="chapter_content"
+			ng-model="item.chapter_content" ng-required="true"></div>
+		<div ng-messages="chapterEditForm.chapter_content.$error"
+			ng-if="chapterEditForm.chapter_content.$submitted || chapterEditForm.chapter_content.$touched ">
+			<div ng-message="required">Please Enter Chapter content.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex="35"> <label>Board</label>
+		<input name="board" id="board" ng-model="item.board" readonly>
+		</md-input-container>
+
+		<md-input-container flex="35"> <label>Standard</label>
+		<input name="standard" id="standard" ng-model="item.standard" readonly>
+		</md-input-container>
+
+		<md-input-container flex="35"> <label>Division</label>
+		<input name="division" id="division" ng-model="item.division" readonly>
+		</md-input-container>
+
+		<md-input-container flex="35"> <label>Subject</label>
+		<input name="subject" id="subject" ng-model="item.subject" readonly>
+		</md-input-container>
+
+	</div>
+
+	<div layout="row" layout-align="center center">
+		<md-button class="md-raised md-primary" ng-click="updateChapter()"
+			ng-disabled="chapterEditForm.$invalid">Save</md-button>
+		<md-button class="md-raised" ng-click="cancel()"> Cancel </md-button>
+	</div>
+</form>
+
+

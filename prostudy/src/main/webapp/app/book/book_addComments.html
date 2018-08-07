@@ -1,0 +1,19 @@
+<div layout="row" layout-padding>
+	<md-content>
+	<section>
+		<md-input-container> <label>User Name</label> <input
+			name="id" id="id" ng-model="curUser.firstName" readonly="readonly"></md-input-container>
+
+		<md-input-container> <label>Comment	Description:</label> 
+	
+		 	<textarea name="desc" id="desc" ng-model="tempComment.desc" columns="100" rows="3"></textarea> 
+			</md-input-container>
+			
+		</section>
+
+	<div layout="row" layout-align="centre centre" layout-sm="column">
+		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+		<md-button class="md-raised md-primary" ng-click="addComments()">Add Comment</md-button>
+	</div>
+	</md-content>
+</div>

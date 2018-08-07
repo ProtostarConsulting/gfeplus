@@ -1,0 +1,98 @@
+{"items":
+                      [                 
+                          {
+	                            "description" : "Which of the following is a terrestrial animal?",
+								"note" : "Hint: select only one option",
+								"questionId" : 1,
+								"option1" : 	"Fish",
+								"option2" : "Whales",
+								"option3" : "Monkey",
+								"option4" : "Goat",
+								"correctAns" : 4
+							}, {
+	                             "description" : "The small ears of animals help them to",
+								"note" : "Hint: select only one option",
+								"questionId" : 2,
+								"option1" : "Keep them warm",
+								"option2" : "Keep them cool",
+								"option3" : "Alerted from predator",
+								"option4" : "Hearing low pitch sound",
+								"correctAns" : 4
+							}, {
+	
+	                            "description" : "Fish absorbs oxygen from water through their??",
+								"note" : "Hint: select only one option",
+								"questionId" : 3,
+								"option1" : "Skin",
+								"option2" : "Gills",
+								"option3" : "Gall bladder",
+								"option4" : "Lungs",
+								"correctAns" : 1
+
+							}, {
+	                     		"description" : "Which of the following birds do not make their own nest??",
+								"note" : "Hint: select only one option",
+								"questionId" : 4,
+								"option1" : "Humming bird",
+								"option2" : "Sparrow",
+								"option3" : "Koel",
+								"option4" : "Pigeon",
+								"correctAns" : 3
+							},{
+								"description" : "The animals that live or spend most of their time on trees are called?",
+								"note" : "Hint: select only one option",
+								"questionId" : 5,
+								"option1" : "Land animals",
+								"option2" : "Arboreal animals",
+								"option3" : "Aquatic animals",
+								"option4" : "Aerial animals",
+								"correctAns" : 3
+							}, {
+								"description" : "Which of the following is an herbivorous animal??",
+								"note" : "Hint: select only one option",
+								"questionId" : 6,
+								"option1" : "lion",
+								"option2" : "Goat",
+								"option3" : "Human",
+								"option4" : "Cat",
+								"correctAns" : 2
+							}, {
+	
+								"description" : "Which of the following is not a milk giving animal?",
+								"note" : "Hint: select only one option",
+								"questionId" : 7,
+								"option1" : "Goat",
+								"option2" : "Cow",
+								"option3" : "Buffalo",
+								"option4" : "Horse",
+								"correctAns" : 4
+							}, {
+								"description" : "Solve: 750+219=",
+								"note" : "Hint: select only one option",
+								"questionId" : 8,
+								"option1" : 855,
+								"option2" : "969",
+								"option3" : "772",
+								"option4" : 881,
+								"correctAns" : 2
+							} , {
+								"description" : "Which of the following animals lay eggs?",
+								"note" : "Hint: select only one option",
+								"questionId" : 9,
+								"option1" : "Dog",
+								"option2" : "Camel",
+								"option3" : "Birds",
+								"option4" : "Horse",
+								"correctAns" : 3
+							} , {	
+								"description" : "The process of producing young ones like themselves is called",
+								"note" : "Hint: select only one option",
+								"questionId" : 10,
+								"option1" : "Regeneration",
+								"option2" : "Reproduction",
+								"option3" : "Evolution",
+								"option4" : "Respiration",
+								"correctAns" : 2
+							}]
+					
+	}//end of json object

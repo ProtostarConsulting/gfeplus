@@ -1,0 +1,175 @@
+<div>
+	<b ng-repeat="auth in selectedAuthStack"> <a ng-click="jumpToAuth($index)" ng-disabled="$index == selectedAuthStack.length -1">
+			{{auth.authDisplayName}} </a> <span ng-hide="$first || $last">&gt;</span>
+	</b>
+</div>
+<md-content layout-padding ng-show="mode=='list'">
+
+<form>
+	<div layout="column" ng-show="selectedAuth.authName != undefined">
+		<div layout="row">
+			<md-input-container flex> <label>Auth
+				Name <span style="color: red" ng-show="authName.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="authName" id="authName"
+				ng-model="selectedAuth.authName" ng-required="true">
+			<div ng-messages="authName.$error"
+				ng-if="authName.$submitted || authName.$touched">
+				<div ng-message="required">Please Enter Authorization Name</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>
+				Display Name <span style="color: red"
+				ng-show="authDisplayName.$error.required" class="mandatory">*</span>
+			</label> <input name="authDisplayName" id="authDisplayName"
+				ng-model="selectedAuth.authDisplayName" ng-required="true">
+			<div ng-messages="authDisplayName.$error"
+				ng-if="authDisplayName.$submitted || authDisplayName.$touched">
+				<div ng-message="required">Please Enter Authorization Display
+					Name</div>
+			</div>
+			</md-input-container>
+		</div>
+
+		<div layout="row">
+			<md-input-container flex> <label>Auth UI
+				State <span style="color: red" ng-show="uiStateName.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="uiStateName" id="uiStateName"
+				ng-model="selectedAuth.uiStateName" ng-required="true">
+			<div ng-messages="uiStateName.$error"
+				ng-if="uiStateName.$submitted || uiStateName.$touched">
+				<div ng-message="required">Please Enter Authorization UI State</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>Order
+				Number <span style="color: red"
+				ng-show="orderNumber.$error.required" class="mandatory">*</span>
+			</label> <input name="orderNumber" id="orderNumber"
+				ng-model="selectedAuth.orderNumber" ng-required="true">
+			<div ng-messages="orderNumber.$error"
+				ng-if="orderNumber.$submitted || orderNumber.$touched">
+				<div ng-message="required">Please Enter Order Number</div>
+			</div>
+			</md-input-container>
+		</div>
+		<div layout="row">
+			<md-button ng-click="saveAuthorization()"
+				class="md-primary md-raised">Save Authorization</md-button>
+		</div>
+	</div>
+
+	<h3 class="md-headline" ng-show="selectedAuth.authorizations">{{
+		selectedAuth.authName==undefined?'Auth List':'Child Auth List'}}</h3>
+	<h3 class="md-headline"
+		ng-show="!(selectedAuth.authorizations && selectedAuth.authorizations.length > 0)">No
+		Child Authorization</h3>
+	<p>&nbsp;</p>
+	<!--<p>&nbsp;</p>
+	 <md-input-container flex> <label>Search b
+		Auth</label> <input ng-model="filterAuthName"> </md-input-container> -->
+
+	<div
+		ng-show="selectedAuth.authorizations && selectedAuth.authorizations.length > 0 ">
+
+		<md-data-table-container>
+		<table md-data-table md-row-select="selected" md-progress="deferred"
+			ng-click="disable()">
+			<thead md-order="query.order" md-trigger="onorderchange">
+				<tr>
+					<th name="Auth Name" order-by="authName"></th>
+					<th name="Auth Display Name" order-by="authDisplayName"></th>
+					<th name="UI State Name" order-by="uiStateName"></th>
+					<th name="Order Number" order-by="orderNumber"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="auth in selectedAuth.authorizations  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+					<td>{{auth.authName}}</td>
+					<td>{{auth.authDisplayName}}</td>
+					<td>{{auth.uiStateName}}</td>
+					<td>{{auth.orderNumber | number}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{selectedAuth.authorizations.length}}
+			md-trigger="onpagechange"></md-data-table-pagination> </md-data-table-container>
+
+
+	</div>
+</form>
+
+<div layout="row">
+	<md-button ng-click="backButton()" class="md-primary md-raised"
+		ng-show="selectedAuth.authName">Back</md-button>
+	<md-button ng-click="showAddAuthorization()"
+		class="md-primary md-raised" hide-xs>{{selectedAuth.authName==undefined?'New
+	Authorization':'New Child Authorization'}}</md-button>
+	<md-button ng-click="editAuthorization()" class="md-primary md-raised"
+		ng-show="selected.length==1">View Selected Authorization</md-button>
+</div>
+</md-content>
+
+<div layout="column" ng-show="mode=='add'">
+	<div layout="row">
+		<md-input-container flex> <label>Auth
+			Name <span style="color: red" ng-show="authName.$error.required"
+			class="mandatory">*</span>
+		</label> <input name="authName" id="authName" ng-model="tempAuth.authName"
+			ng-required="true">
+		<div ng-messages="authName.$error"
+			ng-if="authName.$submitted || authName.$touched">
+			<div ng-message="required">Please Enter Authorization Name</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label> Display
+			Name <span style="color: red"
+			ng-show="authDisplayName.$error.required" class="mandatory">*</span>
+		</label> <input name="authDisplayName" id="authDisplayName"
+			ng-model="tempAuth.authDisplayName" ng-required="true">
+		<div ng-messages="authDisplayName.$error"
+			ng-if="authDisplayName.$submitted || authDisplayName.$touched">
+			<div ng-message="required">Please Enter Authorization Display
+				Name</div>
+		</div>
+		</md-input-container>
+	</div>
+
+	<div layout="row" layout-align="centre centre" layout-xs="column"
+		ng-show="mode=='add'">
+		<md-input-container flex> <label>Auth UI
+			State <span style="color: red" ng-show="uiStateName.$error.required"
+			class="mandatory">*</span>
+		</label> <input name="uiStateName" id="uiStateName"
+			ng-model="tempAuth.uiStateName" ng-required="true">
+		<div ng-messages="uiStateName.$error"
+			ng-if="uiStateName.$submitted || uiStateName.$touched">
+			<div ng-message="required">Please Enter Authorization UI State</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label>Order
+			Number <span style="color: red" ng-show="orderNumber.$error.required"
+			class="mandatory">*</span>
+		</label> <input name="orderNumber" id="orderNumber"
+			ng-model="tempAuth.orderNumber" ng-required="true">
+		<div ng-messages="orderNumber.$error"
+			ng-if="orderNumber.$submitted || orderNumber.$touched">
+			<div ng-message="required">Please Enter Order Number</div>
+		</div>
+		</md-input-container>
+	</div>
+	<div layout="row">
+		<md-button ng-click="backButton()" class="md-primary md-raised">Back</md-button>
+		<md-button ng-click="addAuthorization()" class="md-primary md-raised">Save
+		New Authorization</md-button>
+	</div>
+</div>
+
+

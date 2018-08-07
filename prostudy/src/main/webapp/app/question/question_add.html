@@ -1,0 +1,112 @@
+<div layout="column" layout-padding>
+	<md-content>
+		<section>
+			<md-subheader class="md-primary">	
+				<h3 class="md-headline">New Question</h3>
+			</md-subheader>
+			<form name="userForm">
+				<div layout="row" layout-sm="column">
+					<div layout="column" flex>
+						<md-input-container md-is-error="myQuestionForm.description.$invalid && (myQuestionForm.$submitted || myQuestionForm.description.$dirty)">
+				<label>Question Description:</label>
+				<text-angular name="description" id="description" ng-required="true" ng-model="tempQuestion.description"></text-angular>
+				<!--<input  name="description" id="description" ng-required="true" ng-model="question.description">-->
+				
+				<div ng-messages="myQuestionForm.description.$error" ng-if="myQuestionForm.description.$submitted || myQuestionForm.description.$touched">
+					<div ng-message="required">
+						Please enter question.
+					</div>
+				</div>
+			</md-input-container>
+					</div>
+					<div layout="column" flex>
+					<md-input-container md-is-error="myQuestionForm.note.$invalid && (myQuestionForm.$submitted || myQuestionForm.note.$dirty)">
+				<label>Question ID</label>
+				<input type="number" name="quesId" id="quesId" ng-minlength="1"  ng-maxlength="1"  ng-model="tempQuestion.quesId" required>
+				<div ng-messages="myQuestionForm.quesId.$error" ng-if="myQuestionForm.quesId.$submitted || myQuestionForm.quesId.$touched">
+					<div ng-message="required">
+						Please enter correct Question ID.
+					</div>
+					<div ng-message="myQuestionForm.quesId.$invalid">
+						Invalid Question ID.
+					</div>
+				</div>
+				</md-input-container>
+					
+						<md-input-container md-is-error="myQuestionForm.note.$invalid && (myQuestionForm.$submitted || myQuestionForm.note.$dirty)">
+				<label>Note</label>
+				<input name="note" id="note" ng-required="true" ng-model="tempQuestion.note">
+				<div ng-messages="myQuestionForm.note.$error" ng-if="myQuestionForm.note.$submitted || myQuestionForm.note.$touched">
+					<div ng-message="required">
+						Please enter note.
+					</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container md-is-error="myQuestionForm.option1.$invalid && (myQuestionForm.$submitted || myQuestionForm.option1.$dirty)">
+				<label>Option 1</label>
+				<input name="option1" id="option1" ng-required="true" ng-model="tempQuestion.option1">
+				<div ng-messages="myQuestionForm.option1.$error" ng-if="myQuestionForm.option1.$submitted || myQuestionForm.option1.$touched">
+					<div ng-message="required">
+						Please enter Option 1.
+					</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container md-is-error="myQuestionForm.option2.$invalid && (myQuestionForm.$submitted || myQuestionForm.option2.$dirty)">
+				<label>Option 2</label>
+				<input name="option2" id="option2" ng-required="true" ng-model="tempQuestion.option2">
+				<div ng-messages="myQuestionForm.option2.$error" ng-if="myQuestionForm.option2.$submitted || myQuestionForm.option2.$touched">
+					<div ng-message="required">
+						Please enter Option 2.
+					</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container md-is-error="myQuestionForm.option3.$invalid && (myQuestionForm.$submitted || myQuestionForm.option3.$dirty)">
+				<label>Option 3</label>
+				<input name="option3" id="option3" ng-required="true" ng-model="tempQuestion.option3">
+				<div ng-messages="myQuestionForm.option3.$error" ng-if="myQuestionForm.option3.$submitted || myQuestionForm.option3.$touched">
+					<div ng-message="required">
+						Please enter Option 3.
+					</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container md-is-error="myQuestionForm.option4.$invalid && (myQuestionForm.$submitted || myQuestionForm.option4.$dirty)">
+				<label>Option 4</label>
+				<input name="option4" id="option4" ng-required="true" ng-model="tempQuestion.option4">
+				<div ng-messages="myQuestionForm.option4.$error" ng-if="myQuestionForm.option4.$submitted || myQuestionForm.option4.$touched">
+					<div ng-message="required">
+						Please enter Option 4.
+					</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container md-is-error="myQuestionForm.note.$invalid && (myQuestionForm.$submitted || myQuestionForm.note.$dirty)">
+				<label>correct Answer</label>
+				<input type="number" name="correctAns" id="correctAns" ng-minlength="1"  ng-maxlength="1"  ng-model="tempQuestion.correctAns" required>
+				<div ng-messages="myQuestionForm.correctAns.$error" ng-if="myQuestionForm.correctAns.$submitted || myQuestionForm.correctAns.$touched">
+					<div ng-message="required">
+						Please enter correct Answer.
+					</div>
+					<div ng-message="myQuestionForm.correctAns.$invalid">
+						Invalid Answer.
+					</div>
+				</div>
+			</md-input-container>
+					</div>
+				</div>
+
+			</form>
+			
+		</section>
+
+		<section layout="row" layout-sm="column" layout-align="left left">
+		
+			<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+			<md-button class="md-raised md-primary" ng-click="addQuestion()">Submit</md-button>
+
+		</section>
+	</md-content>
+</div>

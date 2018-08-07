@@ -1,0 +1,60 @@
+<md-content layout-padding>
+<form name="ChangeTheme">
+
+	<div layout="row">
+		<h3 class="md-headline">Institute Current Theme:-</h3>
+		<h3 class="md-headline" style="color: {{Institute.theme">{{Institute.theme
+			| uppercase}}</h3>
+	</div>
+
+	<div>
+		<span class="md-title">Change your application theme</span>
+	</div>
+
+	<div layout="row" layout-align="left left" layout-wrap flex>
+		<md-button ng-repeat="themeName in themeList"
+			class="md-raised md-primary md-hue-2"
+			ng-click="checkTheme(themeName)"> {{themeName}} </md-button>
+	</div>
+
+	<div layout="row">
+		<h3 class="md-headline">Current Selected Theme:-</h3>
+		<h3 style="color: {{theme">{{theme | uppercase}}</h3>
+	</div>
+
+</form>
+<md-button class="md-raised md-primary" ng-click="updateTheme(theme)">Update
+Theme</md-button> </md-content>
+
+
+<!-- <md-content layout="column">
+
+<form name="ChangeTheme">
+	<div layout="row">
+		<h3 class="md-headline">Current Saved Theme:-</h3>
+		<h3 class="md-headline" style="color:{{curUser.business.theme}};">{{curUser.business.theme | uppercase}}</h3>
+	</div>
+	
+	<div>
+		<span class="md-subhead">Change application theme to one of the
+			avaliable themes below</span>
+	</div>
+	<section layout="row" layout-wrap flex>
+		<md-button ng-repeat="themeName in themeList"
+			class="md-raised md-primary md-hue-2"
+			ng-click="checkTheme(themeName)"> {{themeName}} </md-button>
+	</section>
+
+
+	<div layout="row">
+		<h3 class="md-headline">Current Selected Theme:-</h3>
+		<h3 style="color:{{theme}};">{{theme | uppercase}}</h3>
+	</div>
+
+	<div>
+		<md-button class="md-raised md-primary md-hue-2"
+			ng-click="saveTheme(theme)"> Save This Theme </md-button>
+	</div>
+</form>
+</md-content> -->
+

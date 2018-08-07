@@ -1,0 +1,142 @@
+<h3 class="md-headline">Student's Information</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<form name="instituteStudentForm" ng-model="instituteStudentForm">
+
+	<div layout="column" layout-align="" layout-xs="column">
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+
+			<md-input-container flex> <label>First
+				name<span style="color: red"
+				ng-show="instituteStudentForm.firstName.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="firstName" id="firstName"
+				ng-model="tempStudent.firstName" ng-required="true">
+			<div ng-messages="instituteStudentForm.firstName.$error"
+				ng-if="instituteStudentForm.firstName.$submitted || instituteStudentForm.firstName.$touched">
+				<div ng-message="required">Please Enter Student FirstName.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>Last
+				name<span style="color: red"
+				ng-show="instituteStudentForm.lastName.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="lastName" ng-model="tempStudent.lastName" id="lastName"
+				ng-required="true">
+			<div ng-messages="instituteStudentForm.lastName.$error"
+				ng-if="instituteStudentForm.lastName.$submitted || instituteStudentForm.lastName.$touched">
+				<div ng-message="required">Please Enter Student LastName.</div>
+			</div>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-xs="column">
+
+
+			<md-input-container flex> <label>Address</label>
+			<input name="address" ng-model="tempStudent.address" id="address">
+			</md-input-container>
+
+			<md-input-container flex> <label>Contact<span
+				style="color: red"
+				ng-show="instituteStudentForm.contact.$error.required"
+				class="mandatory">*</span></label> <input type="number" name="contact"
+				id="contact" ng-model="tempStudent.contact" ng-required="true"
+				ng-minlength="10" ng-maxlength="10">
+			<div ng-messages="instituteStudentForm.contact.$error"
+				ng-if="instituteStudentForm.contact.$submitted || instituteStudentForm.contact.$touched">
+				<div ng-message="required">Please Enter Contact.</div>
+				<span class="help-block"
+					ng-show="((instituteStudentForm.contact.$error.minlength || instituteStudentForm.contact.$error.maxlength) && instituteStudentForm.contact.$dirty) ">Contact
+					number should be 10 digits</span>
+			</div>
+			</md-input-container>
+
+		</div>
+	</div>
+
+	<div layout="row" layout-xs="column">
+
+		<md-input-container flex> <md-checkbox
+			ng-model="tempStudent.isGoogleUser" ng-true-value="true"
+			id="isGoogleUser" name="isGoogleUser" ng-false-value="false">
+		<label>Is Google User</label> </md-checkbox></md-input-container>
+
+		<md-input-container flex> <label>Email-id<span
+			style="color: red"
+			ng-show="instituteStudentForm.email_id.$error.required"
+			class="mandatory">*</span></label> <input type="email" name="email_id"
+			ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+			ng-model="tempStudent.email_id"
+			ng-blur="checkUserAlreadyExist(tempStudent.email_id)"
+			ng-required="true">
+		<div ng-messages="instituteStudentForm.email_id.$error"
+			ng-if="instituteStudentForm.email_id.$submitted || instituteStudentForm.email_id.$touched">
+			<div ng-message="required">Email-Id should not Empty.</div>
+			<div ng-message="pattern">Please Enter Valid Email-Id.</div>
+		</div>
+		<span style="color: red" id="error">{{error}}</span> </md-input-container>
+	</div>
+
+	<div layout="row" layout-xs="column">
+
+		<md-input-container flex ng-hide="tempStudent.isGoogleUser">
+		<label>Password<span style="color: red"
+			ng-show="instituteStudentForm.password.$error.required"
+			class="mandatory">*</span>
+		</label> <input name="password" type="password" id="password"
+			ng-model="tempStudent.password"
+			ng-required="!tempStudent.isGoogleUser"
+			ng-blur="checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)">
+		<div ng-messages="instituteStudentForm.password.$error"
+			ng-if="instituteStudentForm.password.$submitted || instituteStudentForm.password.$touched">
+			<div ng-message="required">Please Enter Password.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container ng-hide="tempStudent.isGoogleUser" flex>
+		<label>Confirm Password<span style="color: red"
+			ng-show="instituteStudentForm.Confirmpassword.$error.required"
+			class="mandatory">*</span></label> <input name="Confirmpassword"
+			id="Confirmpassword" type="password"
+			ng-model="tempStudent.confirmpassword"
+			ng-required="!tempStudent.isGoogleUser"
+			ng-blur="checkConfirmPassword(tempStudent.password, tempStudent.confirmpassword)">
+
+		<div ng-messages="instituteStudentForm.Confirmpassword.$error"
+			ng-if="instituteStudentForm.Confirmpassword.$submitted || instituteStudentForm.Confirmpassword.$touched">
+			<div ng-message="required">Please Enter Confirm Password.</div>
+		</div>
+		<span style="color: red" id="err"
+			ng-show="tempStudent.confirmpassword">{{checkConfirmPassword(tempStudent.password,
+			tempStudent.confirmpassword)}}</span> </md-input-container>
+	</div>
+
+	<div layout="row" layout-xs="column">
+		<md-input-container flex> <label>School / College / Institute<span
+			style="color: red" ng-show="instituteStudentForm.level.$error.required"
+			class="mandatory">*</span></label> <md-select name="level"
+			ng-model="tempStudent.schoolName "
+						ng-required="true">
+		<md-option ng-value="schoolName.schoolName"
+			ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option> </md-select>
+		<div ng-messages="instituteStudentForm.level.$error"
+			ng-if="instituteStudentForm.level.$submitted || instituteStudentForm.level.$touched">
+			<div ng-message="required">Please Select School Category.</div>
+		</div>
+		</md-input-container>
+	</div>
+	<div layout="row" layout-align="center center">
+		<md-button class="md-raised md-primary" id="addButton"
+			ng-disabled="instituteStudentForm.$invalid"
+			ng-click="addInstituteStudents()">Add Student </md-button>
+
+
+
+	</div>
+
+</form>
+

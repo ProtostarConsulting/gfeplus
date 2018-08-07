@@ -1,0 +1,60 @@
+
+<h5>
+	<b>{{stud.firstName.toUpperCase( )}} {{stud.lastName.toUpperCase(
+		)}} Basic Information</b>
+</h5>
+<form name="studentBasicForm" ng-model="studentBasicForm">
+
+	<div layout="column" layout-align="" layout-xs="column">
+
+		<div layout="row" layout-xs="column">
+
+			<md-input-container flex> <label>Standard<span
+				style="color: red"
+				ng-show="studentBasicForm.standard.$error.required"
+				class="mandatory">*</span></label> <md-select name="standard"
+				ng-model="tempStudent.standard" ng-change="getDivisionByStandard()"
+				ng-required="true"> <md-option ng-value="standard"
+				ng-repeat="standard in standards track by $index ">{{standard}}</md-option>
+			</md-select>
+			<div ng-messages="studentBasicForm.standard.$error"
+				ng-if="studentBasicForm.standard.$submitted || studentBasicForm.standard.$touched">
+				<div ng-message="required">Please Select Standard.</div>
+			</div>
+			</md-input-container>
+			<md-input-container flex> <label>Division<span
+				style="color: red"
+				ng-show="studentBasicForm.division.$error.required"
+				class="mandatory">*</span></label> <md-select name="division"
+				ng-model="tempStudent.division" ng-change="getSubjectByDivision()"
+				ng-required="true"> <md-option ng-value="division"
+				ng-repeat="division in divisions track by $index ">{{division}}</md-option>
+			</md-select>
+			<div ng-messages="studentBasicForm.division.$error"
+				ng-if="studentBasicForm.division.$submitted || studentBasicForm.division.$touched">
+				<div ng-message="required">Please Select Division.</div>
+			</div>
+			</md-input-container>
+		</div>
+		
+			<p>&nbsp;</p>
+		
+		<div layout="row" layout-align="center center" ng-show="gotSubject">
+			<label>Subjects</label>
+			<md-checkbox name="subject" ng-repeat="subject in subjects"
+				ng-model="selected[subject]" ng-click="toggleSelection(subject)">
+			{{subject.name}}</md-checkbox>
+		</div>
+	</div>
+	
+	<p>&nbsp;</p>
+	
+	<div layout="row" layout-align="center center">
+	<md-button class="md-raised md-primary" ng-click="updateUser()"
+			ng-disabled="studentBasicForm.$invalid">Submit </md-button>
+		<md-button class="md-raised" ng-click="cancelButton()">
+		Cancel </md-button>
+		
+	</div>
+
+</form>

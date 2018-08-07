@@ -1,0 +1,32 @@
+<div layout="column">
+	<div>
+		<section layout="row">
+			<md-button class="md-icon-button" aria-label="prev" ng-click="back()">
+			<md-tooltip> go back </md-tooltip> <md-icon
+				md-svg-icon="img/icons/ic_reply_black_24px.svg"
+				aria-label="Prev Week"></md-icon> </md-button>
+			<span flex></span>
+			<md-button class="md-icon-button" aria-label="More"
+				ng-click="toggleRight()"> <md-icon
+				md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
+		</section>
+	</div>
+	<div>
+		<md-sidenav class="md-sidenav-right md-whiteframe-z2"
+			md-component-id="right"> <md-toolbar
+			class="md-theme-light">
+		<h1 class="md-toolbar-tools">Sidenav Right</h1>
+		<md-content layout="column"> <md-button
+			ui-sref="gfreport.gfschool_lists" ng-click="close()"
+			class="md-primary"> School Lists </md-button>  </md-content> </md-toolbar> </md-sidenav>
+	</div>
+
+	<div ui-view>
+		<div class="md-toolbar-tools">
+			<md-content layout="row" layout-xs="column"
+				layout-align="center start"><md-button
+			ui-sref="gfreport.gfschool_lists" ng-click="close()"
+			class="md-primary"> School Lists </md-button> </md-content>
+		</div>
+	</div>
+</div>

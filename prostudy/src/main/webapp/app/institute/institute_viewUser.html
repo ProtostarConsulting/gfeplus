@@ -1,0 +1,58 @@
+<p>&nbsp;</p>
+<div layout="column" flex ng-repeat="item in user | filter:searchText">
+
+	<div layout="row" layout-align="centre centre" layout-sm="column">
+		<md-input-container flex> <label>Student
+			ID </label> <input name="studID" id="studID" ng-model="item.id" readonly>
+		</md-input-container>
+
+		<md-input-container flex> <label>PRN No.</label>
+		<input name="prn" id="prn" ng-model="item.prn" readonly> </md-input-container>
+	</div>
+
+	<div layout="row" layout-align="centre centre" layout-sm="column">
+		<md-input-container flex> <label>First
+			Name</label> <input name="firstName" id="firstName" ng-model="item.firstName"
+			readonly> </md-input-container>
+
+		<md-input-container flex> <label>Last
+			Name</label> <input name="lastName" id="lastName" ng-model="item.lastName"
+			readonly> </md-input-container>
+	</div>
+
+	<div layout="row" layout-align="centre centre" layout-sm="column">
+		<md-input-container flex> <label>Address</label>
+		<input name="address" id="address" ng-model="item.address" readonly>
+		</md-input-container>
+
+		<md-input-container flex> <label>Contact</label>
+		<input name="contact" id="contact" ng-model="item.contact" readonly>
+		</md-input-container>
+	</div>
+
+	<div layout="row" layout-align="centre centre" layout-sm="column">
+		<md-input-container flex> <label>Email ID</label>
+		<input name="email_id" id="email_id" ng-model="item.email_id" readonly>
+		</md-input-container>
+
+		<md-input-container ng-show="item.role == 'Student'" flex>
+		<label>Standard</label> <input name="standard" id="standard"
+			ng-model="item.standard" readonly> </md-input-container>
+	</div>
+
+	<div layout="row" layout-align="centre centre" layout-sm="column">
+		<md-input-container ng-show="item.role == 'Student'" flex>
+		<label>Division</label> <input name="division" id="division"
+			ng-model="item.division" readonly> </md-input-container>
+	</div>
+	<div ng-show="item.role == 'Student'">
+		<label>Subjects </label>
+		<md-checkbox name="subject" ng-repeat="subject in subjects"
+			 ng-checked="subject">
+		{{subject.name}}</md-checkbox>
+
+	</div>
+
+</div>
+
+<md-button class="md-raised" ng-click="cancel()"> Cancel </md-button>

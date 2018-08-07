@@ -1,0 +1,106 @@
+<div layout="column" layout-align="start stretch">
+
+	<div layout="column" layout-align="start center">
+		<h3 class="md-headline">
+			Exam Title: <strong>{{Test.examtitle}}</strong>
+		</h3>
+		<h4 class="md-headline">
+			Student Name :<strong> {{curUser.firstName}}
+				{{curUser.lastName}} </strong>
+		</h4>
+	</div>
+
+	<div layout="column" layout-align="end end">
+		<div layout="column" layout-align="end end">
+			<span style="color: red">Time left : {{(counter/60) |
+				number:0}} Minutes </span>
+			<div ng-init="startTimer()"></div>
+		</div>
+
+		<div layout="row" ng-show="Test.listOfQuestion.length > totalPages">
+			<span flex="50"> <strong>{{currentPage}} Out Of
+					{{totalPages}}</strong></span>
+
+			<div layout="row" layout-wrap class="colorNested">
+				<div ng-repeat="i in buttonLimit(totalPages) track by $index">
+					<md-button class="md-raised md-primary"
+						ng-click="onButtonClick($index+1)">Page{{$index+1}}</md-button>
+				</div>
+				
+			</div>
+		</div>
+		<div layout="row" ng-show="Test.listOfQuestion.length==totalPages">
+			<span flex="50"> <strong>{{currentPage}} Out Of
+					{{totalPages}}</strong></span>
+
+			<div layout="row" layout-wrap class="colorNested">
+				<div ng-repeat="i in buttonLimit(totalPages) track by $index">
+					<md-button class="md-raised md-primary"
+						ng-click="onButtonClick($index+1)">Q {{$index+1}}</md-button>
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+	 <div layout="column" layout-align="start stretch">	 
+
+		<div ng-repeat="item in array">
+			<div>
+				<md-content flex layout-padding> <b
+					ng-bind-html="(item.qId) + ')' + item.description"></b> </md-content>
+			</div>
+
+			<!-- <p>
+				<i>{{item.note}}</i>
+			</p> -->
+
+			<div layout="column">
+				<md-checkbox name="answer"
+					ng-model="selected[item.id + '1']"
+					ng-click="toggleSelection(item.id,1)">
+				{{item.option1 }}</md-checkbox>
+				<md-checkbox name="answer"
+					ng-model="selected[item.id + '2']"
+					ng-click="toggleSelection(item.id,2)">
+				{{item.option2 }}</md-checkbox>
+				<md-checkbox name="answer"
+					ng-model="selected[item.id + '3']"
+					ng-click="toggleSelection(item.id,3)">
+				{{item.option3 }}</md-checkbox>
+				<md-checkbox name="answer"
+					ng-model="selected[item.id + '4']"
+					ng-click="toggleSelection(item.id,4)">
+				{{item.option4 }}</md-checkbox>
+
+			</div>
+		</div>
+	</div>
+
+	<div layout-sm="column">
+		<div layout="row" layout-align="center end">
+			<div layout="row">
+				<div layout-align="start end" ng-init="isDisabled = false">
+					<md-button ng-disabled="isDisabledPrevious"
+						ng-model="isDisabledPrevious" ng-click="onPrevious()">
+					<ng-md-icon icon="skip_previous"></ng-md-icon> </md-button>
+				</div>
+
+				<div layout-align="start end">
+					<md-button ng-disabled="isDisabledNext" ng-model="isDisabledNext"
+						ng-click="onNext()"> <ng-md-icon icon="skip_next"></ng-md-icon>
+					</md-button>
+
+				</div>
+			</div>
+		</div>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+	</div>
+	<div layout-align="center end">
+		<md-button ng-disabled="!isDisabledNext" class="md-raised md-primary"
+			ng-click="showConfirm($event)">submit</md-button>
+
+	</div>
+
+</div>

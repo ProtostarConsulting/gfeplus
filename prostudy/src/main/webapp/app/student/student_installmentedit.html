@@ -1,0 +1,54 @@
+<h3 class="md-headline">Edit Installment</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div layout="column" layout-padding>
+	<md-content>
+	<section>
+	
+		<form name="studentPaymentEditForm" ng-model="studentPaymentEditForm">
+
+			<div layout="column" layout-sm="column">
+				<div layout="row" layout-sm="column">
+					<md-input-container flex> <label>Installment
+						ID</label> <input ng-model="selectedInstallment.instid" readonly>
+					</md-input-container>
+					<md-input-container flex> <label>Installment
+						Amount</label> <input ng-model="selectedInstallment.amount" readonly>
+					</md-input-container>
+				</div>
+				<div layout="row" layout-sm="column">
+				
+				
+				
+					<md-input-container flex> <label>Installment
+						Date</label> </md-input-container>
+						<md-datepicker 	ng-model="selectedInstallment.date"	 ng-required="true"></md-datepicker>
+					
+					 <md-input-container flex> <label>Notes</label>
+					<input ng-model="selectedInstallment.notes"> </md-input-container> 
+				</div>
+
+
+				<div layout="row" layout-sm="column">
+					<md-input-container flex> <label>Installment
+						Status</label> <md-checkbox name="status"
+						ng-model="selectedInstallment.status"></md-checkbox></md-input-container>
+				</div>
+			</div>
+</div>
+<div layout="row" layout-align="center center">
+
+	<md-button class="md-raised md-primary" ng-click="updatePayment()"
+		ng-disabled="">Submit </md-button>
+	<md-button class="md-raised" ng-click="cancelButton()">
+	Cancel </md-button>
+</div>
+
+</form>
+
+</section>
+
+</md-content>
+</div>
+

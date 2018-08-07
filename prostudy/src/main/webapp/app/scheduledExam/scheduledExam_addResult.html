@@ -1,0 +1,115 @@
+<h3 class="md-headline">Add Scheduled Exam Result</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<form name="scheduledExamResultForm" ng-model="scheduledExamResultForm">
+
+	<div layout="column" layout-xs="column">
+
+		<div layout="row" layout-align="" layout-xs="column">
+
+			<md-input-container flex> <label>Scheduled
+				Exam Title<span style="color: red"
+				ng-show="scheduledExamResultForm.examTitle.$error.required"
+				class="mandatory">*</span>
+			</label> <md-select name="examTitle"
+				ng-model="tempScheduledExamResult.examTitle" ng-required="true"
+				ng-change="getStudentListByScheduledExamId()"> <md-option
+				ng-value="exam.examtitle" ng-repeat="exam in scheduledExams">{{exam.examtitle}}</md-option>
+			</md-select>
+			<div ng-messages="scheduledExamResultForm.examTitle.$error"
+				ng-if="scheduledExamResultForm.examTitle.$submitted || scheduledExamResultForm.examTitle.$touched">
+				<div ng-message="required">Please Select Exam Title.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>Scheduled
+				Exam Id<span style="color: red"
+				ng-show="scheduledExamResultForm.testID.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="testID" id="testID" ng-required="true"
+				ng-model="tempScheduledExamResult.testID" readonly>
+			<div ng-messages="scheduledExamResultForm.testID.$error"
+				ng-if="scheduledExamResultForm.testID.$submitted || scheduledExamResultForm.testID.$touched">
+				<div ng-message="required">Scheduled Exam Id should Not Empty.</div>
+			</div>
+			</md-input-container>
+		</div>
+		<div layout="row" layout-align="" layout-xs="column">
+
+			<md-input-container flex> <label>Select
+				Student email_id<span style="color: red"
+				ng-show="scheduledExamResultForm.email_id.$error.required"
+				class="mandatory">*</span>
+			</label> <md-select name="email_id" id="email_id"
+				ng-model="tempScheduledExamResult.email_id" ng-required="true"
+				ng-blur="getStudentData()"> <md-option
+				ng-value="stud.email_id" ng-repeat="stud in studentList">{{stud.email_id}}</md-option>
+			</md-select>
+			<div ng-messages="scheduledExamResultForm.email_id.$error"
+				ng-if="scheduledExamResultForm.email_id.$submitted || scheduledExamResultForm.email_id.$touched">
+				<div ng-message="required">Please Select Student Email_id.</div>
+			</div>
+			</md-input-container>
+			<md-input-container flex> <label>User Id<span
+				style="color: red"
+				ng-show="scheduledExamResultForm.userId.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="userId" id="userId" ng-required="true"
+				ng-model="tempScheduledExamResult.userId" readonly>
+			<div ng-messages="scheduledExamResultForm.userId.$error"
+				ng-if="scheduledExamResultForm.userId.$submitted || scheduledExamResultForm.userId.$touched">
+				<div ng-message="required">User Id should Not Empty.</div>
+			</div>
+			</md-input-container>
+		</div>
+		<div layout="row" layout-align="" layout-xs="column">
+			<md-input-container flex> <label>First
+				Name<span style="color: red"
+				ng-show="scheduledExamResultForm.firstName.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="firstName" id="firstName" ng-required="true"
+				ng-model="tempScheduledExamResult.firstName" readonly>
+			<div ng-messages="scheduledExamResultForm.firstName.$error"
+				ng-if="scheduledExamResultForm.firstName.$submitted || scheduledExamResultForm.firstName.$touched">
+				<div ng-message="required">First Name should Not Empty.</div>
+			</div>
+			</md-input-container>
+			<md-input-container flex> <label>Last
+				Name<span style="color: red"
+				ng-show="scheduledExamResultForm.lastName.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="lastName" id="lastName" ng-required="true"
+				ng-model="tempScheduledExamResult.lastName" readonly>
+			<div ng-messages="scheduledExamResultForm.lastName.$error"
+				ng-if="scheduledExamResultForm.lastName.$submitted || scheduledExamResultForm.lastName.$touched">
+				<div ng-message="required">Last Name should Not Empty.</div>
+			</div>
+			</md-input-container>
+
+		</div>
+		<div layout="row" layout-align="" layout-xs="column">
+			<md-input-container flex> <label>Your
+				Score<span style="color: red"
+				ng-show="scheduledExamResultForm.score.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="score" id="score" ng-required="true"
+				ng-model="tempScheduledExamResult.score" ng-required="true">
+			<div ng-messages="scheduledExamResultForm.score.$error"
+				ng-if="scheduledExamResultForm.score.$submitted || scheduledExamResultForm.score.$touched">
+				<div ng-message="required">Score should Not Empty.</div>
+			</div>
+			</md-input-container>
+		</div>
+	</div>
+
+	<div layout="row" layout-align="center end">
+		<md-button class="md-raised md-primary"
+			ng-click="addScheduledExamResult()"
+			ng-disabled="scheduledExamResultForm.$invalid">Add
+		scheduled Exam Result</md-button>
+		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+
+	</div>
+</form>
+

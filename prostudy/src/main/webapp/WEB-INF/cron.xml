@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cronentries>
+	<cron>
+		<url>/grf/cron/updatestudcounts</url>
+		<description>daily stud/school count job</description>
+		<schedule>every 60 minutes from 6:00 to 12:00</schedule>
+		<!--This is GMT time, meaning 1:30 AM IST -->
+	</cron>
+</cronentries>

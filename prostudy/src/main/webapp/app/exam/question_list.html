@@ -1,0 +1,72 @@
+<h3 class="md-headline">Questions List</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<section layout="row" layout-align="end end" flex>
+	<md-button ng-show="questions.length > 0" class="md-raised md-primary"
+		id="downloadExcel" ng-click="downloadQuestionList()">Download
+	QuestionList <md-tooltip> Download QuestionList</md-tooltip> </md-button>
+
+	<md-button class="md-raised md-primary" id="uplodeExcel"
+		ng-click="uploadExcel($event)">Upload QuestionList <md-tooltip>
+	Upload QuestionList</md-tooltip> </md-button>
+</section>
+
+<md-content>
+
+<div>
+	<div>
+		<md-input-container flex> <label>Search
+			By Category</label> <input ng-model="searchCategory"> </md-input-container>
+	</div>
+
+	<md-toolbar class="md-table-toolbar md-default">
+	<div class="md-toolbar-tools">
+		<span>Question List</span>
+		<div flex></div>
+		<md-button class="md-icon-button"
+			ng-click="getQuestionsByInstitute(true)"> <md-icon
+			md-svg-src="img/icons/ic_refresh_24px.svg">refresh</md-icon> </md-button>
+	</div>
+	</md-toolbar>
+	<md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+				<th name="Question Desc" order-by="description"></th>
+				<th name="Option1"></th>
+				<th name="Option2"></th>
+				<th name="Option3"></th>
+				<th name="Option4"></th>
+				<th name="Answer"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="question in questions | orderBy: query.order | filter: {category: searchCategory} | limitTo: query.limit: (query.page - 1) * query.limit">
+				<td ng-bind-html="question.description | stripHtml | first100Chars"></td>
+				<td>{{question.option1 | first100Chars}}</td>
+				<td>{{question.option2 | first100Chars}}</td>
+				<td>{{question.option3 | first100Chars}}</td>
+				<td>{{question.option4 | first100Chars}}</td>
+				<td>{{question.correctAns}}</td>
+			</tr>
+		</tbody>
+
+	</table>
+
+
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{questions.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container>
+</div>
+
+<div layout="row" layout-align="center center">
+	<a ui-sref="exam.editquestion({selectedQuestionId: selected[0].id})"><md-button
+			ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+			ng-click=""> <md-icon md-svg-src="img/icons/edit.svg"></md-icon>
+		<md-tooltip>Edit</md-tooltip></md-button> </a>
+
+</div>
+
+</md-content>

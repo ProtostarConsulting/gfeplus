@@ -1,0 +1,212 @@
+<div ng-if="loading">
+	<div layout="row" layout-sm="column" layout-align="space-around">
+		<md-progress-circular md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+	</div>
+</div>
+<div ng-if="!loading">
+	<h3 class="md-headline" ng-if="!reviewByGrfRegNo">GRF Exam Result
+		Add</h3>
+	<h3 class="md-headline" ng-if="reviewByGrfRegNo">Review School
+		Exam Results</h3>
+	<div layout="column" layout-padding layout-xs="column">
+
+		<form name="gfaddresultfrm" layout="column">
+			<div layout="row" layout-xs="column" ng-if="!reviewByGrfRegNo">
+				<md-input-container> <label>Enter GRF.
+					Reg. No. <span style="color: red"
+					ng-show="gfaddresultfrm.grfRegNo.$error.required" class="mandatory">*</span>
+				</label> <input name="grfRegNo" ng-model="data.grfRegNo" ng-required="true">
+				<div ng-messages="gfaddresultfrm.grfRegNo.$error"
+					ng-if="gfaddresultfrm.grfRegNo.$submitted || gfaddresultfrm.grfRegNo.$touched">
+					<div ng-message="required">This field is required.</div>
+				</div>
+				</md-input-container>
+				<md-input-container ng-if="!curUser"> <label>Enter
+					Co-ordinator Mobile Number<span style="color: red"
+					ng-show="gfaddresultfrm.coordinatorMobileNumberEntered.$error.required"
+					class="mandatory">*</span>
+				</label> <input name="coordinatorMobileNumberEntered"
+					ng-model="data.coordinatorMobileNumberEntered" type="number"
+					ng-required="true" ng-minlength="10" ng-maxlength="10">
+				<div>Enter same 10 digit mobile number written/entered for GRF
+					registration form.</div>
+				<div
+					ng-messages="gfaddresultfrm.coordinatorMobileNumberEntered.$error"
+					ng-if="gfaddresultfrm.coordinatorMobileNumberEntered.$submitted || gfaddresultfrm.coordinatorMobileNumberEntered.$touched">
+					<div ng-message="required">This field is required.</div>
+					<div ng-message="minlength || maxlength">Enter 10 digit
+						mobile number.</div>
+				</div>
+				</md-input-container>
+				<div layout="row" layout-align="center start" layout-xs="column"
+					ng-if="!curUser">
+					<md-button class="md-raised md-primary"
+						ng-disabled="gfaddresultfrm.grfRegNo.$invalid || gfaddresultfrm.coordinatorMobileNumberEntered.$invalid"
+						ng-click="grfRegNoChange(data.grfRegNo)">Verify</md-button>
+				</div>
+				<div layout="row" layout-align="center start" layout-xs="column"
+					ng-if="curUser">
+					<md-button class="md-raised md-primary"
+						ng-disabled="gfaddresultfrm.grfRegNo.$invalid"
+						ng-click="grfRegNoChange(data.grfRegNo)">Display</md-button>
+				</div>
+			</div>
+
+			<div layout="column" ng-if="!data.foundValidRecord">
+				<span style="color: red">{{data.errorMsg}}</span>
+			</div>
+			<div layout="column" ng-if="data.guestSuccessMsg !=''">
+				<h3 class="md-title">{{data.guestSuccessMsg}}</h3>
+			</div>
+
+			<div layout="column"
+				ng-if="data.foundValidRecord && data.guestSuccessMsg ==''">
+
+				<div layout="column">
+					<div layout="row" layout-xs="column">
+						<span><b>School/College Name: &nbsp;</b></span><span>{{foundSchool.schoolName}}</span>
+						<span flex>&nbsp;</span>
+						<div>
+							<md-button class="md-raised md-primary"
+								ui-sref="studentModule.printCertificateDetail({selectedSchoolObj: foundSchool})">Print</md-button>
+						</div>
+					</div>
+					<div layout="row" layout-xs="column">
+						<span><b>Co-ordinator Name:
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span><span>{{coordinatorDetail.coordinatorName}}</span>
+					</div>
+				</div>
+				<hr>
+
+				<ng-form name="examSumaryForm" ng-style="getFormRowStyle()">
+				<table>
+					<tr>
+						<td ng-style="getTableStyle()">Standard</td>
+						<td ng-repeat="book in bookDetailList" ng-style="getTableStyle()">{{book.standard
+							+ '-' + getGFBookByID(book.bookName).bookMedium}}</td>
+						<td ng-style="getTableStyle()">No. of Coordinators</td>
+					</tr>
+					<tr>
+						<td ng-style="getTableStyle()">Total Students Registered</td>
+						<td ng-repeat="book in bookDetailList" ng-style="getTableStyle()">{{book.totalStud}}</td>
+						<td ng-style="getTableStyle()"></td>
+					</tr>
+					<tr>
+						<td ng-style="getTableStyle()">Total Students Appeared</td>
+						<td ng-repeat="book in bookDetailList" ng-style="getTableStyle()"><md-input-container
+								style="margin: 0; padding: 0; padding-left: 0px;">
+							<input name=appearedTotal aria-label="Total Students Appeared"
+								type="number" ng-model="book.appearedTotalStud"
+								ng-required="true"> </md-input-container></td>
+						<td ng-style="getTableStyle()"><md-input-container
+								style="margin: 0; padding: 0; padding-left: 5px;">
+							<input name=noOfCordinators aria-label="Total Students Appeared"
+								type="number" ng-model="examDetail.numberOfCoordinators"
+								ng-required="true"> </md-input-container></td>
+					</tr>
+
+				</table>
+				</ng-form>
+				<hr>
+				<h3 class="md-title">Please enter standard wise result below.</h3>
+
+				<div layout="row">
+					<span flex="25"><b>Student by Rank</b></span> <span flex="50"><b>Student
+							Name</b></span> <span flex="25"><b>Marks</b></span>
+				</div>
+				<md-divider></md-divider>
+				<div id="standardList" ng-repeat="std in currentSchoolStandardList"
+					layout="column">
+					<div layout="row" style="margin: 10px;">
+						<span
+							style="border: 1px solid #dddddd; text-align: left; padding: 8px; background-color: #8cced4;"
+							flex><b>Standard:&nbsp;{{std}}</b></span>
+					</div>
+					<div id="standardList"
+						ng-repeat="examResult in getResultListFor(std)" layout="column"
+						flex="100">
+
+						<ng-form ng-if="$index<=2" name="recordForm"
+							ng-style="getFormRowStyle()" layout="row" layout-padding
+							flex="100"> <span ng-style="getStandardLabelStyle()"
+							flex="25"><b>Student No.&nbsp;{{$index+1}}</b></span> <md-input-container
+							flex="50" style="margin: 0; padding: 0;"> <input
+							name="studName" aria-label="Student Name"
+							ng-model="examResult.studName" ng-required="true" capitalize>
+						<div ng-messages="recordForm.studName.$error"
+							ng-if="recordForm.studName.$submitted || recordForm.studName.$touched">
+							<div ng-message="required">This field is required.</div>
+						</div>
+						</md-input-container flex> <md-input-container flex="25"
+							style="margin: 0; padding: 0; padding-left: 10px;">
+						<input name="marks" aria-label="Student Marks" type="number"
+							ng-model="examResult.marks" ng-required="true">
+						<div ng-messages="recordForm.marks.$error"
+							ng-if="recordForm.marks.$submitted || recordForm.marks.$touched">
+							<div ng-message="required">This field is required.</div>
+						</div>
+						</md-input-container> <md-button class="md-icon-button"
+							ng-click="downloadCertificate(examResult.id)"> <ng-md-icon
+							icon="print" style="fill: md-default" size="24"> <md-tooltip>
+						Download Certificate</md-tooltip></ng-md-icon></md-button> </ng-form>
+
+
+						<div ng-if="$index>=3" layout="column">
+							<h3 class="md-title" ng-if="$index==3">Enter Other Students
+								Details of Standard: {{std}}</h3>
+
+							<ng-form name="recordForm" ng-style="getFormRowStyle()"
+								layout="row" layout-padding flex="100"> <span
+								ng-style="getStandardLabelStyle()" flex="25"><b>Student
+									No.&nbsp;{{$index+1}}</b></span> <md-input-container flex="50"
+								style="margin: 0; padding: 0;"> <input
+								name="studName" aria-label="Student Name"
+								ng-model="examResult.studName" capitalize> </md-input-container flex> <md-input-container
+								flex="25" style="margin: 0; padding: 0; padding-left: 10px;">
+							<input name="marks" aria-label="Student Marks" type="number"
+								ng-model="examResult.marks"> </md-input-container>
+							<md-button class="md-icon-button"
+								ng-click="downloadCertificate(examResult.id)"> <ng-md-icon
+								icon="print" style="fill: md-default" size="24"> <md-tooltip>
+							Download Certificate</md-tooltip></ng-md-icon></md-button> </ng-form>
+
+						</div>
+
+					</div>
+					<div layout="row">
+						<md-button class="md-icon-button" id="addStudent"
+							ng-click="addMoreStudent(std)"> <ng-md-icon
+							icon="add_circle" style="fill: md-default" size="24">
+						<md-tooltip>Add 5 More Students</md-tooltip></ng-md-icon></md-button>
+						<md-button class="md-icon-button" id="removeStudent"
+							ng-click="removeStudent(std)"> <ng-md-icon
+							icon="remove_circle_outline" style="fill: md-default" size="24">
+						<md-tooltip>Remove Last Student Row</md-tooltip></ng-md-icon></md-button>
+					</div>
+				</div>
+
+				<div layout="row" layout-align="center center" layout-xs="column"
+					ng-if="!reviewByGrfRegNo">
+					<md-button class="md-raised md-primary"
+						ng-click="addExamResultList()"
+						ng-disabled="gfaddresultfrm.$invalid">Save Result </md-button>
+					<md-button class="md-raised " ng-click="back()">Cancel</md-button>
+				</div>
+
+				<div layout="row" layout-align="center center" layout-xs="column"
+					ng-if="reviewByGrfRegNo">
+					<md-button class="md-raised md-primary"
+						ng-click="saveReviewedExamResultList()"
+						ng-disabled="gfaddresultfrm.$invalid">Review & Save
+					Result </md-button>
+					<md-button class="md-raised " ng-click="back()">Cancel</md-button>
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+
+</div>
+
+

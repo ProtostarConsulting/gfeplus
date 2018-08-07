@@ -1,0 +1,126 @@
+<h3 class="md-headline">New Scheduled Question</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+
+<form name="questionForm" ng-model="questionForm"
+	ng-submit="questionForm.$valid " novalidate>
+
+
+	<div layout="row" layout-xs="column">
+
+		<div layout="column" layout-xs="column">
+			<md-input-container flex> <label>Question
+				Description:<span style="color: red"
+				ng-show="questionForm.description.$error.required" class="mandatory">*</span>
+			</label> <text-angular name="description" id="description" ng-required="true"
+				ng-model="tempQuestion.description"></text-angular>
+			<div ng-messages="questionForm.description.$error"
+				ng-if="questionForm.description.$submitted || questionForm.description.$touched ">
+				<div ng-message="required">Please Enter Question Description.</div>
+
+			</div>
+			</md-input-container>
+
+			<md-input-container flex> <label>Category</label>
+			<input name="category" id="note" ng-model="tempQuestion.category">
+			</md-input-container>
+
+		</div>
+		<div layout="column" layout-xs="column">
+			<p>&nbsp;</p>
+			<div>Enter Question Options and Select One Correct Answer .</div>
+
+			<md-input-container flex>
+			<div layout="row">
+				1.
+				<md-checkbox name="answer" ng-true-value="'option1'"
+					ng-model="tempQuestion.correctAns"> <label>Option1<span
+					style="color: red" ng-show="questionForm.option1.$error.required"
+					class="mandatory">*</span>
+				</label></md-checkbox>
+
+
+				<input name="option1" id="option1" ng-required="true"
+					ng-model="tempQuestion.option1">
+			</div>
+			<div ng-messages="questionForm.option1.$error"
+				ng-if="questionForm.option1.$submitted || questionForm.option1.$touched">
+				<div ng-message="required">Please Enter Option 1.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex>
+			<div layout="row">
+				2.
+				<md-checkbox name="answer" ng-true-value="'option2'"
+					ng-model="tempQuestion.correctAns"> <label>Option2<span
+					style="color: red" ng-show="questionForm.option2.$error.required"
+					class="mandatory">*</span>
+				</label> </md-checkbox>
+
+				<input name="option2" id="option2" ng-required="true"
+					ng-model="tempQuestion.option2">
+			</div>
+			<div ng-messages="questionForm.option2.$error"
+				ng-if="questionForm.option2.$submitted || questionForm.option2.$touched">
+				<div ng-message="required">Please Enter Option 2.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex>
+
+			<div layout="row">
+				3.
+				<md-checkbox name="answer" ng-true-value="'option3'"
+					ng-model="tempQuestion.correctAns"> <label>Option3<span
+					style="color: red" ng-show="questionForm.option3.$error.required"
+					class="mandatory">*</span>
+				</label> </md-checkbox>
+
+				<input name="option3" id="option3" ng-required="true"
+					ng-model="tempQuestion.option3">
+			</div>
+			<div ng-messages="questionForm.option3.$error"
+				ng-if="questionForm.option3.$submitted || questionForm.option3.$touched">
+				<div ng-message="required">Please Enter Option 3.</div>
+			</div>
+			</md-input-container>
+
+			<md-input-container flex>
+
+			<div layout="row">
+				4.
+				<md-checkbox name="answer" ng-true-value="'option4'"
+					ng-model="tempQuestion.correctAns"> <label>Option4<span
+					style="color: red" ng-show="questionForm.option4.$error.required"
+					class="mandatory">*</span>
+				</label> </md-checkbox>
+
+				<input name="option4" id="option4" ng-required="true"
+					ng-model="tempQuestion.option4">
+			</div>
+			<div ng-messages="questionForm.option4.$error"
+				ng-if="questionForm.option4.$submitted || questionForm.option4.$touched">
+				<div ng-message="required">Please Enter Option 4.</div>
+			</div>
+			</md-input-container>
+			<div ng-show="tempQuestion.correctAns==false">Select Correct
+				Answer.</div>
+
+		</div>
+
+	</div>
+	<p>&nbsp;</p>
+	<div layout="row" layout-align="center center">
+
+		<md-button class="md-raised md-primary" ng-click="addQuestion()"
+			ng-disabled="questionForm.$invalid">Submit</md-button>
+
+		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+
+	</div>
+
+</form>
+

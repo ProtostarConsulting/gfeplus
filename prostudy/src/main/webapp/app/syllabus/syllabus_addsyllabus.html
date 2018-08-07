@@ -1,0 +1,101 @@
+
+<div layout="row" layout-padding>
+	<md-content>
+	<section>
+		<md-subheader class="md-primary">
+		<h3 class="md-headline">New Syllabus</h3>
+		</md-subheader>
+		<form name="syllabusForm" ng-model="syllabusForm">
+			<div layout="column">
+
+				<md-input-container flex> <label>Board
+					Name<span style="color: red"
+					ng-show="syllabusForm.board.$error.required" class="mandatory">*</span>
+				</label> <md-select name="board" ng-model="tempSyllabus.board"
+					ng-required="true"> <md-option ng-value="board"
+					ng-repeat="board in boards">{{board}}</md-option> </md-select>
+				<div ng-messages="syllabusForm.board.$error"
+					ng-if="syllabusForm.board.$submitted || syllabusForm.board.$touched">
+					<div ng-message="required">Please select Board.</div>
+				</div>
+				</md-input-container>
+
+
+				<md-input-container> <label>Standard<span
+					style="color: red" ng-show="syllabusForm.standard.$error.required"
+					class="mandatory">*</span></label> <md-select name="standard"
+					ng-model="tempSyllabus.standard"
+					ng-change="getDivisionByStandard()" ng-required="true">
+				<md-option ng-value="standard" ng-repeat="standard in standards">{{standard}}</md-option>
+				</md-select>
+				<div ng-messages="syllabusForm.standard.$error"
+					ng-if="syllabusForm.standard.$submitted || syllabusForm.standard.$touched">
+					<div ng-message="required">Please Select Standard.</div>
+				</div>
+				</md-input-container>
+
+				<md-input-container> <label>Division<span
+					style="color: red" ng-show="syllabusForm.division.$error.required"
+					class="mandatory">*</span></label> <md-select name="division"
+					ng-model="tempSyllabus.division" ng-change="getSubjectByDivision()"
+					ng-required="true"> <md-option ng-value="division"
+					ng-repeat="division in divisions">{{division}}</md-option> </md-select>
+				<div ng-messages="syllabusForm.division.$error"
+					ng-if="syllabusForm.division.$submitted || syllabusForm.division.$touched">
+					<div ng-message="required">Please Select Division.</div>
+				</div>
+				</md-input-container>
+
+				<md-input-container> <label>Subject<span
+					style="color: red" ng-show="syllabusForm.subject.$error.required"
+					class="mandatory">*</span></label> <md-select name="subject"
+					ng-model="tempSyllabus.subject" ng-change="" ng-required="true">
+				<md-option ng-value="subject"
+					ng-repeat="subject in subjects track by $index ">{{subject}}</md-option>
+				</md-select>
+				<div ng-messages="syllabusForm.subject.$error"
+					ng-if="syllabusForm.subject.$submitted || syllabusForm.subject.$touched">
+					<div ng-message="required">Please Select Subject.</div>
+				</div>
+				</md-input-container>
+				
+				
+				<md-input-container flex> <label>Chapter
+					Name<span style="color: red"
+					ng-show="syllabusForm.chaptername.$error.required"
+					class="mandatory">*</span>
+				</label> <input name="chaptername" id="chapter"
+					ng-model="tempSyllabus.chapterName" required>
+				<div ng-messages="syllabusForm.chaptername.$error"
+					ng-if="syllabusForm.chaptername.$submitted || syllabusForm.chaptername.$touched">
+					<div ng-message="required">Please Enter Chapter Title.</div>
+				</div>
+				</md-input-container>
+			</div>
+			<md-input-container flex> <label>Chapter
+				Content<span style="color: red"
+				ng-show="syllabusForm.chaptercontent.$error.required"
+				class="mandatory">*</span>
+			</label> <text-angular name="chaptercontent" id="chaptercontent"
+				ng-model="tempSyllabus.chapterContent" required></text-angular>
+			<div ng-messages="syllabusForm.chaptercontent.$error"
+				ng-if="syllabusForm.chaptercontent.$submitted || syllabusForm.chaptercontent.$touched">
+				<div ng-message="required">Please Enter Chapter Contents.</div>
+			</div>
+			</md-input-container>
+
+			<div layout="row" layout-align="center end">
+				<md-button class="md-raised md-primary"
+					ng-click="addSyllabus(tempSyllabus)"
+					ng-disabled="syllabusForm.$invalid">Add</md-button>
+				<md-button class="md-raised md-primary" ng-click="cancelButton()">Cancel</md-button>
+
+
+
+			</div>
+</div>
+</form>
+
+</section>
+</md-content>
+</div>

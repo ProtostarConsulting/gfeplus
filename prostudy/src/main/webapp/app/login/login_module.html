@@ -1,0 +1,79 @@
+<div ng-if="loading">
+	<div layout="row" layout-sm="column" layout-align="space-around">
+		<md-progress-circular md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+	</div>
+</div>
+<div ng-if="!loading" ng-cloak>
+	<md-content> <md-tabs md-dynamic-height md-border-bottom>
+	<md-tab label="Login with Custom Account"> <md-content
+		class="md-padding">
+	<h1 class="md-display-2">Login with Custom Account</h1>
+
+
+	<form name="loginForm" ng-model="loginForm">
+		<div layout="column" layout-align="center center">
+			<table style="width: 40%; min-width: 300px;">
+				<tbody>
+					<tr>
+						<td colspan="4" layout="column"><md-input-container>
+							<label>User Email-id<span style="color: red"
+								ng-show="loginForm.email_id.$error.required" class="mandatory">*</span>
+							</label> <input type="email" id="email_id" name="email_id"
+								ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+								ng-model="tempUser.email_id" ng-required="true">
+							<div ng-messages="loginForm.email_id.$error"
+								ng-if="loginForm.email_id.$submitted || loginForm.email_id.$touched ">
+								<div ng-message="required">This is required.</div>
+								<div ng-message="pattern">Please enter valid email.</div>
+							</div>
+							</md-input-container>
+							<div layout="row">
+								<md-input-container flex> <label>Password<span
+									style="color: red" ng-show="loginForm.password.$error.required"
+									class="mandatory">*</span></label> <input ng-model="tempUser.password"
+									type="{{inputType}}" name="password" id="password"
+									ng-required="true">
+								<div ng-messages="loginForm.password.$error"
+									ng-if="loginForm.password.$submitted || loginForm.password.$touched">
+									<div ng-message="required">This is required.</div>
+								</div>
+								</md-input-container>
+								<md-icon md-svg-icon="img/icons/ic_visibility_black_24px.svg"
+									ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+								<md-tooltip>Show Password</md-tooltip> </md-icon>
+							</div></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div>
+								<span style="color: red" id="errmsg">{{ErrorMsg}}</span>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+			<div layout="row" layout-align="centre centre" layout-xs="column">
+				<md-button class="md-raised md-primary" ng-click="login()"
+					ng-disabled="loginForm.$invalid"> Login </md-button>
+				<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+			</div>
+		</div>
+	</form>
+	</md-content> </md-tab> <md-tab label="Login with Google"> <md-content
+		class="md-padding">
+	<h1 class="md-display-2">Login with Google Account</h1>
+	<div>
+		<google-plus-signin
+			clientid="604859223637-9kufq0skh03at4cloiafksec8pan7evl.apps.googleusercontent.com"></google-plus-signin>
+	</div>
+	</md-content> </md-tab> <md-tab label="Loging with Facebook"> <md-content
+		class="md-padding">
+	<h1 class="md-display-2">Loging with Facebook Account</h1>
+	<p>Under development...</p>
+	</md-content> </md-tab> </md-tabs>
+</div>

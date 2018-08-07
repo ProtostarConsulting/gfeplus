@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="prostudyApp" ng-controller="indexCtr">
+<head>
+<title>Google for Education Plus</title>
+<meta name="viewport" content="initial-scale=1" />
+
+<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
+<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/banner.css">
+<link rel="stylesheet" href="/css/accordianPane.css">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet" href="/lib/base/css/font-awesome.css">
+<link rel="stylesheet" href="/lib/base/css/xeditable.css">
+<link rel="stylesheet" href="/lib/base/css/bootstrap.min.css">
+<link rel="stylesheet" href="/lib/base/css/md-data-table.min.css">
+<link rel="stylesheet" href="/lib/base/css/textAngular.css">
+<link rel="stylesheet" href="/lib/base/css/material-datetimepicker.css">
+
+
+</head>
+<body layout="column" ng-cloak md-theme="{{theme}}">
+	<div ng-show="loading" style="padding-left: 8px;">
+		<h4 class="md-title">Loading...Please wait...</h4>
+
+		<md-progress-linear class="md-warn" md-mode="buffer" value="30"
+			md-buffer-value="70" ng-disabled="false"></md-progress-linear>
+	</div>
+	<md-content> <!-- Parent tag--> <md-card
+		name="outerMdCard"> <!-- <div layout="column" layout-fill> -->
+
+	<md-content id="topRight" ng-hide="loading" ng-controller="AppCtrl">
+	<!-- Top Navigation Pane --> <md-toolbar
+		style="height: 80px; width: 100%">
+	<div id="container" class="md-toolbar-tools">
+		<!-- <div ng-hide="toggleMainMenuSwitch">
+			<md-button ng-click="toggleMainMenu()" class="md-fab md-mini"
+				aria-label="Mini FAB"> <md-icon
+				md-svg-src="img/icons/menu.svg"></md-icon> </md-button>
+		</div> 
+		<div ng-show="toggleMainMenuSwitch">
+			<md-button ng-click="toggleMainMenu()" class="md-fab md-mini"
+				aria-label="Mini FAB"> <md-icon
+				md-svg-src="/img/icons/ic_keyboard_arrow_left_black_24px.svg"></md-icon>
+			</md-button>
+		</div>-->
+		<img hide-xs id="image" src="img/images/google+.png"
+			style="height: 70px; width: 100px; padding-left: 2%" />
+		<h3 hide-xs style="margin-left: 12px; padding-left: 7%">Google
+			for Education Plus</h3>
+		<h3 hide-gt-xs style="margin-left: 12px; padding-left: 5%">Google
+			for Education Plus</h3>
+		<span flex></span>
+		<div layout="column" layout-align="end start">
+			<div layout="row" layout-align="end start">
+				<md-button ng-hide="curUser !== null" ng-show="curUser == null"
+					ng-click="loginClick()"> <span
+					style="color: red; font-weight: bold">Login</span> <md-tooltip>
+				Login </md-tooltip> </md-button>
+				<span style="padding-top: 3px"
+					ng-bind="curUser.firstName + ' ' + curUser.lastName"> </span>
+				<md-button class="md-primary" aria-label="Logout"
+					ng-hide="curUser == null" ng-click="signOut()"> <span
+					style="color: yellow; font-weight: bold">Logout</span> <md-tooltip
+					ng-bind="curUser.firstName + ' ' + curUser.lastName + ' | ' +
+			curUser.email_id">
+				</md-tooltip> </md-button>
+			</div>
+			<div layout="row" layout-align="end start">
+				<span style="padding-top: 3px; font-size: 12pt;" ng-bind="curUser.instituteObj.name"> </span>
+			</div>
+		</div>
+		<!-- <div layout="row" layout-align="end start" hide-xs hide-sm>
+			<img id="image2" src="img/images/320px_98px_GVSP_2_1.JPG"
+				style="height: 98px; width: 320px; float: right;" />
+		</div> -->
+	</div>
+	</md-toolbar>
+	<div>
+		<section layout="row" flex>
+			<!-- Left Navigation Pane -->
+			
+			<!-- ng-show="curUser.role == 'Admin' || curUser.role == 'Teacher' || curUser.role == 'Student'" -->
+
+			<md-content flex layout-padding> <!-- <md-card> -->
+			<div layout="column" layout-align="top stretch">
+				<!--<div ng-view></div>-->
+				<div ui-view>
+					<!--This is the center page of all main modules for the index module. -->
+					<!-- <md-toolbar>
+					<div class="md-toolbar-tools">
+						<section layout="row">
+							<div layout="row" layout-align="end start">
+								<md-button aria-label="Login" ng-hide="curUser !== null"
+									ng-show="curUser == null" ng-click="loginClick()">
+								Login <md-tooltip> Login </md-tooltip> </md-button>
+
+								<md-button aria-label="Logout" ng-hide="curUser == null"
+									ng-click="signOut()"> Logout <md-tooltip ng-cloak>
+								{{ curUser.firstName + " " + curUser.lastName + " | " +
+								curUser.email_id}} </md-tooltip> </md-button>
+
+								<md-button class="md-icon-button" aria-label="More"
+									ng-click="toggleRight()"> <md-icon
+									md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
+
+								<md-button aria-label="Open Settings"
+									ng-click="showListBottomSheet($event)"> <md-tooltip
+									ng-cloak> {{ curUser.getName() + "|" +
+								curUser.getEmail()}} </md-tooltip> <ng-md-icon icon="more_vert"></ng-md-icon>
+								</md-button>
+								<img ng-show="true" ng-src="{{loginPersonIconUrl}}"
+									class=circular>
+							</div>
+						</section>
+					</div>
+					</md-toolbar> -->
+
+				</div>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<md-content layout="column">
+				<hr>
+				<span flex>©2017-2018 ProStudy Google Cloud Platform, a
+					product of Protostar Consulting Services, Pune. All rights
+					reserved. </span> </md-content>
+			</div>
+			<!-- </md-card> --> <!--This is a botton section of the app--> <!-- <md-divider></md-divider> -->
+		</section>
+	</div>
+	</md-content> </md-card> </md-content>
+	<!-- Parent tag ends-->
+	<!-- All JS Dependencies -->
+	<script src="/lib/base/jquery.min.js"></script>
+	<script src="/lib/base/bootstrap.min.js"></script>
+
+	<script type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"></script>
+	<!-- <script src="/lib/base/google-plus-signin.js"></script> -->
+
+	<!-- Angular Material Dependencies -->
+	<script src="/lib/base/angular.min.js"></script>
+	<script src="/lib/base/angular-animate.min.js"></script>
+	<script src="/lib/base/angular-route.min.js"></script>
+	<script src="/lib/base/angular-aria.min.js"></script>
+	<script src="/lib/base/angular-messages.min.js"></script>
+	<script src="/lib/base/angular-resource.min.js"></script>
+	<script src="/lib/base/angular-sanitize.min.js"></script>
+	<script src="/lib/base/angular-material-icons.min.js"></script>
+
+	<script src="/lib/base/angular-material.min.js"></script>
+	<script src="/lib/base/md-data-table.min.js"></script>
+
+	<script src="/lib/base/ui-bootstrap-tpls.min.js"></script>
+	<script src="/lib/base/angular-ui-router.min.js"></script>
+	<script src="/lib/base/xeditable.js"></script>
+	<script src="/lib/base/textAngular-rangy.min.js"></script>
+	<script src="/lib/base/textAngular-sanitize.min.js"></script>
+	<script src="/lib/base/textAngular.min.js"></script>
+	<script src="/lib/base/ngStorage.min.js"></script>
+
+
+	<!-- Angular Dependencies for ng-file-upload -->
+
+	<!--Start of File Uplode  -->
+	<script src="/lib/base/ng-file-upload.js"></script>
+	<script src="/lib/base/ng-file-upload.min.js"></script>
+
+	<!--End of File Uplode  -->
+
+
+	<!-- Angular Material Dependencies for DateTimePicker -->
+	<script src="/lib/base/moment-with-locales.min.js"></script>
+	<script src="/lib/base/angular-material-datetimepicker.js"></script>
+
+
+	<script src="/lib/base/google-plus-signin.js"></script>
+
+
+	<!--<script src="/lib/base/googleapi.client.js"></script>-->
+	<script src="https://apis.google.com/js/client.js"></script>
+
+
+	<!-- App JS Dependencies -->
+	<script src="/app/common/common.app.js"></script>
+	<script src="/app/common/constants.app.js"></script>
+
+
+	<!-- Load other view/service/controllers files-->
+	<script src="/app/common/app.object.service.js"></script>
+	<script src="/app/common/app.localdb.endpoint.service.js"></script>
+	<script src="/app/common/app.google.endpoint.service.js"></script>
+	<script src="/app/common/app.endpoint.service.js"></script>
+
+	<script src="index.ctr.js"></script>
+	<script src="/app/login/js/login_module.ctr.js"></script>
+	<script src="/app/login/js/newUser_student.ctr.js"></script>
+	<script src="/home.ctr.js"></script>
+
+
+
+	<!-- <script src="/app/chapter/js/chapter_module.ctr.js"></script>
+	<script src="/app/chapter/js/chapter_add.ctr.js"></script>
+	<script src="/app/chapter/js/chapter_list.ctr.js"></script>
+	<script src="/app/chapter/js/chapter_view.ctr.js"></script> -->
+
+
+	<!-- <script src="/app/book/js/book_module.ctr.js"></script>
+	<script src="/app/book/js/book_add.ctr.js"></script>
+	<script src="/app/book/js/book_edit.ctr.js"></script>
+	<script src="/app/book/js/book_list.ctr.js"></script>
+	<script src="/app/book/js/book_chapterList.ctr.js"></script>
+	<script src="/app/book/js/book_viewChapterContent.ctr.js"></script>
+	<script src="/app/book/js/book_addComments.ctr.js"></script>
+	<script src="/app/book/js/book_viewpdf.ctr.js"></script> -->
+
+
+	<!-- <script src="/app/book/js/standard_Book.ctr.js"></script>
+	<script src="/app/book/js/standard_chapterList.ctr.js"></script>
+	<script src="/app/book/js/standard_viewChapterContent.ctr.js"></script> -->
+
+
+	<!-- <script src="/app/student/js/student_module.ctr.js"></script>
+	<script src="/app/student/js/student.list.ctr.js"></script>
+	<script src="/app/institute/js/student_view.ctr.js"></script> 
+
+	<script src="/app/student/js/student_addpayment.ctr.js"></script>
+	<script src="/app/student/js/student_paymentlist.ctr.js"></script>
+	<script src="/app/student/js/student_installmentList.ctr.js"></script>
+	<script src="/app/student/js/student_installmentedit.ctr.js"></script>
+
+	<script src="/app/student/js/student_scheduleExam.ctr.js"></script>
+
+
+	<script src="/app/attendance/js/attendance_module.ctr.js"></script>
+	<script src="/app/attendance/js/attendance_add.ctr.js"></script>
+	<script src="/app/attendance/js/attendance_reportByStudent.ctr.js"></script>
+	<script src="/app/attendance/js/attendance_reportBySubjectClass.ctr.js"></script>
+	<script src="/app/attendance/js/reportDisplay.ctr.js"></script>
+
+	<script src="/app/question/js/question.ctr.js"></script>
+
+	<script src="/app/exam/js/exam_module.ctr.js"></script>
+	<script src="/app/exam/js/questionlist.ctr.js"></script>
+	<script src="/app/exam/js/practiceExam_add.ctr.js"></script>
+	<script src="/app/exam/js/newQuestion_add.ctr.js"></script>
+	<script src="/app/exam/js/question_edit.ctr.js"></script>
+	<script src="/app/exam/js/exam_module.ctr.js"></script>
+	<script src="/app/exam/js/practiceExamList.ctr.js"></script>
+	<script src="/app/exam/js/practiceExamTest.ctr.js"></script>
+	<script src="/app/exam/js/practiceExam_edit.ctr.js"></script>
+	<script src="/app/exam/js/practiceExamList.ctr.js"></script>
+	<script src="/app/exam/js/userQuesAnsView.ctr.js"></script>
+
+
+
+	<script src="/app/scheduledQuestion/js/scheduledQuestion_new.ctr.js"></script>
+	<script src="/app/scheduledQuestion/js/scheduledQuestion_list.ctr.js"></script>
+	<script src="/app/scheduledQuestion/js/scheduledQuestion_edit.ctr.js"></script>
+
+
+	<script src="/app/scheduledExam/js/scheduledExam_module.ctr.js"></script>
+	<script src="/app/scheduledExam/js/scheduledExam_add.ctr.js"></script>
+	<script src="/app/scheduledExam/js/scheduledExam_edit.ctr.js"></script>
+	<script src="/app/scheduledExam/js/scheduledExam_list.ctr.js"></script>
+	<script src="/app/scheduledExam/js/live_scheduledExamlist.ctr.js"></script>
+	<script src="/app/scheduledExam/js/scheduledExamTest.ctr.js"></script>
+	<script src="/app/scheduledExam/js/scheduledUserQuesAnsView.ctr.js"></script>
+	<script src="/app/scheduledExam/js/schduledExamResult_list.ctr.js"></script>
+	<script src="/app/scheduledExam/js/scheduledExam_studentList.ctr.js"></script>
+	<script src="/app/scheduledExam/js/scheduledExam_assignStudents.ctr.js"></script>
+	<script
+		src="/app/scheduledExam/js/scheduledExam_myScheduledExamList.ctr.js"></script>
+	<script src="/app/scheduledExam/js/scheduledExam_addResult.ctr.js"></script>
+
+
+
+	<script src="/app/examdemo/js/examdemo_module.ctr.js"></script>
+	<script src="/app/examdemo/js/examdemo_science.ctr.js"></script>
+	<script src="/app/examdemo/js/examdemo_math.ctr.js"></script>
+
+	<script src="/app/institute/js/institute_module.ctr.js"></script>
+	<script src="/app/institute/js/institute_view.ctr.js"></script>
+	<script src="/app/institute/js/institute_addInfo.ctr.js"></script>
+	<script src="/app/institute/js/institute_addStud.ctr.js"></script>
+	<script src="/app/institute/js/institute_student_fillbasics.ctr.js"></script>
+
+	<script src="/app/institute/js/institute.list.ctr.js"></script>
+	<script src="/app/institute/js/institute_editUser.ctr.js"></script>
+	<script src="/app/institute/js/institute_viewUser.ctr.js"></script>
+	<script src="/app/institute/js/institute.list_view.ctr.js"></script>
+
+	<script src="/app/report/js/report_module.ctr.js"></script>
+	<script src="/app/report/js/display_report.ctr.js"></script>
+
+	<script src="/app/myprofile/js/myprofile_update.ctr.js"></script>
+	<script src="/app/myPracticeExams/js/myPracticeExams_module.ctr.js"></script>
+	<script src="/app/favourite/js/favourite_module.ctr.js"></script>
+	<script src="/app/favourite/js/myBooks.ctr.js"></script>
+	<script src="/app/favourite/js/myPracticeExams.ctr.js"></script>
+	<script src="/app/favourite/js/practiceExamResult.ctr.js"></script> -->
+
+	<script src="/app/test/js/table.demo.data.service.js"></script>
+	<script src="/app/demo/js/table.demo.withservice.ctr2.js"></script>
+
+	<!-- <script src="/app/syllabus/js/syllabus_module.ctr.js"></script>
+	<script src="/app/syllabus/js/syllabus_add.ctr.js"></script>
+	<script src="/app/syllabus/js/syllabus_view.ctr.js"></script>
+	<script src="/app/syllabus/js/syllabus_list.ctr.js"></script>
+
+	<script src="/app/certificateMgmt/js/certificate_module.ctr.js"></script>
+	<script src="/app/certificateMgmt/js/generateTemplate.ctr.js"></script>
+	<script src="/app/certificateMgmt/js/generateCertificate.ctr.js"></script>
+	<script src="/app/certificateMgmt/js/viewCertificate.ctr.js"></script>
+
+	 <script src="/app/admissionMgmt/js/admission_module.ctr.js"></script>
+	<script src="/app/admissionMgmt/js/applicant_add.ctr.js"></script>
+	<script src="/app/admissionMgmt/js/applicant_list.ctr.js"></script> -->
+
+	<script src="/app/gfe/js/gfe_module.ctr.js"></script>
+	<script src="/app/gfe/js/classroom_list.ctr.js"></script>
+	<script src="/app/gfe/js/classroom_list_users.ctr.js"></script>
+	<script src="/app/gfe/js/classroom_new_course.ctr.js"></script>
+	<script src="/app/gfe/js/classroom_course_edit.ctr.js"></script>
+	<script src="/app/gfe/js/classroom_course_view.ctr.js"></script>
+	<script src="/app/gfe/js/classroom_new_user.ctr.js"></script>
+	<script src="/app/gfe/js/classroom_course_viewUser.ctr.js"></script>
+	<script src="/app/gfe/js/directory_new_userAccount.ctr.js"></script>
+	<script src="/app/gfe/js/directory_user_list.ctr.js"></script>
+	<script src="/app/gfe/js/directory_edit_userAccount.ctr.js"></script>
+	<script src="/app/gfe/js/directory_view_userAccount.ctr.js"></script>
+	<script src="/app/gfe/js/gfe_index.ctr.js"></script>
+	
+	<!-- <script src="/app/gfschool/js/partnerSchool_module.ctr.js"></script>
+	<script src="/app/gfschool/js/partnerSchool_add.ctr.js"></script>
+	<script src="/app/gfschool/js/partnerSchool_list.ctr.js"></script>
+	<script src="/app/gfschool/js/printBookDetail.ctr.js"></script>
+	<script src="/app/gfschool/js/schoolRegister_add.ctr.js"></script>
+	<script src="/app/gfschool/js/partnerSchool_institue_add.ctr.js"></script>
+	<script src="/app/gfschool/js/partnerSchool_institue_list.ctr.js"></script>
+	
+	<script src="/app/gfreport/js/gfreport_module.js"></script>
+	<script src="/app/gfreport/js/gfschool_lists.js"></script>
+	<script src="/app/gfreport/js/fin_summary.js"></script>
+	<script src="/app/gfreport/js/examresult_list_report.js"></script>  -->
+	<!-- GFReport -->
+
+	<!-- Start Init Setup -->
+	<script src="/app/initsetup/js/initsetup.ctr.js"></script>
+	<script src="app.ctr.js"></script>
+	<!-- End Init Setup -->
+
+
+
+	<!-- Start ProAdmin -->
+	<script src="/app/proadmin/js/proadmin_module.ctr.js"></script>
+	<script src="/app/proadmin/js/manage_auth_master.ctr.js"></script>
+	<script src="/app/proadmin/js/manage_institute_auth.ctr.js"></script>
+	<!-- End ProAdmin -->
+
+	<!-- Start Gandhi Found. Student -->
+	<!-- <script src="/app/gfstudent/js/gandhiFoundation_module.ctr.js"></script>
+	<script src="/app/gfstudent/js/gfStudent_module.ctr.js"></script>
+	<script src="/app/gfstudent/js/gfStudent_add.ctr.js"></script>
+	<script src="/app/gfstudent/js/gfStudent_list.ctr.js"></script>
+	<script src="/app/gfstudent/js/gfStudent_view.ctr.js"></script>
+	<script src="app/gfstudent/js/gfStudent_viewExamResult.ctr.js"></script>
+	<script src="/app/gfstudent/js/examresult_add.ctr.js"></script>
+	<script src="/app/gfstudent/js/gvsp_start_form.ctr.js"></script>
+	<script src="/app/gfstudent/js/examresult_list.js"></script>
+	<script src="/app/gfstudent/js/printCertificateDetail.ctr.js"></script> -->
+
+
+	<!-- End Gandhi Found. Student  -->
+
+	<!-- Start Gandhi Found. Courier -->
+	<!-- <script src="/app/gfcourier/js/gfCourier_module.ctr.js"></script>
+	<script src="/app/gfcourier/js/gfCourier_add.ctr.js"></script>
+	<script src="/app/gfcourier/js/gfCourier_list.ctr.js"></script>
+	<script src="/app/gfcourier/js/gfCourier_view.ctr.js"></script>
+	<script src="/app/gfcourier/js/gfCourier_search.ctr.js"></script>
+	<script src="/app/gfcourier/js/dailyDispatchReport.js"></script>
+	<script src="/app/gfcourier/js/gfCourier_report.js"></script>
+
+	<script src="/app/gfcourier/js/gfCourier_directAddFromPS.ctr.js"></script> -->
+	<!-- End Gandhi Found. Courier  -->
+
+	<!-- Start Gandhi Found. Book Stock -->
+	<!-- <script src="/app/gfbookstock/js/gfBookStock_module.ctr.js"></script>
+	<script src="/app/gfbookstock/js/gfBook_add.ctr.js"></script>
+	<script src="/app/gfbookstock/js/gfBook_list.ctr.js"></script>
+	<script src="/app/gfbookstock/js/gfSelectedBookRecord.js"></script>
+
+	<script src="/app/gfbookstock/js/gfBookStock_add.ctr.js"></script>
+	<script src="/app/gfbookstock/js/gfBookStock_list.ctr.js"></script>
+	<script src="/app/gfbookstock/js/gfBookStock_view.ctr.js"></script>
+	<script src="/app/gfbookstock/js/gfBookStockTransaction_list.ctr.js"></script> -->
+	<!-- End Gandhi Found. Book Stock  -->
+
+	<!-- Start setup Setup -->
+	<script src="/app/setup/js/setup_module.ctr.js"></script>
+	<script src="/app/institute/js/authority_add.ctr.js"></script>
+	<script src="/app/setup/js/authority_view.ctr.js"></script>
+	<script src="/app/setup/js/setup_changetheme.js"></script>
+	<script src="/app/setup/js/addInstituteUser.ctr.js"></script>
+	<script src="/app/setup/js/editInstitute.ctr.js"></script>
+	<!-- 	<script src="/app/setup/js/instituteUserList.ctr.js"></script> -->
+	<script src="/app/setup/js/instituteUserList.ctr.js"></script>
+	<script src="/app/setup/js/changePlan.ctr.js"></script>
+	<script src="/app/setup/js/setLogo.ctr.js"></script>
+	<script src="/app/setup/js/manage_user_auth.ctr.js"></script>
+	<script src="/app/setup/js/setup_set_examyear.ctr.js"></script>
+	<!-- End setup Setup -->
+
+	<!-- <script src="/app/fileUpload/fileup.ctr.js"></script> -->
+
+</body>
+</html>

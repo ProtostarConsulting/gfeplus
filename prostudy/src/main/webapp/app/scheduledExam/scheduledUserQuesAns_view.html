@@ -1,0 +1,55 @@
+<h3 class="md-headline">Result & Statistics of <b>{{student.firstName}} {{student.lastName}}</b> for <b>{{Test.examtitle}}</b> </h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div layout="column" layout-align="center center">
+	<b>Your score : {{examResults.score}}/{{totalLength}}<br>
+	</b> <b>Total number of questions : {{totalLength}}<br></b> <b>Number
+		of answered questions : {{answeredLength}}<br>
+	</b> <b>Number of unanswered questions : {{totalLength -
+		answeredLength}}</b>
+</div>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div layout="row" layout-align="center center" layout-xs="column" layout-wrap id="popupContainer"  class="dialog-demo-content">
+	<div flex="50" ng-repeat="item in newQues">
+		<div>
+			<md-content flex layout-padding> <b
+				ng-bind-html="+ (item.qId) +')'+ item.description"></b> </md-content>
+		</div>
+
+
+		<div layout="column">
+			<md-checkbox
+				ng-checked="examResults.userAns[$index].userOption=='option1'" disabled>
+			{{item.option1}} </md-checkbox>
+			<md-checkbox
+				ng-checked="examResults.userAns[$index].userOption=='option2'" disabled>
+			{{item.option2}} </md-checkbox>
+			<md-checkbox
+				ng-checked="examResults.userAns[$index].userOption=='option3'" disabled>
+			{{item.option3}} </md-checkbox>
+			<md-checkbox
+				ng-checked="examResults.userAns[$index].userOption=='option4'" disabled>
+			{{item.option4}} </md-checkbox>
+
+			<td><b>Correct Answer :{{item.correctAns }}</b></td>
+
+			<p>&nbsp;</p>
+		</div>
+	</div>
+<p>&nbsp;</p>
+	<div layout="row" layout-align="center center">
+	
+		<md-button class="md-raised" ng-click="cancelButton()">
+		cancel </md-button>
+		
+		
+	</div>
+</div>
+
+
+

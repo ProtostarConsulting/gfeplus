@@ -1,0 +1,119 @@
+{
+"authorizations": [
+	{
+	"authName": "home",
+	"authDisplayName": "Home",
+	"uiStateName": "home",
+	"orderNumber": "0"
+	},
+	{
+	"authName": "proadmin",
+	"authDisplayName": "Proadmin",
+	"uiStateName": "proadmin",
+	"orderNumber": "1"
+	},
+	{
+	"authName": "setup",
+	"authDisplayName": "Setup",
+	"uiStateName": "setup",
+	"orderNumber": "2"
+	},
+	{
+	"authName": "partnerSchool.addPartnerSchool",
+	"authDisplayName": "Register Your Institute for GVSP 2017-18",
+	"uiStateName": "partnerSchool.addPartnerSchool",
+	"orderNumber": "1"
+	},
+	{
+	"authName": "bookModule",
+	"authDisplayName": "Books",
+	"uiStateName": "bookModule",
+	"orderNumber": "3"
+	},
+	{
+	"authName": "studentModule.gvspStartExam",
+	"authDisplayName": "Take GVSP Exam",
+	"uiStateName": "studentModule.gvspStartExam",
+	"orderNumber": "4"
+	},
+	{
+	"authName": "studentModule.addExamResult",
+	"authDisplayName": "Add GVSP Exam Results",
+	"uiStateName": "studentModule.addExamResult",
+	"orderNumber": "5"
+	},	
+	{
+	"authName": "book",
+	"authDisplayName": "Books",
+	"uiStateName": "book",
+	"orderNumber": "4"
+	},
+	{
+	"authName": "exam",
+	"authDisplayName": "Exams",
+	"uiStateName": "exam",
+	"orderNumber": "5"
+	},
+	{
+	"authName": "favourite",
+	"authDisplayName": "My Favourite",
+	"uiStateName": "favourite",
+	"orderNumber": "6"
+	},
+	{
+	"authName": "report",
+	"authDisplayName": "Reports",
+	"uiStateName": "report",
+	"orderNumber": "7"
+	},
+	{
+	"authName": "admissionMgmt",
+	"authDisplayName": "admissionMgmt",
+	"uiStateName": "Admission Management",
+	"orderNumber": "8"
+	},
+	{
+	"authName": "certificateMgmt",
+	"authDisplayName": "Certificate Management",
+	"uiStateName": "certificateMgmt",
+	"orderNumber": "9"
+	},	
+	{
+	"authName": "updatemyprofile",
+	"authDisplayName": "My Profile",
+	"uiStateName": "updatemyprofile",
+	"orderNumber": "10"
+	},	
+	{
+	"authName": "gfe",
+	"authDisplayName": "Google for Education Dashboard",
+	"uiStateName": "gfe",
+	"orderNumber": "21",
+	"authorizations": [
+						{
+						"authName": "list",
+						"authDisplayName": "List",
+						"uiStateName": "list",
+						"orderNumber": "1",
+						"authorizations": [
+								{
+								"authName": "inList",
+								"authDisplayName": "inList"
+								}
+						]
+						},
+						{
+						"authName": "add",
+						"authDisplayName": "Add"
+						}
+						
+		]
+	},
+	{
+	"authName": "GRF",
+	"authDisplayName": "Gandhi Research Foundation",
+	"uiStateName": "gandhifoundation",
+	"orderNumber": "22"
+	}
+]
+}

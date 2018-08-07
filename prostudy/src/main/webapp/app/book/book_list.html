@@ -1,0 +1,75 @@
+<h3 class="md-headline">Book List</h3>
+
+<div>
+	<form name="listForm" method="post" enctype="multipart/form-data">
+		<md-content> <md-input-container flex>
+		<label>Search By Book name</label> <input ng-model="searchCategory">
+		</md-input-container> <md-data-table-container>
+
+		<table md-data-table md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onorderchange">
+				<tr>
+					<th name="Book Name" order-by="book_name"></th>
+					<th name="Author" order-by="author"></th>
+					<th name="Standard"></th>
+					<th name="Subject"></th>
+					<th name="Actions"></th>
+
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr
+					ng-repeat="book in books  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: {book_name: searchCategory}  ">
+
+					<td ng-hide="book.blobKey" ng-click="showBookContents()"><a
+						ui-sref="book.chapterList({selectedBookId : book.id})"><b>{{book.book_name}}</b></a></td>
+					<td ng-show="book.blobKey" ng-click="showBookContents()"><a
+						ui-sref="book.viewbookpdf({blobKey : book.blobKey})"><b>{{book.book_name}}</b></a></td>
+					<td>{{book.author}}</td>
+					<td>{{book.standard}}</td>
+					<td>{{book.subject}}</td>
+
+					<td><div layout="row" flex>
+							<md-button ng-click="addBookToMyList(book.id)"
+								ng-disabled="isContainsBook(curUser.myBooks,book)">
+							<md-icon md-svg-src="img/icons/add_fav.svg"></md-icon> <md-tooltip>Add
+							To MyBooks</md-tooltip></md-button>
+							<md-button class="md-icon-button" id="likeBook"
+								ng-click="like(book.id)" aria-label="likes"> <ng-md-icon
+								icon="thumb_up" style="fill: md-default" size="18"></ng-md-icon>{{book.likes}}</md-button>
+							<md-button class="md-icon-button" id="dislikeBook"
+								ng-click="dislike(book.id)" aria-label="dislikes"> <ng-md-icon
+								icon="thumb_down" style="fill: md-default" size="18"></ng-md-icon>{{book.dislikes}}</md-button>
+							<md-button class="md-icon-button" id="editBook"
+								ui-sref="book.edit({selectedBookId: book.id, standard: book.standard, division: book.division, subject: book.subject})">
+							<ng-md-icon icon="mode_edit" style="fill: md-default" size="18">
+							<md-tooltip> Edit </md-tooltip></ng-md-icon></md-button>
+							<!-- <a ui-sref="book.viewbookpdf({blobKey : book.blobKey})"> <md-button
+									ng-show="book.blobKey"> <ng-md-icon icon="pageview"
+									style="fill: md-default" size="20"> <md-tooltip>
+								View PDF </md-tooltip></ng-md-icon></md-button>
+							</a> -->
+							<md-button class="md-icon-button" id="assignBookToStudent"
+								ng-click="assignBookToStudent(book)"> <ng-md-icon
+								icon="person_add" style="fill: md-default" size="18">
+							<md-tooltip>Assign Book To Student</md-tooltip></ng-md-icon></md-button>
+						</div></td>
+				</tr>
+			</tbody>
+
+		</table>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{books.length}} md-trigger="onpagechange"></md-data-table-pagination>
+
+		</md-data-table-container> <!-- <div layout="row" layout-align="center center">
+
+			<a
+				ui-sref="book.edit({selectedBookId: selected[0].id, standard: selected[0].standard, division: selected[0].division, subject: selected[0].subject})"><md-button
+					ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+					ng-click=""> <md-icon md-svg-src="img/icons/edit.svg"></md-icon>
+				<md-tooltip>Edit </md-tooltip></md-button> </a>
+
+		</div> -->
+	</form>
+</div>

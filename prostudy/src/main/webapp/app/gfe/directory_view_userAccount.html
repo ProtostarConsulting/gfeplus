@@ -1,0 +1,38 @@
+<div ng-show="loading">Please wait, user loading...</div>
+<div ng-hide="loading">
+
+	<h3 class="md-headline">View User Account</h3>
+
+	<form name="viewUserAccountForm" ng-model="viewUserAccountForm">
+
+		<div layout="column" layout-align="" layout-xs="column">
+
+			<div layout="row" layout-align="centre centre" layout-xs="column">
+
+				<md-input-container flex> <label>First
+					Name </label> <input name="givenName" id="givenName"
+					ng-model="selectedUser.name.givenName" readonly> </md-input-container>
+
+				<md-input-container flex> <label>Last
+					Name </label> <input name="familyName" id="familyName"
+					ng-model="selectedUser.name.familyName" readonly> </md-input-container>
+
+
+			</div>
+			<div layout="row" layout-align="centre centre" layout-xs="column">
+				<md-input-container flex> <label>
+					Primary Email-id</label> <input type="email" name="primaryEmail"
+					ng-model="selectedUser.primaryEmail" readonly> </md-input-container>
+
+			</div>
+		</div>
+
+		<div layout="row" layout-align="center center">
+
+			<md-button class="md-raised md-accent" ng-click="cancelButton()()">
+			Cancel </md-button>
+
+		</div>
+
+	</form>
+</div>

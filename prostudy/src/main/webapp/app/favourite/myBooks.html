@@ -1,0 +1,52 @@
+<h3 class="md-headline">My Book List</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div layout="column">
+	<md-content> <md-input-container flex>
+	<label>Search By Book name</label> <input ng-model="searchCategory">
+	</md-input-container> <md-data-table-container> <md-content>
+	<md-data-table-container>
+	<table md-data-table md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+
+				<th name="Book Name" order-by="book_name"></th>
+				<th name="Author" order-by="author"></th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="book in books | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit |  filter: {book_name: searchCategory}">
+
+				<td ng-hide="book.blobKey"><a
+					ui-sref="book.chapterList({selectedBookId : book.id, flag:true})"><b>{{book.book_name}}</b></a></td>
+				<td ng-show="book.blobKey"><a
+					ui-sref="book.viewbookpdf({blobKey : book.blobKey})"><b>{{book.book_name}}</b></a></td>
+				<!-- <td><a
+					ui-sref="book.chapterList({selectedBookId : book.id, flag:true})"><b>{{book.book_name}}</b></a></td> -->
+				<td>{{book.author}}</td>
+
+			</tr>
+
+		</tbody>
+
+	</table>
+
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{books.length}} md-trigger="onpagechange"></md-data-table-pagination>
+
+	</md-data-table-container>
+</div>
+
+</md-content>
+
+
+
+
+
+
+
+

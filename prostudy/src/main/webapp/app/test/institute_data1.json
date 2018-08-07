@@ -1,0 +1,36 @@
+{"items":
+                      [                 
+                          {
+                            	"name" : "MIT Institute",
+								"city" : "Kolhapur",
+								"state" : "Maharashtra"
+								
+							}, {
+								"name" : "NIBM Institute",
+								"city" : "Banglore",
+								"state" : "Karnataka"
+								
+								
+							}, {
+								"name" : "NIIT Institute",
+								"city" : "Jaypur",
+								"state" : "Rajsthan"
+								
+
+							}, {
+	                         	"name" : "IIT Institute",
+								"city" : "Bikaner",
+								"state" : "Rajsthan"
+								
+							},{
+								"name" : "Seed Institute",
+								"city" : "Indore",
+								"state" : "UP"
+								
+							}, {"name" : "Symboisis",
+								"city" : "Surat",
+								"state" :"UP"
+								
+							} ]
+					
+	}

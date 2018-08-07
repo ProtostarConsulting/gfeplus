@@ -1,0 +1,46 @@
+
+<div layout="column" flex
+	ng-repeat="chapter in chapters | filter:searchText">
+
+	<div layout="column" layout-align="" layout-xs="column">
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+
+		
+			<md-input-container flex> <label>Board</label> <input
+				name="board" id="board" ng-required="true" ng-model="chapter.board"
+				readonly> </md-input-container>
+		</div>
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+			<md-input-container flex> <label>Standard</label>
+			<input name="standard" id="standard" ng-required="true"
+				ng-model="chapter.standard" readonly> </md-input-container>
+
+			<md-input-container flex> <label>Subject</label>
+			<input name="subject" id="subject" ng-model="chapter.subject"
+				readonly> </md-input-container>
+		</div>
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+			<md-input-container flex> <label>Chapter
+				Name </label> <input name="chapter_name" id="chapter_name"
+				ng-model="chapter.chapter_name" readonly> </md-input-container>
+		</div>
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+			<md-input-container flex> <label>Chapter
+				content</label>
+			<p ng-bind-html="chapter.chapter_content">
+				<input name="content" id="content" ng-required="true"
+					ng-model="chapter.chapter_content" readonly>
+			</p>
+			</md-input-container>
+		</div>
+
+	</div>
+</div>
+
+<div layout="row" layout-align="center center">
+	<md-button class="md-raised md-primary" ng-click="cancelButton()">Cancel</md-button>
+</div>

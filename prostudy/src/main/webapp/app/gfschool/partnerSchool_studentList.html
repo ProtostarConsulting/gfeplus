@@ -1,0 +1,53 @@
+<h3 class="md-headline">Partner School Students</h3>
+
+<div>
+	<div layout="row" layout-xs="column">
+		<md-input-container flex> <label>Level</label> <md-select name="level"
+			ng-model="schoolName " ng-required="true"> <md-option
+			ng-value="schoolName.schoolName" ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
+		</md-select>
+		<div ng-messages="instituteStudentForm.level.$error"
+			ng-if="instituteStudentForm.level.$submitted || instituteStudentForm.level.$touched">
+			<div ng-message="required">Please Select School Category.</div>
+		</div>
+		</md-input-container>
+	</div>
+
+	<md-content> <md-data-table-container>
+
+	<table md-data-table md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+
+				<th name="School Name" order-by="schoolName"></th>
+				<th name="Level" order-by="board"></th>
+				<th name="Address" order-by="address.city"></th>
+				<th name="PIN" order-by="address.pin"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="student in students  | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: schoolName ">
+				<td>{{student.firstName}} {{student.lastName}}</td>
+				<td>{{student.email_id}}</td>
+				<td>{{student.address}}</td>
+				<td>{{student.contact}}</td>
+				<td><md-button class="md-raised md-primary"
+						ui-sref="partnerSchool.addPartnerSchool({selectedPSchoolId: pSchool.id})">
+					Edit</md-button> <!-- <a
+					ui-sref="partnerSchool.addPartnerSchool({selectedPSchoolId: pSchool.id})"><md-button>
+						<md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit
+						</md-tooltip></md-button></a> --></td>
+
+
+			</tr>
+		</tbody>
+
+	</table>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{students.length}} md-trigger="onpagechange"></md-data-table-pagination>
+
+	</md-data-table-container>
+</div>
+

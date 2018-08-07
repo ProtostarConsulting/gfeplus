@@ -1,0 +1,54 @@
+<h3 class="md-headline">Exam Result List:{{selectedExamTitle}}</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+<md-button ng-show="scheduledExamResultList.length > 0"
+	class="md-raised md-primary" id="downloadExcel"
+	ng-click="downloadResultList()">Export ResultList <md-tooltip>
+Download ResultList </md-tooltip> </md-button>
+<div>
+	<md-input-container flex> <label>Search By
+		Email_id</label> <input ng-model="searchCategory"> </md-input-container>
+</div>
+
+<div layout="column">
+	<md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+				<th order-by="firstName" name="Student Name"></th>
+				<th order-by="email_id" name="Email_id"></th>
+				<th order-by="score" name="Score"></th>
+				<th order-by="startdatentime" name="Start Date And Time"></th>
+				<th order-by="enddatentime" name="End Date And Time"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="res in scheduledExamResultList | orderBy: query.order | filter: {email_id: searchCategory} | limitTo: query.limit: (query.page - 1) * query.limit">
+				<td>{{res.firstName}}{{res.lastName}}</td>
+				<td>{{res.email_id}}</td>
+				<td>{{res.score}}</td>
+				<td>{{res.startTime }}</td>
+				<td>{{res.endTime}}</td>
+
+			</tr>
+		</tbody>
+	</table>
+
+	</md-data-table-container>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{scheduledExamResultList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+
+	<div layout="row" layout-align="center center">
+
+		<a
+			ui-sref="scheduledExam.userQuesAnsView({selectedResultId: selected[0].id,selectedEmailId:selected[0].email_id,selectedExamId:selectedExamId})"><md-button
+				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+				ng-click=""> <md-icon md-svg-src="img/icons/view.svg"></md-icon>
+			<md-tooltip>View Result</md-tooltip></md-button> </a>
+	</div>
+
+</div>
+

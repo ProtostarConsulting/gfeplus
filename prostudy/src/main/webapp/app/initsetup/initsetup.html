@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Onetime Setup</title>
+</head>
+<body>
+
+
+	<b>Use the action buttons below, to do initial setup.</b>
+	<br>
+	<b ng-cloak>{{userMsg}}</b>
+	<br>
+
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary"
+			ng-click="createAccountTypes()"
+			ng-disabled="!createAccountTypes_Bool">Create Account
+		Types</md-button>
+		<md-button class="md-raised md-primary" ng-click="createUsers()"
+			ng-disabled="!createUsers_Bool">Create Users</md-button>
+		<md-button class="md-raised md-primary" ng-click="createAuthMaster()"
+			ng-disabled="!createAuthMaster_Bool">Create Auth Master</md-button>
+		<!-- <md-button class="md-raised md-primary" ng-click="touchAllSchools()"
+			ng-show="true">Touch All Schools</md-button> -->
+
+		<md-button class="md-raised md-primary" ng-click="touchAllCouriers()"
+			ng-show="true">Touch All Couriers</md-button>
+
+	</section>
+
+</body>
+</html>

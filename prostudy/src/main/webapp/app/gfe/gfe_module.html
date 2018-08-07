@@ -1,0 +1,93 @@
+<div ng-show="loading">Please wait, loading...</div>
+
+<div ng-hide="loading">
+	<div ng-hide="authorized">
+		<span>Login To Your School/College Account</span>
+		<md-button class="md-raised md-primary"
+			ng-click="handleAuthClick(event)"> Login </md-button>
+		<p class="md-body-3">Use your School or College Google Account to
+			access this Dashboard
+		<p>
+	</div>
+	<div ng-hide="!authorized">
+
+		<div layout="column">
+
+			<section layout="row">
+				<!-- View Specific Toolbar-->
+
+				<div class="md-toolbar-tools">
+					<!--<md-card>-->
+					<section layout="row" layout-xs="column"
+						layout-align="center start">
+						<md-button class="md-icon-button" aria-label="prev"
+							ng-click="back()"> <md-tooltip> Go Back
+						</md-tooltip> <md-icon md-svg-icon="img/icons/ic_reply_black_24px.svg"
+							aria-label="Prev Week"></md-icon> </md-button>
+
+						<md-button ui-sref="gfe.classroomCourseList" ng-click="close()"
+							class="md-primary">Courses/Classes List</md-button>
+
+						<!-- <md-button ui-sref="gfe.classroomNewCourse" ng-click="close()"
+							class="md-primary">Add New Course</md-button>
+
+						<md-button
+							ui-sref="gfe.directoryNewUser({currentUserDomain: currentUserDomain})"
+							ng-click="close()" class="md-primary">Directory New
+						User</md-button> -->
+
+						<md-button ui-sref="gfe.directoryUserList" ng-click="close()"
+							class="md-primary">Directory User List</md-button>
+					</section>
+					<span flex></span>
+					<section layout="row" layout-align="end start">
+						<md-button aria-label="Open Settings" ng-click="toggleRight()">
+						<ng-md-icon icon="more_vert"></ng-md-icon> </md-button>
+					</section>
+					<!--</md-card>-->
+				</div>
+				<!-- Right Navigation Pane -->
+				<md-sidenav class="md-sidenav-right md-whiteframe-z2"
+					md-component-id="right"> <md-toolbar
+					class="md-theme-light">
+				<h1 class="md-toolbar-tools">More Action</h1>
+				</md-toolbar> <md-content layout-padding layout="column"> <md-button
+					ui-sref="gfe.classroomCourseList" ng-click="close()"
+					class="md-primary">Courses/Classes List</md-button> <md-button
+					ui-sref="gfe.classroomNewCourse" ng-click="close()"
+					class="md-primary">Add New Course</md-button> <md-button
+					ui-sref="gfe.directoryNewUser({currentUserDomain: currentUserDomain})"
+					ng-click="close()" class="md-primary">Directory New
+				User</md-button> <md-button ui-sref="gfe.directoryUserList" ng-click="close()"
+					class="md-primary">Directory User List</md-button> <md-button
+					ui-sref="setup" ng-click="close()" class="md-primary">
+				Setup</md-button> </md-content> </md-sidenav>
+			</section>
+
+			<div ui-view>
+
+				<!-- We'll also add some navigation: -->
+				<!-- <div layout="column" layout-align="start start">
+
+					<md-button ui-sref="gfe.classroomCourseList" ng-click="close()"
+						class="md-primary">Courses/Classes List</md-button>
+
+					<md-button ui-sref="gfe.classroomNewCourse" ng-click="close()"
+						class="md-primary">Add New Course</md-button>
+
+					<md-button
+						ui-sref="gfe.directoryNewUser({currentUserDomain: currentUserDomain})"
+						ng-click="close()" class="md-primary">Directory
+					New User</md-button>
+
+					<md-button ui-sref="gfe.directoryUserList" ng-click="close()"
+						class="md-primary">Directory User List</md-button>
+
+				</div> -->
+
+			</div>
+		</div>
+
+	</div>
+</div>
+

@@ -1,0 +1,36 @@
+.md-toolbar-tools h1 {
+	font-size: inherit;
+	font-weight: inherit;
+	margin: inherit;
+}
+
+.buttondemoBasicUsage section {
+	background: #f7f7f7;
+	border-radius: 3px;
+	text-align: center;
+	margin: 1em;
+	position: relative !important;
+	padding-bottom: 10px;
+}
+
+.buttondemoBasicUsage md-content {
+	margin-right: 7px;
+}
+
+.buttondemoBasicUsage section .md-button {
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+
+.buttondemoBasicUsage .label {
+	position: absolute;
+	bottom: 5px;
+	left: 7px;
+	font-size: 14px;
+	opacity: 0.54;
+}
+
+.fabToolbardemoBasicUsage md-fab-toolbar.md-left md-fab-trigger.align-with-text
+	{
+	left: 7px;
+}

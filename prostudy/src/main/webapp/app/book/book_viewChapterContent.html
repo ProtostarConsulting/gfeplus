@@ -1,0 +1,28 @@
+<md-content layout-padding>
+
+<div id="viewChapterContent">
+	<div layout="column" flex
+		ng-repeat="chapter in chapters">
+		<b align="center">{{chapter.chapter_name}}</b>
+		<md-content flex layout-padding>
+		<p ng-bind-html="chapter.chapter_content" disabled></p>
+		</md-content>
+	</div>
+</div>
+<div id="TotalChapters">
+<div layout="column" flex ng-repeat="chapter in chapters">
+		<h3 align="center">{{chapter.chapter_name}}</h3>
+		<md-content flex layout-padding>
+		<p ng-bind-html="chapter.chapter_content"></p>
+		</md-content>
+	</div>
+</div>
+
+<div layout="row" layout-align="center center">
+	<md-button class="md-fab md-primary md-hue-2"
+		ui-sref="book.chapterList({selectedBookId : selectedBookId})"><md-icon md-svg-src="img/icons/back.svg"></md-icon> <md-tooltip>Back To Chapter-Index </md-tooltip></md-button>
+</div>
+</md-content>
+
+
+

@@ -1,0 +1,41 @@
+<div layout="row" ng-cloak class="md-inline-form">
+
+	<md-content layout="column">
+
+	<form name="excelform" method="post" enctype="multipart/form-data">
+		<div>
+			<input type="hidden" name="insId" id="insId" value={{insId}}>
+			<div>
+
+				<b>Download sample CSV file format: </b> <a
+					href="img/BulkUploadFormats/UploadSchoolUser.csv" download> <img
+					border="0" src="img/images/CSV.png" alt="Download Format"
+					width="40" height="30">
+				</a>
+			</div>
+
+			<div layout="row" layout-xs="column" flex>
+				<md-button class='md-raised' type="file" ngf-select
+					ng-model="csvFile" name="file2" accept="*.csv" ngf-max-size="2MB"
+					required ngf-model-invalid="errorFile">Choose School User CSV</md-button>
+			</div>
+			<div layout="row" layout-xs="column" flex>
+				<label>{{uploadProgressMsg ==
+					null?csvFile.name:uploadProgressMsg}} </label>
+			</div>
+			<br>
+			<md-button class="md-raised md-primary" ng-click="uploadSchoolUserCSV()"
+				ng-disabled="excelform.$invalid"> Submit </md-button>
+
+			<md-button class="md-raised md-primary" ng-click="cancel()">
+			close </md-button>
+		</div>
+
+
+	</form>
+
+	<div>
+		<!-- This is temp second column -->
+	</div>
+	</md-content>
+</div>

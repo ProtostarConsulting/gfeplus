@@ -1,0 +1,97 @@
+{"items":
+                      [                 
+                          {
+	                            "description" : "We obtain our food from",
+								"note" : "Hint: select only one option",
+								"questionId" : 1,
+								"option1" : 	"Plants and animals",
+								"option2" : "Plants only",
+								"option3" : "Animals only",
+								"option4" : "Microbes",
+								"correctAns" : 1
+							}, {
+							
+	                            "description" : "The edible substance that provides materials useful for body are called",
+								"note" : "Hint: select only one option",
+								"questionId" : 2,
+								"option1" : "Water",
+								"option2" : "Substrate",
+								"option3" : "Food",
+								"option4" : "Nutrients",
+								"correctAns" : 1
+							}, {
+								"description" : "Egg ,meet and paneer are?",
+								"note" : "Hint: select only one option",
+								"questionId" : 3,
+								"option1" : "Animal products",
+								"option2" : "Bacterial product",
+								"option3" : "Plant product",
+								"option4" : "Both plant and animal product",
+								"correctAns" : 1
+
+							}, {
+	                            "description" : "The main energy giving components of food is?",
+								"note" : "Hint: select only one option",
+								"questionId" : 4,
+								"option1" : "Vitamins",
+								"option2" : "Protein",
+								"option3" : "Fat",
+								"option4" : "Carbohydrates",
+								"correctAns" : 1
+							},{
+								"description" : "Idli and Dosa are famous ________________ dishes.?",
+								"note" : "Hint: select only one option",
+								"questionId" : 5,
+								"option1" : "West India",
+								"option2" : "South Indian",
+								"option3" : "North Indian",
+								"option4" : "East Indian",
+								"correctAns" : 1
+							}, {
+	                             "description" : "Mid-day meal is?",
+								"note" : "Hint: select only one option",
+								"questionId" : 6,
+								"option1" : "Food provided by school during lunch break",
+								"option2" : "Food cooked during noon.",
+								"option3" : "Food taken by us during mid-day",
+								"option4" : 	"Food cooked during summer",
+								"correctAns" : 1
+							}, {
+								"description" : "Spices provide",
+								"note" : "Hint: select only one option",
+								"questionId" : 7,
+								"option1" : "Proteins",
+								"option2" : "Flavour",
+								"option3" : "Vitamins",
+								"option4" : "Energy",
+								"correctAns" : 1
+							}, {
+								"description" : "Which of the following is called complete food?",
+								"note" : "Hint: select only one option",
+								"questionId" : 8,
+								"option1" : 'Pulses",
+								"option2" : "Carrot",
+								"option3" : "Fish",
+								"option4" : "Milk",
+								"correctAns" : 1
+							} , {
+								"description" : "Which of the following is a protective component of food?",
+								"note" : "Hint: select only one option",
+								"questionId" : 9,
+								"option1" : "Vitamins",
+								"option2" : "Protein",
+								"option3" : "Fats",
+								"option4" : "Water",
+								"correctAns" : 1
+							} , {
+								"description" : "We get meat and milk both from",
+								"note" : "Hint: select only one option",
+								"questionId" : 10,
+								"option1" : "Beach",
+								"option2" : "Cow",
+								"option3" : "Camel",
+								"option4" : "Goat",
+								"correctAns" : 1
+							}]
+					
+	}//end of json object

@@ -1,0 +1,31 @@
+<md-content>
+<form>
+	<div>
+
+		<md-data-table-container>
+			<md-data-table-container>
+			<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
+				<thead>
+					<tr>
+						<th order-by="name" name="INSTITUTE NAME" unit=""></th>
+						<th order-by="desc" name="DESCRIPTION"></th>
+						<th order-by="phone_no" name="PHONE NO."></th>
+						<th order-by="address" name="ADDRESS"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr md-auto-select ng-repeat="institute in institutes | filter: searchText ">
+						<td>{{institute.name}}</td>
+						<td>{{institute.desc}}</td>
+						<td>{{institute.phone_no}}</td>
+						<td>{{institute.address}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-data-table-container>
+
+		</md-data-table-container>
+		
+	</div>
+	</form>
+</md-content>

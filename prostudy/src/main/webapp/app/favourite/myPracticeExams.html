@@ -1,0 +1,37 @@
+<h3 class="md-headline">My Practice Exam List</h3>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+
+<md-input-container flex>
+	<label>Search By Practice Exam name</label> <input ng-model="searchCategory">
+	</md-input-container>
+
+ 
+  <md-data-table-container>
+	<table md-data-table  md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>				
+				
+				<th name="Exam Title" order-by="examtitle"></th>
+				
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr md-auto-select ng-repeat="exam in exams | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit |  filter: {examtitle: searchCategory}">
+			
+			
+            <td><a ui-sref="exam.practiceexamtest({selectedExamId : exam.id})"><b>{{exam.examtitle}}</b></a></td>  
+          	</tr>				
+		</tbody>		
+	</table>
+	
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{exams.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container>  
+	
+
+
+
+
+			

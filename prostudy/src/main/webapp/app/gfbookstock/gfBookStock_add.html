@@ -1,0 +1,76 @@
+
+<h3 class="md-headline">Add Book Stock</h3>
+
+<div layout="column" layout-padding layout-xs="column">
+
+	<form name="gfBookStockForm">
+
+
+		<div layout="row" layout-xs="column">
+			<md-datepicker flex ng-model="tempStockAddData.feedStockDate"
+				md-placeholder="Select Date"></md-datepicker>
+		</div>
+
+		<div layout="row" layout-xs="column" ng-repeat="tempBookStock in newBookStockList">
+
+			<md-input-container flex> <label>Select
+				Book <span style="color: red"
+				ng-show="gfBookStockForm.book.$error.required" class="mandatory">*</span>
+			</label> <md-select name="book" ng-model="tempBookStock.book"
+				ng-required="true"> <md-option ng-value="book"
+				ng-repeat="book in tempBookStocks">{{book.bookName}}({{book.bookMedium}})</md-option>
+			</md-select>
+			<div ng-messages="gfBookStockForm.book.$error"
+				ng-if="gfBookStockForm.book.$submitted || gfBookStockForm.book.$touched">
+				<div ng-message="required">Please Select Book.</div>
+			</div>
+			</md-input-container>
+
+			<!-- 
+			<md-input-container flex> <label>Medium
+				of Answer<span style="color: red"
+				ng-show="gfBookStockForm.medium.$error.required" class="mandatory">*</span>
+			</label> <md-select name="medium" ng-model="tempBookStockStock.medium"
+				ng-required="true"> <md-option ng-value="medium"
+				ng-repeat="medium in answerOfMediumList">{{medium}}</md-option> </md-select>
+			<div ng-messages="gfBookStockForm.medium.$error"
+				ng-if="gfBookStockForm.medium.$submitted || gfBookStockForm.medium.$touched">
+				<div ng-message="required">Please Select Standards.</div>
+			</div>
+			</md-input-container>
+ -->
+
+			<md-input-container flex> <label>Quantity
+				<span style="color: red"
+				ng-show="gfBookStockForm.bookQty.$error.required" class="mandatory">*</span>
+			</label> <input name="bookQty" type="number" ng-model="tempBookStock.bookQty"
+				ng-required="true">
+			<div ng-messages="gfBookStockForm.bookQty.$error"
+				ng-if="gfBookStockForm.bookQty.$submitted || gfBookStockForm.bookQty.$touched">
+				<div ng-message="required">Please Enter Book Name.</div>
+			</div>
+			</md-input-container>
+		</div>
+		<span flex="10"> <md-button class="md-icon-button"
+				ng-click="addNewEntry()" layout-align="end end"> <md-tooltip>
+			Add Entry</md-tooltip> <md-icon
+				md-svg-icon="img/icons/ic_add_black_24px.svg" aria-label="Add New"></md-icon>
+			</md-button>
+
+		</span>
+	</form>
+</div>
+{{msg}}
+<div layout="row" layout-align="center center" layout-xs="column">
+
+	<md-button class="md-raised md-primary" ng-click="addGFBookStock()"
+		ng-disabled="gfBookStockForm.$invalid">Add </md-button>
+
+	<md-button class="md-raised " ng-click="back()">Cancel</md-button>
+
+</div>
+
+
+
+
+

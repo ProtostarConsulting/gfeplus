@@ -1,0 +1,57 @@
+
+<md-content layout-padding>
+<form name="ChangePlan">
+
+
+	<div layout layout-xs="column">
+		<md-input-container flex> <b>Your current
+			Account Type :-</b>{{curUser.instituteObj.accounttype.accountName +" (plan :
+		"+curUser.instituteObj.accounttype.paymentDesc+")"}} </md-input-container>
+	</div>
+	<div layout layout-xs="column">
+		<md-input-container flex> <b>Note:-</b>Change Your Paln lower to higher if you want to change higher to lower 
+		contact to help desk <a target="_blank" href="http://www.protostarcs.com/">http://www.protostarcs.com/</a> </md-input-container>
+	</div>
+
+
+<!-- 	<div layout layout-xs="column">
+		<md-input-container>
+		<b>Change Account Type :-</b></md-input-container>
+		<md-input-container flex> <md-select
+				ng-model="accountName" name="account"
+				placeholder="Account Name"
+				ng-required="true"> <md-option ng-value="{{account.accountName}}" 
+				ng-repeat="account in accountTypes" >{{account.accountName}} ( {{account.description}} )</md-option>
+			</md-select>
+			</md-input-container>
+
+	</div>
+	
+	 -->
+	<div layout layout-xs="column">
+		<md-input-container>
+		<b>Change Account Type :-</b></md-input-container>
+		<md-input-container layout="center center" flex>
+		<md-select name="selectedaccount" placeholder="Select Account Type"
+			ng-model="accounttype" ng-required="true"> <md-option
+			value={{list.id}}
+			ng-repeat="list in accountTypes | orderBy: 'maxuser'">
+		{{list.accountName}} ( {{list.description}} ) {{" (plan :
+		"+curUser.instituteObj.accounttype.paymentDesc+")"}} </md-option> </md-select>
+		<div ng-messages="ChangePlan.selectedaccount.$error"
+			ng-if="ChangePlan.selectedaccount.$submitted || ChangePlan.selectedaccount.$touched">
+			<div ng-message="required" style="color: red;">select Account
+				Type.</div>
+		</div>
+		</md-input-container>
+
+	</div>
+	
+	<section layout="row" layout-sm="column" layout-align="left left">
+		<md-button class="md-raised md-primary"
+			ng-disabled="ChangePlan.$invalid" ng-click="updatePlan()">Update
+		Plan</md-button>
+
+	</section>
+</form>
+</md-content>

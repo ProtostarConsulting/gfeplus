@@ -1,0 +1,87 @@
+<h3 class="md-headline">Attendance Section</h3>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+
+<div layout="column" layout-padding>
+	
+		<form name="attendanceAddForm" ng-model="attendanceAddForm">
+			
+			<div layout="row" layout-align="end start">
+				<h4>
+					<b>{{date | date:'yyyy-MM-dd'}}</b>
+				</h4>
+			</div>
+
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+
+			<div layout="column">
+				<md-input-container> <label>Standard<span
+					style="color: red"
+					ng-show="attendanceAddForm.standard.$error.required"
+					class="mandatory">*</span></label> <md-select name="standard"
+					ng-model="selectedStandard" ng-change="getDivisionByStandard()"
+					ng-required="true"> <md-option ng-value="standard"
+					ng-repeat="standard in standards">{{standard}}</md-option> </md-select>
+				<div ng-messages="attendanceAddForm.standard.$error"
+					ng-if="attendanceAddForm.standard.$submitted || attendanceAddForm.standard.$touched">
+					<div ng-message="required">Please Select Standard.</div>
+				</div>
+				</md-input-container>
+
+				<md-input-container> <label>Division<span
+					style="color: red"
+					ng-show="attendanceAddForm.division.$error.required"
+					class="mandatory">*</span></label> <md-select name="division"
+					ng-model="selectedDivision" ng-change="getSubjectByDivision()"
+					ng-required="true"> <md-option ng-value="division"
+					ng-repeat="division in divisions">{{division}}</md-option> </md-select>
+				<div ng-messages="attendanceAddForm.division.$error"
+					ng-if="attendanceAddForm.division.$submitted || attendanceAddForm.division.$touched">
+					<div ng-message="required">Please Select Division.</div>
+				</div>
+				</md-input-container>
+
+				<md-input-container> <label>Subject<span
+					style="color: red"
+					ng-show="attendanceAddForm.subject.$error.required"
+					class="mandatory">*</span></label> <md-select name="subject"
+					ng-model="selectedSubject" ng-change="getStudentBySubject()"
+					ng-required="true"> <md-option ng-value="subject"
+					ng-repeat="subject in subjects track by $index">{{subject}}</md-option> </md-select>
+				<div ng-messages="attendanceAddForm.subject.$error"
+					ng-if="attendanceAddForm.subject.$submitted || attendanceAddForm.subject.$touched">
+					<div ng-message="required">Please Select Subject.</div>
+				</div>
+				</md-input-container>
+			</div>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+
+	
+			<div layout="row" layout-sm="column" layout-align="center center" layout-wrap flex>
+				<md-button
+					ng-repeat="attendanceRecord in attendanceRecordList track by $index"
+					type="button" class="md-raised md-primary" ng-model="selectedStud"
+					ng-click="toggleAttendance($index)">{{attendanceRecord.firstName}} {{attendanceRecord.lastName}}</md-button>
+
+			</div>
+			
+	
+
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			
+
+			<div layout="row" layout-align="center center" layout-sm="column">
+				<md-button class="md-raised md-primary"
+					ng-disabled="attendanceAddForm.$invalid"
+					ng-click="submitAttendance()">Save Attendance</md-button>
+				<md-button class="md-raised" ng-click="cancel()">Cancel</md-button>
+			</div>
+			
+			
+
+		</form>
+
+</div>

@@ -1,0 +1,42 @@
+
+
+<div layout="column" layout-align="centre centre" layout-xs="column" flex="50">
+
+	<md-input-container> <label>Select
+		Role</label> <md-select ng-model="role" placeholder="User role" ng-change="getAuthorityByRole()">
+	<md-option>Admin</md-option> <md-option>Student</md-option> <md-option>Teacher</md-option>
+	</md-select> </md-input-container>
+
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div layout="row" layout-wrap flex>
+            <div flex="50" ng-repeat="item in moduleList">
+              <md-checkbox ng-model="chkValues" ng-checked="selection[$index]"  ng-click="toggleSelection($index)">
+                {{ item }}
+              </md-checkbox>
+            </div>
+          </div>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div layout="column" layout-align="centre centre" layout-xs="column">
+	<div flex="50" ng-repeat="item in newList">
+		<md-checkbox ng-true-value="'modules'">{{item}} </md-checkbox>
+	</div>
+
+</div>
+
+<p>&nbsp;</p>
+
+<div layout="row" layout-align="center center">
+
+	<md-button class="md-raised md-primary" ng-click="UpdateRoleSec(selection)">Update</md-button>
+		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+</div>
+
+
+

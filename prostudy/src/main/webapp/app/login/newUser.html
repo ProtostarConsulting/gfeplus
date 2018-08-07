@@ -1,0 +1,88 @@
+
+		<div layout-align="centre centre">
+		
+			<md-whiteframe class="md-whiteframe-9dp" flex="30" layout layout-align="center center">
+		 	 <span>
+				
+				<div layout="row" layout-align="center center">
+				<div layout="column" layout-align="center center">
+					
+					<md-input-container flex>
+      				<label>First Name</label>
+      				<input ng-model="tempUser.firstName">
+    				</md-input-container>
+    				
+    				<md-input-container flex>
+    				<label>Last Name</label>
+      				<input ng-model="tempUser.lastName">
+    				</md-input-container>
+    				
+    				<md-input-container flex>
+      				<label>User Name</label>
+      				<input ng-model="tempUser.userName">
+    				</md-input-container>
+    				
+    				<md-input-container flex>
+      				<label>Email-Id</label>
+      				<input ng-model="tempUser.email_id">
+    				</md-input-container>
+    			</div>
+    				    				
+    			<div layout="column" layout-align="center center">
+    				<md-input-container flex>
+      				<label>Address</label>
+      				<input ng-model="tempUser.address">
+    				</md-input-container>
+    				
+    				<md-input-container flex>
+      				<label>Contact</label>
+      				<input ng-model="tempUser.contact">
+    				</md-input-container>
+    				
+    				
+    				<md-input-container>
+      				<label>Password</label>
+     				<input ng-model="tempUser.pwd1" type="password">
+    				</md-input-container>
+    				
+    				<md-input-container>
+      				<label>Confirm Password</label>
+     				<input ng-model="tempUser.pwd" type="password">
+    				</md-input-container>
+    				
+    			</div>
+    			</div>
+    			
+    			<div layout="column" layout-align="center center">
+    				<md-input-container flex> <md-select ng-model="tempUser.gender" placeholder="Gender">
+					<md-option>Male</md-option>
+					<md-option>Female</md-option>
+					</md-select> </md-input-container>
+				</div>
+    				
+    				<md-input-container flex> <md-select ng-model="tempUser.instituteName" placeholder="Institute">
+					<md-option ng-value="instituteName" ng-repeat="instituteName in institutes">{{instituteName.name}}</md-option>
+					</md-select> </md-input-container> 
+    				
+    				<!-- <md-input-container flex> <md-select ng-model="tempUser.role" placeholder="User role">
+					<md-option >Admin</md-option>
+					<md-option >Student</md-option>
+					<md-option >Teacher</md-option>
+					</md-select> </md-input-container> -->
+					
+		 			 <div layout="row" layout-align="center end">
+			 		 <md-button class="md-raised md-primary" ng-click="addUser()">Register</md-button> 
+			 		 </div>
+			 		 
+			 		 </md-card-content>
+			 </span>
+		 	</md-whiteframe>
+		 	
+		 	
+		 	
+		 </div>
+		 
+		 
+
+
+

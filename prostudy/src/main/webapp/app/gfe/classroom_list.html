@@ -1,0 +1,203 @@
+<md-content ng-show="loading">
+<h4 class="md-title">Loading...Please wait...</h4>
+<md-progress-linear class="md-warn" md-mode="buffer" value="30"
+	md-buffer-value="70" ng-disabled="false"></md-progress-linear> </md-content>	
+<md-content ng-hide="loading"> <!-- <md-data-table-toolbar
+	ng-show="!selected.length">
+<h3 class="md-headline">Courses List</h3>
+</md-data-table-toolbar> --> <!-- <section layout="row" layout-align="end end" flex>
+	<md-button ng-show="courseList.length > 0" class="md-raised md-primary"
+		id="downloadExcel" ng-click="downloadCourseList()">Download
+	CourseList <md-tooltip> Download CourseList</md-tooltip> </md-button>
+
+	<md-button class="md-raised md-primary" id="uplodeExcel" ng-click="">Upload
+	CourseList<md-tooltip> Upload CourseList</md-tooltip> </md-button>
+</section> -->
+<div layout="row" layout-align="centre centre" layout-xs="column">
+	<md-input-container flex> <label>Search
+		Course By Name</label> <input ng-model="searchName"
+		ng-model-options="{ debounce: 2000 }"> </md-input-container>
+	<md-input-container flex> <label>Search
+		Course By Teacher Name</label> <input ng-model="searchTeacherName"
+		ng-model-options="{ debounce: 2000 }"> </md-input-container>
+
+	<md-input-container flex> <label>Course
+		State</label> <md-select ng-model="courseState"
+		ng-change="selectedCourseList()"> <md-option
+		ng-value="courseState" ng-repeat="courseState in courseStateList">{{courseState}}</md-option>
+	</md-select> </md-input-container>
+</div>
+<!-- <md-data-table-toolbar class="alternate" ng-show="selected.length">
+	<div>{{selected.length}} {{selected.length > 1 ? 'Courses' :
+		'Course'}} selected. {{selected.length>1?' Please select only one course to see action buttons.': ''}}</div>
+	</md-data-table-toolbar> -->
+
+<div style="padding-top: 10px;">
+	<md-toolbar class="md-table-toolbar md-default"
+		ng-hide="selected.length">
+	<div class="md-toolbar-tools">
+		<span>Course List</span>
+		<div flex></div>
+		<md-button class="md-icon-button" id="uplodeExcel"
+			ui-sref="gfe.classroomNewCourse"> <ng-md-icon
+			icon=add_circle style="fill: md-default" size="24"> <md-tooltip>Add
+		New Course</md-tooltip></ng-md-icon></md-button>
+		<md-button class="md-icon-button" id="uplodeExcel"
+			ng-click="UplodeExcel($event)"> <ng-md-icon
+			icon="file_upload" style="fill: md-default" size="24"> <md-tooltip>Upload
+		Course List</md-tooltip></ng-md-icon></md-button>
+		<md-button class="md-icon-button" id="refreshIcon"
+			ng-click="listCourses(true)"> <ng-md-icon icon="refresh"
+			style="fill: md-default" size="24"> <md-tooltip>Refresh
+		List</md-tooltip></ng-md-icon></md-button>
+	</div>
+	</md-toolbar>
+</div>
+
+<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
+<div class="md-toolbar-tools">
+	<span>{{selected.length}} {{selected.length > 1 ? 'Courses' :
+		'Course'}} selected.</span>
+</div>
+</md-toolbar> <md-data-table-container>
+<table md-data-table class="md-primary" md-row-select="selected"
+	md-progress="deferred">
+	<thead md-order="query.order" md-trigger="onorderchange">
+		<tr>
+			<th order-by="name" name="Name" unit=""></th>
+			<th order-by="section" name="Section"></th>
+			<!-- <th name="Teachers" order-by="teachers"></th> -->
+			<th order-by="courseState" name="CourseState"></th>
+			<th order-by="enrollmentCode" name="Enrollment Code"></th>
+			<th order-by="creationTime" name="Created Date"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr md-auto-select
+			ng-repeat="course in courseList  | orderBy: query.order | filter: {name: searchName} | filter: {teachers: searchTeacherName}| limitTo: query.limit: (query.page - 1) * query.limit">
+
+			<td>{{course.name}}</td>
+			<td>{{course.section}}</td>
+			<!-- <td ng-show="!loadingTeacher">{{course.teachers}}</td>
+			<td ng-show="loadingTeacher"><md-progress-circular
+					ng-disabled="false" class="md-hue-2" md-diameter="20px"></md-progress-circular></td> -->
+			<td>{{course.courseState}}</td>
+			<td>{{course.enrollmentCode}}</td>
+			<td>{{course.creationTime | formatDate}}</td>
+			<td><md-menu section="row" md-offset="0 -7"> <md-button
+					aria-label="Open Menu" class="md-icon-button"
+					ng-click="$mdOpenMenu($event)"> <md-icon md-menu-origin
+					md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button> <md-menu-content
+					width="2"> <md-menu-item> <md-button
+					class="md-icon-button"
+					ui-sref="gfe.classroomCourseView({selectedCourse: course})">
+				<ng-md-icon icon="pageview" style="fill: md-default" size="20">
+				<md-tooltip> View Course</md-tooltip></ng-md-icon></md-button> <md-button
+					class="md-icon-button"
+					ui-sref="gfe.classroomCourseEdit({selectedCourse: course})">
+				<ng-md-icon icon="edit" style="fill: md-default" size="20">
+				<md-tooltip> Edit Course</md-tooltip></ng-md-icon></md-button> <md-button
+					class="md-icon-button" ng-click="splitUrl(course.alternateLink)"
+					ng-href="https://classroom.google.com/calendar/this-week/course/{{courseCalendarId[1]}}"
+					target="_blank"> <md-icon
+					md-svg-src="/img/icons/calendar.svg" style="fill: md-default"
+					size="20" aria-label="Course Calendar"> <md-tooltip>
+				View Course Calendar</md-tooltip></md-icon> </md-button> <md-button class="md-icon-button"
+					ng-href="{{course.alternateLink}}" target="_blank"> <ng-md-icon
+					icon="exit_to_app" style="fill: md-default" size="20">
+				<md-tooltip> Goto Actual Classroom Page</md-tooltip></ng-md-icon></md-button> <md-button
+					class="md-icon-button"
+					ui-sref="gfe.classroomCourseUserList({selectedCourseId: course.id, userType : 'Teacher',courseName:course.name})">
+				<ng-md-icon icon="perm_identity" style="fill: md-default" size="20">
+				<md-tooltip> View Teacher</md-tooltip></ng-md-icon></md-button> <md-button
+					class="md-icon-button"
+					ui-sref="gfe.classroomCourseAddNewUser({selectedCourseId: course.id, userType : 'Teacher',courseName:course.name})">
+				<ng-md-icon icon="person_add" style="fill: md-default" size="20">
+				<md-tooltip> Add Class Teacher</md-tooltip></ng-md-icon></md-button> <md-button
+					class="md-icon-button"
+					ui-sref="gfe.classroomCourseUserList({selectedCourseId: course.id, userType: 'Student',courseName:course.name})">
+				<ng-md-icon icon="group" style="fill: md-default" size="20">
+				<md-tooltip> View Class Student</md-tooltip></ng-md-icon></md-button> <md-button
+					class="md-icon-button"
+					ui-sref="gfe.classroomCourseAddNewUser({selectedCourseId: course.id, userType : 'Student',courseName:course.name})">
+				<ng-md-icon icon="group_add" style="fill: md-default" size="20">
+				<md-tooltip> Add Class Student</md-tooltip></ng-md-icon></md-button> <md-button
+					class="md-icon-button" ng-show="course.courseState==='ACTIVE'"
+					ng-click="changeCourseState('ARCHIVED',$event,course)">
+				<ng-md-icon icon="archive" style="fill: md-default" size="20">
+				<md-tooltip> Archive Course</md-tooltip></ng-md-icon></md-button> <!-- <md-button
+					class="md-icon-button" ng-show="course.courseState==='ARCHIVED'"
+					ng-click="changeCourseState('ACTIVE',$event,course)"> <md-icon
+					md-svg-src="/img/icons/unarchive_48px.svg" style="fill: md-default"
+					size="20" aria-label="Active Course"> <md-tooltip>
+				Active Course</md-tooltip></md-icon></md-button> --> <md-button
+					class="md-icon-button" ng-click="deleteCourse(course,$event)">
+				<ng-md-icon icon="delete" style="fill: md-default" size="20">
+				<md-tooltip> Delete Course</md-tooltip></ng-md-icon></md-button></md-menu-item></md-menu-content> </md-menu></td>
+		</tr>
+	</tbody>
+</table>
+</md-data-table-container> <md-data-table-pagination md-limit="query.limit" md-page="query.page"
+	md-total={{courseList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+</div>
+</div>
+
+
+<!-- <div ng-show="selected.length == 1">
+
+	<div layout="row" layout-align="centre centre" layout-xs="column">
+		<md-button
+			ui-sref="gfe.classroomCourseView({selectedCourse: selected[0]})"
+			class="md-raised md-primary"> View Course </md-button>
+		<md-button
+			ui-sref="gfe.classroomCourseEdit({selectedCourse: selected[0]})"
+			class="md-raised md-primary">Edit Course </md-button>
+
+		<md-button class="md-raised md-primary"
+			ng-show="selected[0].courseState=='ARCHIVED'"
+			ng-click="changeCourseState('ACTIVE',$event)">Course
+		ACTIVE </md-button>
+
+		<md-button class="md-raised md-warn"
+			ng-show="selected[0].courseState==='ACTIVE'"
+			ng-click="changeCourseState('ARCHIVED',$event)"> ARCHIVE
+		Course</md-button>
+
+		<md-button class="md-raised md-warn"
+			ng-click="deleteCourse(selected[0],$event)"> Delete
+		Course </md-button>
+
+		<md-button class="md-raised md-primary"
+			ng-href="{{selected[0].alternateLink}}" target="_blank">Goto
+		Actual Classroom Page</md-button>
+	</div>
+	<div layout="row" layout-align="centre centre" layout-xs="column">
+		<md-button
+			ui-sref="gfe.classroomCourseAddNewUser({selectedCourseId: selected[0].id, userType : 'Teacher',courseName:selected[0].name})"
+			class="md-raised md-primary"> Add Class Teacher </md-button>
+		<md-button
+			ui-sref="gfe.classroomCourseAddNewUser({selectedCourseId: selected[0].id, userType : 'Student',courseName:selected[0].name})"
+			class="md-raised md-primary"> Add Class Student </md-button>
+
+		<md-button
+			ui-sref="gfe.classroomCourseUserList({selectedCourseId: selected[0].id, userType : 'Teacher',courseName:selected[0].name})"
+			class="md-raised md-primary"> View Class Teachers </md-button>
+		<md-button
+			ui-sref="gfe.classroomCourseUserList({selectedCourseId: selected[0].id, userType: 'Student',courseName:selected[0].name})"
+			class="md-raised md-primary"> View Class Students </md-button>
+	</div>
+</div> -->
+
+<div ng-show="selected.length > 1">
+	<md-button class="md-raised md-warn"
+		ng-show="selected[0].courseState==='ACTIVE'"
+		ng-click="changeCourseState('ARCHIVED',$event)"> ARCHIVE
+	Courses</md-button>
+	<!-- <md-button class="md-raised md-warn"
+		ng-show="selected[0].courseState==='ARCHIVED'"
+		ng-click="changeCourseState('ACTIVE',$event)"> Active
+	Courses</md-button> -->
+	<md-button class="md-raised md-warn"
+		ng-click="deleteCourse(selected,$event)"> Delete Courses </md-button>
+</div>
+</md-content>

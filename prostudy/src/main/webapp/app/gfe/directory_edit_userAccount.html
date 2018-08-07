@@ -1,0 +1,55 @@
+<div ng-show="updating">Please wait, updating details...</div>
+<div ng-hide="loading">
+
+<h3 class="md-headline">Edit User Account</h3>
+<p>&nbsp;</p>
+
+
+<form name="editUserAccountForm" ng-model="editUserAccountForm">
+
+	<div layout="column" layout-align="" layout-xs="column">
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+
+			<md-input-container flex> <label>First Name </label> <input name="givenName" id="givenName" ng-model="selectedUser.name.givenName"
+				ng-required="true">
+				<div ng-messages="editUserAccountForm.givenName.$error"
+				ng-if="editUserAccountForm.givenName.$submitted || editUserAccountForm.givenName.$touched">
+				<div ng-message="required">Please Enter Your First Name.</div>
+			</div> </md-input-container>
+			
+			<md-input-container flex> <label>Last Name </label> <input name="familyName" id="familyName" ng-model="selectedUser.name.familyName"
+				ng-required="true">
+				<div ng-messages="editUserAccountForm.familyName.$error"
+				ng-if="editUserAccountForm.familyName.$submitted || editUserAccountForm.familyName.$touched">
+				<div ng-message="required">Please Enter Your Last Name.</div>
+			</div> </md-input-container>
+
+			
+		</div>
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+		<md-input-container flex> <label> Primary Email-id<span
+			style="color: red"
+			ng-show="editUserAccountForm.primaryEmail.$error.required"
+			class="mandatory">*</span></label> <input type="email" name="primaryEmail"
+			ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+			ng-model="selectedUser.primaryEmail"			
+			ng-required="true">
+		<div ng-messages="editUserAccountForm.primaryEmail.$error"
+			ng-if="editUserAccountForm.primaryEmail.$submitted || editUserAccountForm.primaryEmail.$touched">
+			<div ng-message="required">Email-Id should not Empty.</div>
+			<div ng-message="pattern">Please Enter Valid Email-Id.</div>
+		</div>	</md-input-container>
+		
+			
+		</div>	
+
+	<div layout="row" layout-align="center center">
+		<md-button class="md-raised md-primary" ng-click="updateUser()" ng-disabled="editUserAccountForm.$invalid">Update User Account </md-button>
+		<md-button class="md-raised md-accent" ng-click="cancelButton()">
+			Cancel </md-button>
+
+	</div>
+
+</form>
+

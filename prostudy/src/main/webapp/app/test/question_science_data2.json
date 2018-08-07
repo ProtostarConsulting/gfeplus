@@ -1,0 +1,132 @@
+{"items":
+                      [                 
+                          {
+                            	"description" : "Ability to do work is called",
+								"note" : "Hint: select only one option",
+								"questionId" : 1,
+								"option1" : 	"Force",
+								"option2" : "Motion",
+								"option3" : "Energy",
+								"option4" : "Power",
+								"correctAns" : 1
+							}, {
+								"description" : "Which of the following device do not require electric current for working?",
+								"note" : "Hint: select only one option",
+								"questionId" : 2,
+								"option1" : "Television",
+								"option2" : "Fan",
+								"option3" : 	"CD player",
+								"option4" : "Funnel",
+								"correctAns" : 1
+							}, {
+								"description" : "A simple machine is",
+								"note" : "Hint: select only one option",
+								"questionId" : 3,
+								"option1" : "Force of attraction",
+								"option2" : "A tool with moving parts",
+								"option3" : "Tools that makes work easier",
+								"option4" : "The measurement",
+								"correctAns" : 1
+
+							}, {
+	                         	"description" : "Which of the following is not a source of energy?",
+								"note" : "Hint: select only one option",
+								"questionId" : 4,
+								"option1" : "Wood",
+								"option2" : "Petrol",
+								"option3" : "Coal",
+								"option4" : "Stone",
+								"correctAns" : 1
+							},{
+								"description" : "S.I unit of work is",
+								"note" : "Hint: select only one option",
+								"questionId" : 5,
+								"option1" : "Newton",
+								"option2" : "Calories",
+								"option3" : "Joule",
+								"option4" : "Newton",
+								"correctAns" : 1
+							}, {
+								"description" : "A push or pull on an object is called",
+								"note" : "Hint: select only one option",
+								"questionId" : 6,
+								"option1" : "Pressure",
+								"option2" : "Gravitation",
+								"option3" : "Force",
+								"option4" : "Push-pull",
+								"correctAns" : 1
+							}, {
+	                         	"description" : "The energy present in food items we consume is",
+								"note" : "Hint: select only one option",
+								"questionId" : 7,
+								"option1" : "Gravitational energy",
+								"option2" : "Muscular energy",
+								"option3" : "Light energy",
+								"option4" : "Chemical energy",
+								"correctAns" : 1
+							}, {
+								"description" : "A vehicle stops on applying brakes because",
+								"note" : "Hint: select only one option",
+								"questionId" : 8,
+								"option1" : "Brakes apply a force in same direction",
+								"option2" : "Brakes increase the mass",
+								"option3" : "Brakes increase the acceleration",
+								"option4" : "Brakes apply a force in opposite direction",
+								"correctAns" : 1
+							} , {
+								"description" : "A body can not start moving or stop moving without",
+								"note" : "Hint: select only one option",
+								"questionId" : 9,
+								"option1" : "Pressure",
+								"option2" : "Temperature",
+								"option3" : "Gravity",
+								"option4" : "Force",
+								"correctAns" : 1
+							} , {
+								"description" : "Main difference between animal cell and plant cell is",
+								"note" : "Hint: select only one option",
+								"questionId" : 10,
+								"option1" : "Respiration",
+								"option2" : "Movement",
+								"option3" : "Growth",
+								"option4" : "Nutrition",
+								"correctAns" : 1
+							} , {
+								"description" : "Work done is equal to product of force and.",
+								"note" : "Hint: select only one option",
+								"questionId" : 11,
+								"option1" : "Weight",
+								"option2" : "Displacement",
+								"option3" : "Mass",
+								"option4" : "Energy",
+								"correctAns" : 1
+							} , {	
+								"description" : "The force responsible for keeping moon moving around Sun is?",
+								"note" : "Hint: select only one option",
+								"questionId" : 12,
+								"option1" : "chromoplast",
+								"option2" : "Leucoplast",
+								"option3" : "Plastid",
+								"option4" : "Chloroplast",
+								"correctAns" : 1
+							}  , {
+								"description" : "A force which opposes the motion is called",
+								"note" : "Hint: select only one option",
+								"questionId" : 13,
+								"option1" : "Neither statement A nor statement B.",
+								"option2" : "Statement B",
+								"option3" : "Both the statement A and B",
+								"option4" : "Statement A",
+								"correctAns" : 1
+							} , {
+								"description" : "Same force produces more pressure on.",
+								"note" : "Hint: select only one option",
+								"questionId" : 14,
+								"option1" : "Root tips permanent tissue",
+								"option2" : "Mycoplasma gallisepticum is the smallest cell among the unicellular organismsp",
+								"option3" : "Tonoplast is the membrane surrounding vacuole",
+								"option4" : "Acetabularia measures nearly 10 cm in height.",
+								"correctAns" : 1
+							} ]
+					
+	}

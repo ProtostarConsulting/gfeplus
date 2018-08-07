@@ -1,0 +1,47 @@
+<h3 class="md-headline">Add {{userType}} to {{courseName}}</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<form name="newUserForm" ng-model="newUserForm">
+
+	<div layout="column" layout-align="" layout-xs="column">
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+			<md-input-container flex> <label>Course Name</label>
+			<input name="courseName" id="courseName"
+				ng-model="courseName" ng-required="true" readonly> </md-input-container>
+		</div>
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+
+			<md-autocomplete flex required="true"
+				md-input-name="autocompleteField" md-input-minlength="1"
+				md-input-maxlength="25" md-no-cache=true
+				md-selected-item="profile.emailAddress" md-search-text="searchText"
+				md-items="item in querySearch(searchText)" md-item-text="item"
+				md-floating-label="Select EmailId of Classroom User">
+			<md-item-template> <span
+				md-highlight-text="searchText">{{item}}</span> </md-item-template>
+
+			<div ng-messages="newUserForm.autocompleteField.$error"
+				ng-if="newUserForm.autocompleteField.$submitted || newUserForm.autocompleteField.$touched">
+				<div ng-message="required">Please Select User EmailId.</div>
+				<div ng-message="minlength">Your entry is not long enough.</div>
+				<div ng-message="maxlength">Your entry is too long.</div>
+			</div>
+			</md-autocomplete>		
+			
+		</div>
+
+		<div layout="row" layout-align="center center">
+			<md-button ng-show="userType==='Teacher'"
+				class="md-raised md-primary" ng-click="createTeacher()"
+				ng-disabled="newUserForm.$invalid">Add Teacher </md-button>
+			<md-button ng-show="userType==='Student'"
+				class="md-raised md-primary" ng-click="createStudent()"
+				ng-disabled="newUserForm.$invalid">Add Student </md-button>
+			<md-button class="md-raised md-accent" ng-click="cancelButton()()">
+			Cancel </md-button>
+		</div>
+</form>
+

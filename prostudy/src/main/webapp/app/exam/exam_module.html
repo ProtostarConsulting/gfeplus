@@ -1,0 +1,79 @@
+<div layout="column">
+	<!-- <section layout="row">
+		<div class="md-toolbar-tools">
+			<span flex></span>
+
+			<section layout="row">
+
+				<div hide-sm layout="row" layout-align="end start">
+					<md-button aria-label="Open Settings" ng-click="toggleRight()">
+						<ng-md-icon icon="more_vert"></ng-md-icon>
+					</md-button>
+				</div>
+			</section>
+		</div>
+	</section> -->
+	<div ui-view>
+
+		<div layout="column" layout-align="start start">
+		
+			<md-button ui-sref="exam.addnewquestion" ng-click="close()" 
+			class="md-primary">
+				Add New Question
+			</md-button>
+			
+			<md-button ui-sref="exam.questionlist" ng-click="close()" 
+			class="md-primary">
+				Questions List
+			</md-button>
+
+			<md-button ui-sref="exam.addpracticeexam" ng-click="close()" 
+			class="md-primary">
+				Add Practice Exam
+			</md-button>
+			
+			<md-button ui-sref="exam.listpracticeexam" ng-click="close()" 
+			class="md-primary">
+				List of Practice Exam
+			</md-button>
+
+		</div>
+	</div>
+
+	<md-sidenav class="md-sidenav-right md-whiteframe-z2"
+	md-component-id="right">
+		<md-toolbar class="md-theme-light">
+			<h1 class="md-toolbar-tools">Exam Page Sub Menu</h1>
+
+		</md-toolbar>
+		<md-content layout-padding>
+			<md-button ng-click="close()" class="md-primary">
+				Close Sidenav Right
+			</md-button>
+
+			<div layout="column" layout-align="start start">
+			<md-button ui-sref="exam.addnewquestion" ng-click="close()"
+			class="md-primary">
+				Add New Question
+			</md-button>
+
+			<md-button ui-sref="exam.questionlist" ng-click="close()"
+			class="md-primary">
+				Questions List
+			</md-button>
+
+			<md-button ui-sref="exam.addpracticeexam" ng-click="close()"
+			class="md-primary">
+				Add Practice Exam
+			</md-button>
+
+			<md-button ui-sref="exam.listpracticeexam" ng-click="close()"
+			class="md-primary">
+				List of Practice Exam
+			</md-button>
+
+			</div>
+
+		</md-content>
+	</md-sidenav>
+</div>

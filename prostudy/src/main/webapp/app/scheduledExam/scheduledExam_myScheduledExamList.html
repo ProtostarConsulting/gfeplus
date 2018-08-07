@@ -1,0 +1,56 @@
+<h3 class="md-headline">My Scheduled Exam List</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+<div>
+	<md-input-container flex> <label>Search By
+		Exam Title</label> <input ng-model="searchCategory"> </md-input-container>
+</div>
+
+<div layout="column">
+	<md-data-table-container>
+	<table md-data-table md-row-select="selected" md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+
+				<th order-by="examtitle" name="Exam Title"></th>
+				<th order-by="desc" name="desc"></th>
+				<th order-by="startdatentime" name="Start Date And Time"></th>
+				<th order-by="enddatentime" name="End Date And Time"></th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr md-auto-select
+				ng-repeat="exam in scheduledExams | orderBy: query.order | filter: {examtitle: searchCategory} | limitTo: query.limit: (query.page - 1) * query.limit">
+
+				<td>{{exam.examtitle}}</td>
+				<td>{{exam.desc}}</td>
+				<td>{{exam.startdatentime | formatDate}}</td>
+				<td>{{exam.enddatentime | formatDate}}</td>	
+
+			</tr>
+		</tbody>
+	</table>
+
+	</md-data-table-container>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{scheduledExams.length}} md-trigger="onpagechange"></md-data-table-pagination>	
+		
+		<div layout="row" layout-align="center center">
+
+		<a
+			ui-sref="scheduledExam.userQuesAnsView({selectedEmailId: curUser.email_id,selectedExamId:selected[0].id})"><md-button
+				ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+				ng-click=""> <md-icon md-svg-src="img/icons/view.svg"></md-icon>
+			<md-tooltip>View Result</md-tooltip></md-button> </a>
+
+	</div>
+			
+
+	</div>
+
+	
+</div>
+

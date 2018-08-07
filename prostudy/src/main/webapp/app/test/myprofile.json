@@ -1,0 +1,25 @@
+{ 
+    "items":
+                      [                 
+                         {
+								"firstName" : "sandip",
+					            "lastName" : "patil",
+					            "mobileNo" : 9404257877,
+					            "email" : "rpatilsandip@gmail.com",
+					            "address" : "puna"
+						 },{
+								"firstName" : "ganesh",
+					            "lastName" : "lawande",
+					            "mobileNo" : 7896541230,
+					            "email" : "ganesh@gmail.com",
+					            "address" : "puna"
+						 },{
+								"firstName" : "aniket",
+					            "lastName" : "bhalsing",
+					            "mobileNo" : 9632587410,
+					            "email" : "aniket@gmail.com",
+					            "address" : "puna"
+						 }
+					  ]
+					
+	}

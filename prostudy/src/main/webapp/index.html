@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="prostudyAppWebsite" ng-controller="indexCtr">
+<head>
+<title>Google for Education Plus</title>
+<meta name="viewport" content="initial-scale=1" />
+
+<!--end send mail  -->
+<link rel="stylesheet" href="/lib/base/css/angular-material.min.css">
+<link rel="stylesheet" href="/lib/base/css/googleapi.roboto.css">
+<link rel="stylesheet" href="/lib/base/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+</head>
+<body layout="column" ng-cloak md-theme="default" md-theme-watch="true"
+	layout="column">
+	<md-content flex-gt-xs style="padding-left: 18px; padding-right: 18px;">
+	<md-subheader>
+	<section layout="row" style="margin-top: 15px;" flex-gt-xs>
+		<div class="md-toolbar-tools">
+			<h3 hide-xs style="margin-left: 12px;">Google for Education Plus</h3>
+			<h3 hide-gt-xs>Google for Education Plus</h3>
+			<span flex></span>
+			<section layout="row" layout-padding hide-xs>
+				<md-button class="md-primary" ng-click="gotoPart('classroom')">Google
+				Classroom Dashboard</md-button>
+				<!-- <md-button class="md-accent" ng-click="gotoPart('infoBrouchure')">Information
+				Brouchure</md-button> -->
+				<md-button class="md-primary" ng-click="gotoPart('userDirectory')">Google
+				User Directory</md-button>
+				<md-button class="md-accent" ng-click="loginClick()">
+				Login</md-button>
+				<!-- <md-button class="md-accent" ng-click="gotoPart('part3')">Help</md-button>-->
+		</div>
+		<span flex></span>
+		<md-button class="md-icon-button" aria-label="More" hide-gt-xs
+			ng-click="toggleRight()" style="margin-top: 8px;"> <md-icon
+			md-svg-icon="img/icons/more_vert.svg"></md-icon> </md-button>
+		</div>
+	</section>
+	<hr>
+	</md-subheader> <md-sidenav class="md-sidenav-right md-whiteframe-z2"
+		md-component-id="right"> <md-toolbar layout-padding>
+	<md-button class="md-accent" ng-click="gotoPart('classroom')">Google
+	Classroom Dashboard</md-button> <!-- <md-button class="md-accent" ng-click="gotoPart('infoBrouchure')">Information
+	Brouchure</md-button> --> <md-button class="md-accent" ng-click="gotoPart('userDirectory')">Google
+	User Directory</md-button> <md-button class="md-accent" ng-click="loginClick()">
+	Login</md-button> </md-toolbar> <md-content layout-padding></md-content> </md-sidenav>
+	<div hide-xs layout-wrap id="tp1">
+		<img ng-src="/img/images/virtual-classroom.jpg" height="550px"
+			width="100%" />
+	</div>
+	<md-content id="classroom" flex-gt-xs layout="column"
+		style="padding-top: 5%;"> <md-toolbar class="md-hue-2">
+	<div class="md-toolbar-tools">
+		<h3 class="md-display-1">About GVSP</h3>
+	</div>
+	</md-toolbar> <md-content class="md-padding">
+	<p align="left">Following are the key features of Google Classroom
+		Dashboard :</p>
+	<ul type="disc">
+		<li>Google Classroom Dashboard show the all courses availble in
+			your school. You can add, edit and view all courses.</li>
+		<li>From Google Classroom Dashboard you can add and view the
+			teachers associated to particular courses and you can delete teacher
+			from courses.</li>
+		<li>From Google Classroom Dashboard you can add multiple courses
+			and teacher, co teachers by uploading data using CSV.</li>
+		<li>From Google Classroom Dashboard you can archive and delete
+			one or more courses.</li>
+		<li>From Google Classroom Dashboard you can add and view the
+			student associated to particular courses and you can delete student
+			from courses.</li>
+		<li>From Google Classroom Dashboard student can goto to classroom
+			see the assignment given to them by teachers.</li>
+		<li>From Google Classroom Dashboard student can see the course
+			calendar which shows the assignment and work in current week.</li>
+		<li>From Google Classroom Dashboard teacher can make annoucement
+			regarding exam, submissions and create questions set for students.</li>
+		<li>From Google Classroom Dashboard teacher can upload study
+			material for student regarding course.</li>
+		<li>From Google Classroom Dashboard teacher you can filter list
+			by searching course name or teacher.</li>
+		<li>From Google Classroom Dashboard teacher you can filter list
+			by course state like whether course state is active or archive.</li>
+	</ul>
+	</md-content></md-content> <!-- <md-content id="infoBrouchure" flex-gt-xs layout="column"
+		style="padding-top: 3%;"> <md-toolbar class="md-hue-2">
+	<div class="md-toolbar-tools">
+		<h3 class="md-display-1">Information Brouchure</h3>
+	</div>
+	</md-toolbar> <br>
+	<div align="center">
+		Click on Icon to Download Information Brouchure <br> <a
+			target="_self"
+			href="/img/BulkUploadFormats/Gandhi Vichar Sanskar Pariksha CIRCULAR_2017.pdf"
+			download="Information Broucher.pdf"><img
+			ng-src="/img/images/pdflogo.png" class="md-card-image" height="100px"
+			width="100px"> <md-tooltip>Downnload Information
+			Broucher</md-tooltip> </a>
+	</div>
+	</md-content>  --><md-content id="userDirectory" flex-gt-xs layout="column"
+		style="padding-top: 3%;"> <md-toolbar class="md-hue-2">
+	<div class="md-toolbar-tools">
+		<h3 class="md-display-1">Google User Directory</h3>
+	</div>
+	</md-toolbar>
+	<hr>
+	<md-content class="md-padding">
+	<ul type="disc">
+		<li>Google User Directory shows the all users list.</li>
+		<li>In Google User Directory you can add, edit, view and delete
+			user from user list.</li>
+		<li>In Google User Directory you can add multiple users by
+			uploading csv data.</li>
+		<li>In Google User Directory you can filter list by searching
+			user.</li>
+	</ul>
+	</md-content>
+	</md-content>
+	<hr>
+	<md-content id="bottom-links" flex-gt-xs layout="row"
+		layout-xs="column" style="padding-top: 2%;"> <!-- <div flex layout="column" style="margin: 8px;">
+		<p>More about us</p>
+		<p>
+			<a href="#">See our website </a>
+		</p>
+		<p>
+			<a href="#">ProDigital Vision </a>
+		</p>
+		<p>
+			<a href="#">ProDigital Mission </a>
+		</p>
+		<p>
+			<a href="#">ProDigital Products </a>
+		</p>
+	</div>
+	<div flex layout="column" style="margin: 8px;">
+		<p>Product Help</p>
+		<p>
+			<a href="#">Stock Management Help </a>
+		</p>
+		<p>
+			<a href="#">Quotation and Invoice Help </a>
+		</p>
+		<p>
+			<a href="#">HRMS and Payroll Help</a>
+		</p>
+		<p>
+			<a href="#">Task Management Help </a>
+		</p>
+	</div>
+	<div flex layout="column" style="margin: 8px;">
+		<p>activity management1</p>
+		<p>activity management1</p>
+	</div>
+	<div flex layout="column" style="margin: 8px;">
+		<p>activity management1</p>
+		<p>activity management1</p>
+		<p>activity management1</p>
+		<p>activity management1</p>
+		<p>activity management1</p>
+	</div>--> </md-content> </md-content>
+	<md-button class="md-fab md-fab-bottom-right docs-scroll-fab"
+		ng-click="gotoPart('tp1')" aria-label="Back to Top"> <md-tooltip
+		md-direction="top">Back to Top</md-tooltip> <md-icon
+		md-svg-src="img/icons/ic_keyboard_arrow_up_black_24px.svg"></md-icon>
+	</md-button>
+	<!-- All JS Dependencies -->
+	<script src="https://apis.google.com/js/client.js"></script>
+	<script src="https://apis.google.com/js/api.js"></script>
+	<script src="/lib/base/angular.min.js"></script>
+	<script src="/lib/base/angular-animate.min.js"></script>
+	<script src="/lib/base/angular-route.min.js"></script>
+	<script src="/lib/base/angular-aria.min.js"></script>
+	<script src="/lib/base/angular-messages.min.js"></script>
+	<script src="/lib/base/angular-resource.min.js"></script>
+	<script src="/lib/base/angular-material-icons.min.js"></script>
+	<script src="/lib/base/angular-material.min.js"></script>
+	<script src="/lib/base/ngStorage.min.js"></script>
+	<script src="/lib/base/google-plus-signin.js"></script>
+	<script src="index.ctr.js"></script>
+</body>
+</html>

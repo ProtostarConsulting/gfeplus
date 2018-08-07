@@ -1,0 +1,102 @@
+<h3 class="md-headline">Add Student Fees</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div layout="column" layout-padding>
+	<md-content>
+	<section>
+
+		<form name="studentFeesForm" ng-model="studentFeesForm">
+
+			<div layout="column" layout-sm="column">
+				<div layout="row" layout-sm="column">
+					<md-input-container flex> <label>Student
+						PRN NO</label> <input ng-model="selectedStud.prn" readonly> </md-input-container>
+					
+					<md-input-container flex> <label>Student
+						FirstName</label> <input ng-model="selectedStud.firstName" readonly>
+					</md-input-container>
+					<md-input-container flex> <label>Student
+						LastName</label> <input ng-model="selectedStud.lastName" readonly>
+					</md-input-container>
+				</div>
+				<div layout="row" layout-sm="column">
+					<md-input-container flex> <label>Student
+						Email-id</label> <input ng-model="selectedStud.email_id" readonly>
+					</md-input-container>
+					<md-input-container flex> <label>Student
+						standard</label> <input ng-model="selectedStud.standard" readonly>
+					</md-input-container>
+					<md-input-container flex> <label>Student
+						Division</label> <input ng-model="selectedStud.division" readonly>
+					</md-input-container>
+				</div>
+				<div layout="row" layout-sm="column">
+					
+					
+					<md-input-container flex> <label>Payment
+						Description</label> <input ng-model="tempPayment.paymentDescription">
+					</md-input-container>
+						<md-input-container flex> <label>Total
+						Fees</label> <input type="number" ng-model="tempPayment.totalFees">
+					</md-input-container>
+					<md-input-container flex> <label>No of
+						Installments</label> <md-select ng-model="tempPayment.noofinstallments"
+						ng-change="createInstallments()"> <md-option
+						ng-value="installment" ng-repeat="installment in installmentList">{{installment}}</md-option>
+					</md-select> </md-input-container>
+				</div>
+
+				
+				<div layout="row" layout-sm="column" ng-show="flag">
+					<md-data-table-container>
+					<table md-data-table md-progress="deferred">
+						<thead md-order="query.order" md-trigger="onorderchange">
+							<tr>
+								<th name="InstallmentId" order-by="instid"></th>
+								<th name="Paid/DueDate" order-by="paiddueDate"></th>
+								<th name="Installment Amount" order-by="amount"></th>
+								<th name="Notes" order-by="notes"></th>
+								<th name="Status" order-by="status"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr md-auto-select ng-repeat="i in installments track by $index">
+								<td><md-input-container flex> <input
+										ng-model="i.instid"> </md-input-container></td>
+								<td><md-datepicker name="date" ng-model="date"
+										md-placeholder=" Selectdate"></md-datepicker></td>
+								<td><md-input-container flex> <input
+										ng-model="i.amount"> </md-input-container></td>
+								<td><md-input-container flex> <input
+										ng-model="notes"> </md-input-container></td>
+								<td><md-checkbox name="status" ng-model="status"></md-checkbox></td>
+								<td><md-button class="md-raised md-primary"
+										ng-click="makeInstallment(i.instid,date,notes,status)">Create
+									Installment</md-button></td>
+							</tr>
+						</tbody>
+					</table>
+					</md-data-table-container>
+				</div>
+
+			</div>
+
+			<div layout="row" layout-align="center center" layout-xs="column">
+
+				<md-button class="md-raised md-primary"
+				ng-click="addStudentPayment()">Submit Payment </md-button>
+
+				<md-button class="md-raised " ng-click="cancelButton()">Cancel</md-button>
+
+			</div>
+
+			
+</div>
+
+</form>
+
+</section>
+
+</md-content>
+</div>

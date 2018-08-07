@@ -1,0 +1,85 @@
+<div id="studentListDiv">
+	<h3 class="md-headline">Student List</h3>
+
+	<!-- <div layout="row" layout-align="end end" layout-xs="column">
+
+		<md-button class="md-raised md-primary" ng-click="openPopUp()">Add
+		In Bulk </md-button>
+	</div> -->
+
+	<div layout="row" layout-xs="column">
+		<md-input-container flex> <label>Search
+			By Name</label> <input ng-model="searchByName"> </md-input-container>
+	</div>
+<!-- 	<div layout="row" layout-xs="column">
+		<md-input-container flex> <label>Search
+			By School / College / Institute<span style="color: red"
+			ng-show="instituteStudentForm.level.$error.required"
+			class="mandatory">*</span>
+		</label> <md-select name="level" ng-model="schoolName " ng-required="true">
+		<md-option ng-value="schoolName.schoolName"
+			ng-repeat="schoolName in pSchoolList">{{schoolName.schoolName}}</md-option>
+		</md-select>
+		<div ng-messages="instituteStudentForm.level.$error"
+			ng-if="instituteStudentForm.level.$submitted || instituteStudentForm.level.$touched">
+			<div ng-message="required">Please Select School Category.</div>
+		</div>
+		</md-input-container>
+	</div> -->
+	<div>
+		<md-data-table-container>
+		<table md-data-table
+			md-row-select="selected"
+			class="md-primary" md-progress="deferred">
+			<thead md-order="query.order" md-trigger="onorderchange">
+
+				<tr>
+					<th order-by="firstName" name="Name" unit=""></th>
+					<th order-by="email_id" name="Email-ID"></th>
+					<th order-by="address" name="Address"></th>
+					<th order-by="contact" name="Contact"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr md-auto-select
+					ng-repeat="student in students | orderBy: query.order  | filter: searchByName | limitTo: query.limit: (query.page - 1) * query.limit">
+
+					<td>{{student.firstName}} {{student.lastName}}</td>
+					<td>{{student.email_id}}</td>
+					<td>{{student.address}}</td>
+					<td>{{student.contact}}</td>
+
+				</tr>
+			</tbody>
+		</table>
+		</md-data-table-container>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+			md-total={{students.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</div>
+</div>
+
+<div layout="row" layout-align="center center">
+	<a
+		ui-sref="student.edit({selectedEmailID : selected[0].email_id, currentInstID:curUser.instituteID, selectedID:selected[0].id})"><md-button
+			ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+			ng-click=""> <md-icon md-svg-src="img/icons/edit.svg"></md-icon>
+		<md-tooltip>Edit </md-tooltip></md-button></a> <a
+		ui-sref="student.addstudentpayment({selectedStud:selected[0]})"><md-button
+			ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+			ng-click=""> <md-icon md-svg-src="img/icons/payment.svg"></md-icon>
+		<md-tooltip>Add Payment</md-tooltip> </md-button> </a> <a
+		ui-sref="favourite.practiceExamResultView({selectedStudEmail:selected[0].email_id})"><md-button
+			ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+			ng-click=""> <md-icon md-svg-src="img/icons/result.svg"></md-icon>
+		<md-tooltip>Exam Details </md-tooltip> </md-button> </a>
+
+ <a
+		ui-sref="scheduledExam.myScheduledExamList({selectedStudId:selected[0].id})"><md-button
+			ng-show="selected.length == 1" class="md-fab md-primary md-hue-2"
+			ng-click=""> <md-icon md-svg-src="img/icons/view.svg"></md-icon>
+		<md-tooltip>View Scheduled Exams</md-tooltip> </md-button> </a>	
+
+	
+
+</div>
+

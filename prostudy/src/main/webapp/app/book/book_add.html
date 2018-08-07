@@ -1,0 +1,153 @@
+<h3 class="md-headline">Add Books</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<form name="bookForm" method="post" enctype="multipart/form-data">
+
+
+	<div layout="column" layout-align="" layout-xs="column">
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+
+			<md-input-container flex> <label>Book
+				Name<span style="color: red"
+				ng-show="bookForm.book_name.$error.required" class="mandatory">*</span>
+			</label> <input name="book_name" id="book_name" ng-required="true"
+				ng-model="tempBook.book_name">
+			<div ng-messages="bookForm.book_name.$error"
+				ng-if="bookForm.book_name.$submitted || bookForm.book_name.$touched">
+				<div ng-message="required">Please Enter Book name.</div>
+			</div>
+			</md-input-container>
+
+			<input type="hidden" name="standard.hidden" id="standard.hidden" value="{{tempBook.standard}}">
+			<md-input-container flex> <label>Standard<span
+				style="color: red" ng-show="bookForm.standard.$error.required"
+				class="mandatory">*</span></label> <md-select name="standard" id="standard"
+				ng-model="tempBook.standard" ng-change="getDivisionByStandard()"
+				ng-required="true"> <md-option ng-value="standard"
+				ng-repeat="standard in standards">{{standard}}</md-option> </md-select>
+			<div ng-messages="bookForm.standard.$error"
+				ng-if="bookForm.standard.$submitted || bookForm.standard.$touched">
+				<div ng-message="required">Please Select Standard.</div>
+			</div>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+
+			<md-input-container flex> <label>Author<span
+				style="color: red" ng-show="bookForm.author.$error.required"
+				class="mandatory">*</span>
+			</label> <input name="author" id="author" ng-required="true"
+				ng-model="tempBook.author">
+			<div ng-messages="bookForm.author.$error"
+				ng-if="bookForm.author.$submitted || bookForm.author.$touched">
+				<div ng-message="required">Please Enter Book name.</div>
+			</div>
+			</md-input-container>
+
+			<input type="hidden" name="division.hidden" id="division.hidden" value="{{tempBook.division}}">
+			<md-input-container flex> <label>Division<span
+				style="color: red" ng-show="bookForm.division.$error.required"
+				class="mandatory">*</span></label> <md-select name="division" id="division"
+				ng-model="tempBook.division" ng-change="getSubjectByDivision()"
+				ng-required="true"> <md-option ng-value="division"
+				ng-repeat="division in divisions">{{division}}</md-option> </md-select>
+			<div ng-messages="bookForm.division.$error"
+				ng-if="bookForm.division.$submitted || bookForm.division.$touched">
+				<div ng-message="required">Please Select Division.</div>
+			</div>
+			</md-input-container>
+
+		</div>
+
+		<div layout="row" layout-align="centre centre" layout-xs="column">
+
+			<input type="hidden" name="board.hidden" id="board.hidden" value="{{tempBook.board}}">
+			<md-input-container flex> <label>Board<span
+				style="color: red" ng-show="bookForm.board.$error.required"
+				class="mandatory">*</span></label> <md-select name="board" id="board"
+				ng-model="tempBook.board" 
+						ng-required="true"> <md-option
+				ng-value="board" ng-repeat="board in boards">{{board}}</md-option> </md-select>
+			<div ng-messages="bookForm.board.$error"
+				ng-if="bookForm.board.$submitted || bookForm.board.$touched">
+				<div ng-message="required">Please Select Board.</div>
+			</div>
+			</md-input-container>
+
+			<input type="hidden" name="subject.hidden" id="subject.hidden" value="{{tempBook.subject}}">
+			<md-input-container flex> <label>Subject<span
+				style="color: red" ng-show="bookForm.subject.$error.required"
+				class="mandatory">*</span></label> <md-select name="subject" id="subject"
+				ng-model="tempBook.subject" ng-change="getChaptersByClass()"
+				ng-required="true"> <md-option ng-value="subject"
+				ng-repeat="subject in subjects track by $index ">{{subject}}</md-option>
+			</md-select>
+			<div ng-messages="bookForm.subject.$error"
+				ng-if="bookForm.subject.$submitted || bookForm.subject.$touched">
+				<div ng-message="required">Please Select Subject.</div>
+			</div>
+			</md-input-container>
+
+		</div>
+
+	</div>
+	<input type="hidden" name="instituteID" id="instituteID"
+		value={{curUser.instituteID}}>
+
+	<div layout="row" layout-align="centre centre" layout-xs="column">
+		<input type="hidden" name="isPDF.hidden" id="isPDF.hidden" value="{{tempBook.isPDF}}">
+		<md-input-container flex> <md-checkbox id="isPDF"
+			name="isPDF" ng-model="tempBook.isPDF"> <label>Is
+			PDF..</label> </md-checkbox></md-input-container>
+
+		<md-input-container flex> <span ng-show="tempBook.isPDF"> <input type="file"
+			name="myFile" id="myFile" accept=".pdf" /></span></md-input-container>
+
+	</div>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<div ng-hide="tempBook.isPDF">
+		<table>
+			<tr layout-xs="column">
+
+				<td><label for="aChapters">Available Chapters</label> <select
+					size="5" multiple ng-model="available"
+					ng-options="chapter as chapter.chapter_name for chapter in chapters"
+					style="width: 400px"></select></td>
+
+				<td><input id="moveright" type="button" value=">>"
+					ng-click="moveItem(available[0], chapters,selectedChapters)" /> <input
+					id="moverightall" type="button" value="Add All Chapters"
+					ng-click="moveAll(chapters,selectedChapters)" /> <input
+					id="move left" type="button" value="<<"
+					ng-click="moveItem(selected[0], selectedChapters,chapters)" /> <input
+					id="moveleftall" type="button" value="Remove All Chapters"
+					ng-click="moveAll(selectedChapters,chapters)" /></td>
+
+				<td><label for="sChapters">Selected Chapters</label> <select
+					size="5" multiple ng-model="selected"
+					ng-options="chapter as chapter.chapter_name for chapter in selectedChapters"
+					style="width: 400px"></select></td>
+			</tr>
+
+		</table>
+	</div>
+
+
+	<p>&nbsp;</p>
+
+	<div layout="row" layout-align="center center">
+
+		<md-button class="md-raised md-primary"
+			ng-disabled="bookForm.$invalid" ng-click="addBook()">Add</md-button>
+
+		<md-button class="md-raised" ng-click="cancelButton()">Cancel</md-button>
+
+	</div>
+
+</form>
+
+

@@ -1,0 +1,162 @@
+<md-content layout-padding>
+
+<div class="md-headline">
+	<h3>School List Report</h3>
+</div>
+<form name="gfSchoolListsForm ">
+
+	<md-content>
+
+	<div layout="row" layout-xs="column" flex>
+
+		<md-input-container flex> <label>Select
+			School Category<span style="color: red"
+			ng-show="gfSchoolListsForm.category.$error.required"
+			class="mandatory">*</span>
+		</label> <md-select name="category" id="category"
+			ng-model="selectFilterData.category" ng-required="true">
+		<md-option ng-value="category"
+			ng-repeat="category in partnerSchoolLevels">{{category}}</md-option>
+		</md-select>
+		<div ng-messages="gfSchoolListsForm.category.$error"
+			ng-if="gfSchoolListsForm.category.$submitted || gfSchoolListsForm.category.$touched">
+			<div ng-message="required">Please Select School Category.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label>State<span
+			style="color: red" ng-show="gfSchoolListsForm.state.$error.required"
+			class="mandatory">*</span></label> <md-select name="state"
+			ng-model="selectFilterData.state"
+			ng-change="getDistricts($index, selectFilterData.state)"
+			ng-required="true"> <md-option ng-value="states.name"
+			ng-repeat="states in Country.states |  orderBy : states.name">{{states.name}}</md-option>
+		</md-select>
+		<div ng-messages="gfSchoolListsForm.state.$error"
+			ng-if="gfSchoolListsForm.state.$submitted || gfSchoolListsForm.state.$touched">
+			<div ng-message="required">Please Select State.</div>
+		</div>
+		</md-input-container>
+
+	</div>
+
+	<div layout="row" layout-xs="column"
+		ng-if="gfSchoolLists.address.state != 'Other'">
+		<md-input-container flex> <label>District<span
+			style="color: red"
+			ng-show="gfSchoolListsForm.district.$error.required"
+			class="mandatory">*</span></label> <md-select name="district"
+			ng-model="selectFilterData.dist"
+			ng-change="getTalukas($index, selectFilterData.dist)"
+			ng-required="true"> <md-option ng-value="district.name"
+			ng-repeat="district in temp.tempDistricts">{{district.name
+		}}</md-option> </md-select>
+
+		<div ng-messages="gfSchoolListsForm.district.$error"
+			ng-if="gfSchoolListsForm.district.$submitted || gfSchoolListsForm.district.$touched">
+			<div ng-message="required">Please Select District.</div>
+		</div>
+		</md-input-container>
+
+		<md-input-container flex> <label>Taluka<span
+			style="color: red" ng-show="gfSchoolListsForm.taluka.$error.required"
+			class="mandatory">*</span></label> <md-select name="taluka"
+			ng-model="selectFilterData.tal"
+			ng-change="getVillages($Index, selectFilterData.tal)"
+			ng-required="true"> <md-option ng-value="taluka.name"
+			ng-repeat="taluka in temp.tempTalukas">{{taluka.name }}</md-option> </md-select>
+
+		<div ng-messages="gfSchoolListsForm.taluka.$error"
+			ng-if="gfSchoolListsForm.taluka.$submitted || gfSchoolListsForm.taluka.$touched">
+			<div ng-message="required">Please Select Taluka.</div>
+		</div>
+		</md-input-container>
+	</div>
+	<div layout="row" layout-align="center center">
+		<md-button class="md-raised md-primary" ng-click="filterSchoolList()">Display
+		Report</md-button>
+		<md-button class="md-raised md-primary" id="downloadExcel"
+			ng-click="downloadData()">Download All Schools Data <md-tooltip>
+		Download All Schools Data</md-tooltip> </md-button>
+	</div>
+
+	<div ng-hide="loading">
+		<md-toolbar class="md-table-toolbar md-default">
+		<div class="md-toolbar-tools">
+			<span flex>Display Report: {{ schoolListsDate |
+				date:"dd-MM-yyyy" }}</span>
+			<md-button class="md-icon-button md-accent"
+				ng-click="printDiv('reportContentDiv')" aria-label="Favorite">
+			<md-icon md-svg-icon="img/icons/print.svg"></md-icon> </md-button>
+		</div>
+		</md-toolbar>
+		<div id="reportContentDiv">
+			<div>
+				<table
+					style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%;">
+					<caption style="text-align: center; padding: 2px;">
+						<span ng-hide="true" flex>Gandhi Research Foundation,
+							Jalgaon</span> <br> <span ng-hide="true" flex>Display
+							Report: {{ schoolListsDate | date:"dd-MM-yyyy" }}</span>
+					</caption>
+					<tr>
+						<th
+							style="border: 1px solid black; text-align: left; padding: 2px;">Sr.
+							No.</th>
+						<th
+							style="border: 1px solid black; text-align: left; padding: 2px;">GRF.
+							Reg. No.</th>
+						<th
+							style="border: 1px solid black; text-align: left; padding: 2px;">School/College
+							Name</th>
+						<th
+							style="border: 1px solid black; text-align: left; padding: 2px;">State</th>
+						<th
+							style="border: 1px solid black; text-align: left; padding: 2px;">District</th>
+						<th
+							style="border: 1px solid black; text-align: left; padding: 2px;">Taluka</th>
+						<!-- <th
+							style="border: 1px solid black; text-align: left; padding: 2px;">Destination</th>
+						<th
+							style="border: 1px solid black; text-align: left; padding: 2px;">Logistics</th>
+						<th
+							style="border: 1px solid black; text-align: left; padding: 2px;">Weight(Kg)</th> -->
+					</tr>
+					<tr ng-repeat="school in filteredSchoolList"
+						ng-style="$even && {	background-color: #dddddd;}">
+						<td
+							style="border: 1px solid black; text-align: left; padding: 2px;">{{$index
+							+ 1}}</td>
+						<td
+							style="border: 1px solid black; text-align: left; padding: 2px;">{{school.autoGenerated}}</td>
+						<td
+							style="border: 1px solid black; text-align: left; padding: 2px;">{{school.schoolName}}</td>
+						<td
+							style="border: 1px solid black; text-align: left; padding: 2px;">{{school.address.state}}</td>
+						<td
+							style="border: 1px solid black; text-align: left; padding: 2px;">{{school.address.dist}}</td>
+						<td
+							style="border: 1px solid black; text-align: left; padding: 2px;">{{school.address.tal}}</td>
+
+
+
+
+						<!-- <td
+							style="border: 1px solid black; text-align: left; padding: 2px;">{{courier.schoolName.address.tal
+							+ ', ' + courier.schoolName.address.dist}}</td>
+						<td
+							style="border: 1px solid black; text-align: left; padding: 2px;">{{courier.logistics}}</td>
+						<td
+							style="border: 1px solid black; text-align: left; padding: 2px;">{{parseInt(courier.totalWeight)/1000
+							| number:2}}</td> -->
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	</md-content>
+
+</form>
+
+
+</md-content>

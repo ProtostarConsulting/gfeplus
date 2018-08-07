@@ -1,0 +1,63 @@
+<h3 class="md-headline">Student List</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<md-input-container flex> <label>Search By
+	student name</label> <input ng-model="searchCategory"> </md-input-container>
+
+<div>
+	<md-content layout-padding> <md-data-table-container>
+	<table md-data-table  md-progress="deferred">
+		<thead md-order="query.order" md-trigger="onorderchange">
+			<tr>
+				<th name="STUDENT NAME" order-by="firstName"></th>
+				<th name="STUDENT EMAIL-ID" order-by="email_id"></th>
+				<th name="STUDENT ADDRESS" order-by="address"></th>
+				<th name="STUDENT CONTACT" order-by="contact"></th>
+			
+			</tr>
+		</thead>
+		<tbody>
+			<tr md-auto-select
+				ng-repeat="student in studentList | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit | filter: {firstName: searchCategory}">
+				<td>{{student.firstName}} {{student.lastName}}</td>
+				<td>{{student.email_id}}</td>
+				<td>{{student.address}}</td>
+				<td>{{student.contact}}</td>
+				
+				<td><a
+					ui-sref="institute.view.editUser({selectedEmailID : student.email_id, currentInstID : currentInstID})"><md-button
+							ng-show="flag==true" ng-click=""><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit </md-tooltip></md-button></a></td>
+
+				<td><a
+					ui-sref="institute.list_view.editUser({selectedEmailID : student.email_id, currentInstID : currentInstID})"><md-button
+							ng-show="flag==false" ng-click=""><md-icon md-svg-src="img/icons/edit.svg"></md-icon> <md-tooltip>Edit </md-tooltip></md-button></a></td>
+							
+				
+			</tr>
+		</tbody>
+	</table>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page"
+		md-total={{studentList.length}} md-trigger="onpagechange"></md-data-table-pagination>
+	</md-data-table-container>
+	<p>&nbsp;</p>
+
+	<md-button ng-show="flag==true"
+		ui-sref="institute.view.view_students.addstudents"
+		class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/add.svg"></md-icon> <md-tooltip>Add
+			Student</md-tooltip></md-button> 
+		
+		<md-button
+		ng-show="flag==false"
+		ui-sref="institute.list_view.view_students.addstudents"
+		class="md-fab md-primary md-hue-2"><md-icon
+				md-svg-src="img/icons/add.svg"></md-icon> <md-tooltip>Add
+			Student</md-tooltip></md-button>
+
+
+	<div ui-view></div>
+	</md-content>
+</div>
+
+

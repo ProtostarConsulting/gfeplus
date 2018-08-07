@@ -1,0 +1,186 @@
+<div ng-if="loading">
+	<div layout="row" layout-sm="column" layout-align="space-around">
+		<md-progress-circular md-diameter="100" md-mode="indeterminate"></md-progress-circular>
+	</div>
+</div>
+<div ng-if="!loading">
+	<h3 class="md-headline" ng-hide="schoolInstituteId">Add Institute</h3>
+	<h3 class="md-headline" ng-show="schoolInstituteId">Edit Institute</h3>
+	<form name="instituteForm">
+		<md-content
+			class="md-padding">
+		<div layout="column" layout-xs="column">
+
+			<div layout="row" layout-xs="column" flex>
+				<md-input-container flex> <label>Institute
+					Name<span style="color: red"
+					ng-show="instituteForm.name.$error.required" class="mandatory">*</span>
+				</label> <input name="name" ng-model="schoolInstitute.instituteName"
+					ng-required="true">
+				<div ng-messages="instituteForm.name.$error"
+					ng-if="instituteForm.name.$submitted || instituteForm.name.$touched">
+					<div ng-message="required">Please Enter Institute Name.</div>
+				</div>
+				</md-input-container>
+			</div>
+
+			<div layout="row" layout-xs="column" flex>
+				<!-- <span flex="10"></span> -->
+				<h3 class="md-subhead">Address</h3>
+			</div>
+			<div layout="row" layout-xs="column">
+				<md-input-container flex> <label>Line1
+					<span style="color: red;"
+					ng-show="instituteForm.line1.$error.required">*</span>
+				</label> <input name="line1" id="line1"
+					ng-model="schoolInstitute.address.line1" ng-required="true">
+				<div ng-messages="instituteForm.line1.$error"
+					ng-if="instituteForm.line1.$submitted || instituteForm.line1.$touched">
+					<div ng-message="required">Please Enter Address Name.</div>
+				</div>
+				</md-input-container>
+				<md-input-container flex> <label>Line2
+				</label> <input name="line2" id="line2"
+					ng-model="schoolInstitute.address.line2"></md-input-container>
+			</div>
+
+			<div layout="row" layout-xs="column">
+				<md-input-container flex> <label>At
+					Post/City <span style="color: red;"
+					ng-show="instituteForm.city.$error.required">*</span>
+				</label> <input name="city" id="city" ng-model="schoolInstitute.address.city"
+					ng-required="true">
+				<div ng-messages="instituteForm.city.$error"
+					ng-if="instituteForm.city.$submitted || instituteForm.city.$touched">
+					<div ng-message="required">Please Enter City Name.</div>
+				</div>
+				</md-input-container>
+
+				<md-input-container flex> <label>State<span
+					style="color: red"
+					ng-show="instituteForm.state.$error.required" class="mandatory">*</span></label>
+				<md-select name="state" ng-model="schoolInstitute.address.state"
+					ng-change="getDistricts($index, schoolInstitute.address.state)"
+					ng-required="true"> <md-option ng-value="states.name"
+					ng-repeat="states in Country.states |  orderBy : states.name">{{states.name}}</md-option>
+				</md-select>
+				<div ng-messages="instituteForm.state.$error"
+					ng-if="instituteForm.state.$submitted || instituteForm.state.$touched">
+					<div ng-message="required">Please Select State.</div>
+				</div>
+				</md-input-container>
+			</div>
+
+			<div layout="row" layout-xs="column"
+				ng-if="schoolInstitute.address.state == 'Other'">
+				<md-input-container flex> <label>State
+					<span style="color: red;"
+					ng-show="instituteForm.otherState.$error.required">*</span>
+				</label> <input name="otherState" id="otherState"
+					ng-model="schoolInstitute.address.otherState" ng-required="true">
+				<div ng-messages="instituteForm.otherState.$error"
+					ng-if="instituteForm.otherState.$submitted || instituteForm.otherState.$touched">
+					<div ng-message="required">Please Enter State Name.</div>
+				</div>
+				</md-input-container>
+
+				<md-input-container flex> <label>District
+					<span style="color: red;"
+					ng-show="instituteForm.otherDist.$error.required">*</span>
+				</label> <input name="otherDist" id="otherDist"
+					ng-model="schoolInstitute.address.otherDist" ng-required="true">
+				<div ng-messages="instituteForm.otherDist.$error"
+					ng-if="instituteForm.otherDist.$submitted || instituteForm.otherDist.$touched">
+					<div ng-message="required">Please Enter District Name.</div>
+				</div>
+				</md-input-container>
+			</div>
+			<div layout="row" layout-xs="column"
+				ng-if="schoolInstitute.address.state == 'Other'">
+				<md-input-container flex> <label>Taluka
+					<span style="color: red;"
+					ng-show="instituteForm.otherTaluka.$error.required">*</span>
+				</label> <input name="otherTaluka" id="otherTaluka"
+					ng-model="schoolInstitute.address.otherTaluka" ng-required="true">
+				<div ng-messages="instituteForm.otherTaluka.$error"
+					ng-if="instituteForm.otherTaluka.$submitted || instituteForm.otherTaluka.$touched">
+					<div ng-message="required">Please Enter Taluka Name.</div>
+				</div>
+				</md-input-container>
+
+
+				<md-input-container flex="50"> <label>Pin
+					<span style="color: red;"
+					ng-show="instituteForm.pin.$error.required">*</span>
+				</label> <input type="number" name="pin" id="pin"
+					ng-model="schoolInstitute.address.pin" ng-required="true">
+				<div ng-messages="instituteForm.pin.$error"
+					ng-if="instituteForm.pin.$submitted || instituteForm.pin.$touched">
+					<div ng-message="required">Please Enter PIN Code.</div>
+				</div>
+				</md-input-container>
+
+			</div>
+
+
+			<div layout="row" layout-xs="column"
+				ng-if="schoolInstitute.address.state != 'Other'">
+				<md-input-container flex> <label>District<span
+					style="color: red"
+					ng-show="instituteForm.district.$error.required"
+					class="mandatory">*</span></label> <md-select name="district"
+					ng-model="schoolInstitute.address.dist"
+					ng-change="getTalukas($index, schoolInstitute.address.dist)"
+					ng-required="true"> <md-option ng-value="district.name"
+					ng-repeat="district in temp.tempDistricts">{{district.name
+				}}</md-option> </md-select>
+
+				<div ng-messages="instituteForm.district.$error"
+					ng-if="instituteForm.district.$submitted || instituteForm.district.$touched">
+					<div ng-message="required">Please Select District.</div>
+				</div>
+				</md-input-container>
+
+				<md-input-container flex> <label>Taluka<span
+					style="color: red"
+					ng-show="instituteForm.taluka.$error.required"
+					class="mandatory">*</span></label> <md-select name="taluka"
+					ng-model="schoolInstitute.address.tal"
+					ng-change="getVillages($Index, schoolInstitute.address.tal)"
+					ng-required="true"> <md-option ng-value="taluka.name"
+					ng-repeat="taluka in temp.tempTalukas">{{taluka.name }}</md-option>
+				</md-select>
+
+				<div ng-messages="instituteForm.taluka.$error"
+					ng-if="instituteForm.taluka.$submitted || instituteForm.taluka.$touched">
+					<div ng-message="required">Please Select Taluka.</div>
+				</div>
+				</md-input-container>
+			</div>
+
+
+			<div layout="row" layout-xs="column">
+				<md-input-container flex="50"
+					ng-if="schoolInstitute.address.state != 'Other'">
+				<label>Pin <span style="color: red;"
+					ng-show="instituteForm.pin.$error.required">*</span>
+				</label> <input type="number" name="pin" id="pin"
+					ng-model="schoolInstitute.address.pin" ng-required="true">
+				<div ng-messages="instituteForm.pin.$error"
+					ng-if="instituteForm.pin.$submitted || instituteForm.pin.$touched">
+					<div ng-message="required">Please Enter PIN Code.</div>
+				</div>
+				</md-input-container>
+			</div>
+		</div>
+
+		<section layout="row" layout-sm="column" layout-align="center center">
+			<md-button class="md-raised md-primary" ng-click="addPartnerSchoolInstitute()"
+				ng-disabled="instituteForm.$invalid">Save
+			</md-button>
+
+		</section>
+
+		</md-content>
+	</form>
+</div>

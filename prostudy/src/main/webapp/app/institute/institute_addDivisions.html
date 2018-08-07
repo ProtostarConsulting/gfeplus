@@ -1,0 +1,34 @@
+<section>
+	<form name="addDivisionForm" ng-model="addDivisionForm"
+		ng-submit="addDivisionForm.$valid " novalidate>
+
+		<div layout="column" layout-align="centre centre" layout-xs="column">
+
+			<md-input-container
+				md-is-error="addDivisionForm.name.$invalid && (addDivisionForm.$submitted || addDivisionForm.name.$dirty )">
+			<label>Enter Division name<span style="color: red"
+				ng-show="addDivisionForm.name.$error.required" class="mandatory">*</span></label>
+			<input name="name" id="name" ng-required="true" ng-model="division.name">
+			<div ng-messages="addDivisionForm.name.$error"
+				ng-if="addDivisionForm.name.$submitted || addDivisionForm.name.$touched ">
+				<div ng-message="required">Please Enter Division.</div>
+
+			</div>
+			</md-input-container>
+		</div>
+
+
+
+
+		<div layout="row" layout-align="end end" layout-xs="column" flex>
+			<md-button class="md-raised md-primary" ng-disabled="addDivisionForm.$invalid"
+				ng-click="addInstituteDivisions({currentInstID: currentInstID , currentStdID: currentStdID})">Add
+			Divisions </md-button>
+
+			<!-- <a ui-sref="institute.addAdmins({currentInstID: currentInstID})"><md-button
+					class="md-raised md-primary" ng-click="">Skip</md-button> </a> -->
+
+		</div>
+	</form>
+</section>
+

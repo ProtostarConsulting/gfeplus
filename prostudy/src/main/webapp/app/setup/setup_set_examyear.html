@@ -1,0 +1,25 @@
+<div>
+	<h3 class="md-headline">Set Exam Year</h3>
+	<form name="setExamYearForm">
+		<md-content>
+		<div layout="row" layout-xs="column" flex>
+
+			<md-input-container flex="50"> <label>Select
+				Exam Year<span style="color: red"
+				ng-show="setExamYearForm.yearOfExam.$error.required"
+				class="mandatory">*</span>
+			</label> <md-select name="yearOfExam" aria-label="YearOfExam"
+				ng-model="yearOfExam"> <md-option ng-selected = "Year == curUser.instituteObj.yearofExam"
+				ng-value="Year" ng-repeat="Year in Years | orderBy:Year">{{Year}}</md-option>
+			</md-select>
+			<div ng-messages="setExamYearForm.yearOfExam.$error"
+				ng-if="setExamYearForm.yearOfExam.$submitted || setExamYearForm.yearOfExam.$touched">
+				<div ng-message="required">Please Select Exam Year.</div>
+			</div>
+			</md-input-container>
+		</div>
+		<md-button class="md-raised md-primary" ng-click="setExamYear()"
+				ng-disabled="setExamYearForm.YearOfExam.$invalid">Save </md-button>
+		</md-content>
+	</form>
+</div>
